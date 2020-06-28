@@ -1,4 +1,4 @@
-package com.example.epidemicscenarioapplication;
+package com.example.epidemicscenarioapplication.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,18 +22,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.utils.ToastUtil;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     // 拍照
     public static final int PHOTO_REQUEST_CAREMA = 1;
     public static final int CROP_PHOTO = 2;
@@ -46,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         MainActivityPermissionsDispatcher.showCameraWithPermissionCheck(this);
         mBtnTakePhoto = findViewById(R.id.btn_take_photo);
         picture = findViewById(R.id.imageView);
@@ -58,6 +61,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected int getViewId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
     public void openCamera(Activity activity) {
         //獲取系統版本
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
@@ -142,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnShowRationale(Manifest.permission.CAMERA)
     void showWhy() {
-        Toast.makeText(getApplicationContext(), "请给予我们必要的权限，否则您无法获得最佳体验",Toast.LENGTH_SHORT).show();
+        ToastUtil.showToast(getApplicationContext(),"请授予我们不要的权限，否则您无法获得最佳体验");
     }
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})

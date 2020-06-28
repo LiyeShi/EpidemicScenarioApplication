@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_tengxun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="腾讯" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_dingxiangyuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="丁香园" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_meisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="梅斯" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_zhihu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="知乎" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_diyicaijing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第一财经" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_kuake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="夸克" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_baidu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="百度" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_alijiankang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阿里健康" />
+</LinearLayout>
