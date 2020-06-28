@@ -1,0 +1,11 @@
+
+lsquid:MaximumInheritanceDepth$"<This class has 6 parents which is greater than 5 authorized.(²Ú±Ž8×’¹©¯.
+Ysquid:S2696G"6Make the enclosing method "static" or remove this set.(¥ˆŽÿþÿÿÿÿ8êµ…¯¯.
+ squid:S1186•"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨½­8­Ÿè®¯.
+Fsquid:S1148{"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8î˜ì®¯.
+\"squid:SwitchLastCaseIsDefaultCheckj""Add a default case to this switch.(×ö³–úÿÿÿÿ8î˜ì®¯.
+Qsquid:S1444)".Make this "public static tempFile" field final(«ùŠîûÿÿÿÿ8œÝà®¯.
+nsquid:S1301j"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8î˜ì®¯.
+nsquid:UselessImportCheck"CRemove this unused import 'permissions.dispatcher.OnNeverAskAgain'.(žý©»8ð†»ª¯.
+Ž"squid:ClassVariableVisibilityCheck)"TMake tempFile a static final constant or non-public and provide accessors if needed.(«ùŠîûÿÿÿÿ8œÝà®¯.
+zsquid:S1450("\Remove the "mBtnTakePhoto" field and declare it as a local variable in the relevant methods.(—¥ãƒ8Ãô×®¯.
