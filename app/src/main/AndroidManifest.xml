@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.epidemicscenarioapplication">
-    //拍照权限
-    <uses-permission android:name="android.permission.CAMERA"/>
-    //读取存储
+    <!-- 拍照权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    //定位权限 获取周边确诊信息
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 拍照权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+<!--  引导页震动反馈-->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -15,16 +16,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.HomeActivity">
+        <activity android:name=".view.activity.IntroActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".view.activity.HomeActivity">
 
         </activity>
+        <activity android:name=".view.activity.MainActivity"></activity>
     </application>
 
 </manifest>

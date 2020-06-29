@@ -1,4 +1,4 @@
-package com.example.epidemicscenarioapplication.ui.fragment;
+package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.view.View;
 
@@ -9,20 +9,25 @@ import com.example.epidemicscenarioapplication.base.BaseFragment;
  * @author sly
  * @version 1.0
  * @date 2020/6/28
- * @description com.example.epidemicscenarioapplication.ui.fragment
+ * @description com.example.epidemicscenarioapplication.view.fragment
  */
 public class FullPlatformDataFragment extends BaseFragment {
     @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
     protected void initView() {
         MyListener myListener = new MyListener();
-        RootView.findViewById(R.id.btn_alijiankang).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_baidu).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_tengxun).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_diyicaijing).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_zhihu).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_meisi).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_kuake).setOnClickListener(myListener);
-        RootView.findViewById(R.id.btn_dingxiangyuan).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_alijiankang).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_baidu).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_tengxun).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_diyicaijing).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_zhihu).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_meisi).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_kuake).setOnClickListener(myListener);
+        mRootView.findViewById(R.id.btn_dingxiangyuan).setOnClickListener(myListener);
     }
 
     @Override

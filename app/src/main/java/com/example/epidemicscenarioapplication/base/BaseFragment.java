@@ -16,20 +16,23 @@ import androidx.fragment.app.Fragment;
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseFragment extends Fragment {
-    public View RootView;
+    public View mRootView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         loadView(inflater, container);
         initView();
+        initPresenter();
         initData();
-        return RootView;
+        return mRootView;
     }
+
+    protected abstract void initPresenter();
 
     protected void loadView(LayoutInflater inflater, @Nullable ViewGroup container) {
             int id = getResId();
-            RootView = inflater.inflate(id, container, false);
+            mRootView = inflater.inflate(id, container, false);
     }
 
     protected void initData() {

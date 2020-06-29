@@ -1,8 +1,7 @@
-package com.example.epidemicscenarioapplication.ui.activity;
+package com.example.epidemicscenarioapplication.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;

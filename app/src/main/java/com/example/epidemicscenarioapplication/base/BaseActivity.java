@@ -24,8 +24,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getViewId();
 
     protected abstract void initView();
-    protected abstract void initPresenter();
 
+    protected abstract void initPresenter();
 
 
     @Override
