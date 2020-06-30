@@ -35,6 +35,9 @@ import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.RuntimePermissions;
 
+/**
+ * @author 鑫宇
+ */
 @RuntimePermissions
 public class MainActivity extends BaseActivity {
     // 拍照

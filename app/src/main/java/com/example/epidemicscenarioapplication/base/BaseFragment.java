@@ -24,9 +24,12 @@ public abstract class BaseFragment extends Fragment {
         loadView(inflater, container);
         initView();
         initPresenter();
+        initListener();
         initData();
         return mRootView;
     }
+
+    protected abstract void initListener();
 
     protected abstract void initPresenter();
 

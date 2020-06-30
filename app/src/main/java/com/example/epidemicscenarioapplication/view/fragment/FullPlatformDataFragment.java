@@ -13,6 +13,11 @@ import com.example.epidemicscenarioapplication.base.BaseFragment;
  */
 public class FullPlatformDataFragment extends BaseFragment {
     @Override
+    protected void initListener() {
+
+    }
+
+    @Override
     protected void initPresenter() {
 
     }

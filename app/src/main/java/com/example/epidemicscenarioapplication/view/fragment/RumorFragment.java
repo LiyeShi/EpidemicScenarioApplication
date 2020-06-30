@@ -22,6 +22,11 @@ public class RumorFragment extends BaseFragment implements IRumorView {
     private RumorPresenter mRumorPresenter;
 
     @Override
+    protected void initListener() {
+
+    }
+
+    @Override
     protected void initPresenter() {
         mRumorPresenter = new RumorPresenter(this);
     }
