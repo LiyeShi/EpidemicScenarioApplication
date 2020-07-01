@@ -7,7 +7,7 @@
     <com.youth.banner.Banner
         android:id="@+id/homepager_banner"
         android:layout_width="match_parent"
-        android:layout_height="170dp" />
+        android:layout_height="180dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_weather"
@@ -16,6 +16,15 @@
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/weather"
+        android:text="获取天气" />
+
 
 
 </LinearLayout>

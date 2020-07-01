@@ -65,6 +65,11 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     protected int getViewId() {
         return R.layout.activity_main;
     }

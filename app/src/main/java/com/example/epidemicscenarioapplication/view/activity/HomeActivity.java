@@ -42,6 +42,11 @@ public class HomeActivity extends BaseActivity {
         initListener();
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
     private void isShowGuidePage() {
         boolean isFirst = SpUtils.getBoolean(this, "isFirst", true);
         if (isFirst) {

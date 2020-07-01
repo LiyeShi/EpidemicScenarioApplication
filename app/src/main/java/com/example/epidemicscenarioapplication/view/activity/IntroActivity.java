@@ -44,12 +44,14 @@ public class IntroActivity extends AppIntro2 {
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
         startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     @Override
     protected void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
 }

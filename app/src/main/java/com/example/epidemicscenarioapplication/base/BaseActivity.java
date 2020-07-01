@@ -23,6 +23,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(viewId);
         initView();
         initPresenter();
+        initData();
+        setImmersionMode();
+
+    }
+
+    protected abstract void initData();
+
+    private void setImmersionMode() {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -32,7 +40,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
     }
 
     protected abstract int getViewId();
