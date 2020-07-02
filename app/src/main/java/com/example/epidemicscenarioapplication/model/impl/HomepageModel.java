@@ -1,12 +1,10 @@
 package com.example.epidemicscenarioapplication.model.impl;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.adapter.DataBean;
 import com.example.epidemicscenarioapplication.model.IHomepageModel;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author sly
@@ -23,10 +21,10 @@ public class HomepageModel implements IHomepageModel {
 
     @Override
     public void loadBanner() {
-        ArrayList<DataBean> bannerList = new ArrayList<>();
-        bannerList.add(new DataBean(R.drawable.bannerone));
-        bannerList.add(new DataBean(R.drawable.bannertwo));
-        bannerList.add(new DataBean(R.drawable.bannerfour));
+        ArrayList<Integer> bannerList = new ArrayList<>();
+        bannerList.add(R.drawable.bannerone);
+        bannerList.add(R.drawable.bannertwo);
+        bannerList.add(R.drawable.bannerfour);
 
         //假装下载成功了
         homePagePresenter.loadBannerSuccess(bannerList);

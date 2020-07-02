@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.adapter.ViewpagerAdapter;
+import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
@@ -120,7 +120,7 @@ public class HomeActivity extends BaseActivity {
         mVpContainer = findViewById(R.id.vp_container);
         mBnv = this.findViewById(R.id.bnv_home);
         Log.d(TAG, "initView: 初始化视图" + mFlContainer);
-        ViewpagerAdapter viewpagerAdapter = new ViewpagerAdapter(this);
+        HomeActivityViewpagerAdapter viewpagerAdapter = new HomeActivityViewpagerAdapter(this);
         viewpagerAdapter.setData(mFragmentArrayList);
         mVpContainer.setAdapter(viewpagerAdapter);
     }

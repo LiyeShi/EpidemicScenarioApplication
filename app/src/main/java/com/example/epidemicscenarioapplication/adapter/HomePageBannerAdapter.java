@@ -20,9 +20,9 @@ import java.util.List;
  */
 
 
-    public class HomePageBannerAdapter extends BannerAdapter<DataBean, HomePageBannerAdapter.BannerViewHolder> {
+    public class HomePageBannerAdapter extends BannerAdapter<Integer, HomePageBannerAdapter.BannerViewHolder> {
 
-        public HomePageBannerAdapter(List<DataBean> mDatas) {
+        public HomePageBannerAdapter(List<Integer> mDatas) {
             //设置数据，也可以调用banner提供的方法,或者自己在adapter中实现
             super(mDatas);
         }
@@ -39,10 +39,12 @@ import java.util.List;
             return new BannerViewHolder(imageView);
         }
 
-        @Override
-        public void onBindView(BannerViewHolder holder, DataBean data, int position, int size) {
-            holder.imageView.setImageResource(data.id);
-        }
+    @Override
+    public void onBindView(BannerViewHolder holder, Integer data, int position, int size) {
+        holder.imageView.setImageResource(data);
+    }
+
+
 
         class BannerViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;

@@ -14,10 +14,10 @@ import java.util.ArrayList;
  * @description com.example.epidemicscenarioapplication.adapter
  * 之前一直报错，原因就是没有看清vp2的适配器应该继承自谁
  */
-public class ViewpagerAdapter extends FragmentStateAdapter {
+public class HomeActivityViewpagerAdapter extends FragmentStateAdapter {
     ArrayList<Fragment> mFragmentArrayList = new ArrayList<>();
 
-    public ViewpagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public HomeActivityViewpagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 

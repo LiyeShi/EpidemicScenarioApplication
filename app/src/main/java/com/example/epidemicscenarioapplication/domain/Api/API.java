@@ -1,11 +1,14 @@
 package com.example.epidemicscenarioapplication.domain.Api;
 
 import com.example.epidemicscenarioapplication.domain.WeatherDataBean;
+import com.example.epidemicscenarioapplication.utils.Constants;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @author sly
@@ -14,12 +17,15 @@ import retrofit2.http.Headers;
  * @description com.example.epidemicscenarioapplication.domain.Api
  */
 public interface API {
-    @GET("weather/current/临沂市")
+
+//    {}中代表URL中的可变部分
+    @GET("weather/current/{city}")
+
     @Headers({
-            "app_id:srnrtlnlvxuyqskq ",
-            "app_secret:cDdBWDd0bDdlRm1WWVZtMXE0anBVUT09"
+            "app_id:"+ Constants.WEATHER_APP_ID,
+            "app_secret:"+Constants.WEATHER_APP_SECRET
 
     })
-    Call<WeatherDataBean> getWeatherJson();
+    Call<WeatherDataBean> getWeatherJson(@Path("city")String city);
 
 }
