@@ -1,7 +1,6 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.content.Intent;
-import android.nfc.tech.NfcB;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +13,6 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomePageBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomePageVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.domain.Api.API;
-import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
@@ -28,16 +25,8 @@ import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.HTTP;
 
 /**
  * @author sly

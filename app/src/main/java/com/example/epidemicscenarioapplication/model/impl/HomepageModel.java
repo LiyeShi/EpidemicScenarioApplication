@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.domain.Api.API;
+import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.model.IHomepageModel;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
@@ -48,16 +48,16 @@ public class HomepageModel implements IHomepageModel {
 
     @Override
     public void loadVerticalBannerWeatherInfo(Context context) {
-        Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
-
+        Retrofit retrofit = RetrofitManager.getInstance(Constants.WEATHER_API).getRetrofit();
         API api = retrofit.create(API.class);
-        String location = SpUtils.getString(context, Constants.LOCATION, "临沂");
+        String location = SpUtils.getString(context, Constants.LOCATION, "临沂市");
         Log.d(TAG, "当前位置==>" + location);
         Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(location);
         weatherJson.enqueue(new Callback<VerticalBannerDataBeans.WeatherDataBean>() {
             @Override
             public void onResponse(Call<VerticalBannerDataBeans.WeatherDataBean> call, Response<VerticalBannerDataBeans.WeatherDataBean> response) {
                 int code = response.code();
+                Log.d(TAG, "onResponse: 天气返回码==》"+code);
                 if (code == HttpURLConnection.HTTP_OK) {
                     String s = response.body().toString();
                     Log.d(TAG, "onResponse: 数据==》"+s);

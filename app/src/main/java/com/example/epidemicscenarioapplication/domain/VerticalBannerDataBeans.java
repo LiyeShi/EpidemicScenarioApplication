@@ -12,6 +12,14 @@ public class VerticalBannerDataBeans {
     private int viewType;
     WeatherDataBean mWeatherDataBean;
 
+    @Override
+    public String toString() {
+        return "VerticalBannerDataBeans{" +
+                "viewType=" + viewType +
+                ", mWeatherDataBean=" + mWeatherDataBean +
+                '}';
+    }
+
     public VerticalBannerDataBeans(WeatherDataBean weatherDataBean, int viewType) {
         this.viewType = viewType;
         mWeatherDataBean = weatherDataBean;
@@ -34,6 +42,14 @@ public class VerticalBannerDataBeans {
     }
 
     public static class WeatherDataBean {
+        @Override
+        public String toString() {
+            return "WeatherDataBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", data=" + data +
+                    '}';
+        }
 
         /**
          * code : 1
@@ -71,6 +87,20 @@ public class VerticalBannerDataBeans {
         }
 
         public static class DataBean {
+            @Override
+            public String toString() {
+                return "DataBean{" +
+                        "address='" + address + '\'' +
+                        ", cityCode='" + cityCode + '\'' +
+                        ", temp='" + temp + '\'' +
+                        ", weather='" + weather + '\'' +
+                        ", windDirection='" + windDirection + '\'' +
+                        ", windPower='" + windPower + '\'' +
+                        ", humidity='" + humidity + '\'' +
+                        ", reportTime='" + reportTime + '\'' +
+                        '}';
+            }
+
             /**
              * address : 广东省 深圳市
              * cityCode : 440300

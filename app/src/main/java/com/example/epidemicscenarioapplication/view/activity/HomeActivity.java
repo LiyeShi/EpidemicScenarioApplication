@@ -47,8 +47,8 @@ public class HomeActivity extends BaseActivity {
     private void isShowGuidePage() {
         boolean isFirst = SpUtils.getBoolean(this, "isFirst", true);
         if (isFirst) {
-           startActivity(new Intent(this,IntroActivity.class));
-           SpUtils.putBoolean(this,"isFirst",false);
+            startActivity(new Intent(this, IntroActivity.class));
+            SpUtils.putBoolean(this, "isFirst", false);
         }
     }
 
@@ -64,7 +64,7 @@ public class HomeActivity extends BaseActivity {
         mBanner.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_home:
-                   mVpContainer.setCurrentItem(0);
+                    mVpContainer.setCurrentItem(0);
                     break;
                 case R.id.item_daiding:
                     mVpContainer.setCurrentItem(1);
@@ -86,7 +86,6 @@ public class HomeActivity extends BaseActivity {
             }
         });
     }
-
 
 
     private void initFragment() {
@@ -113,5 +112,8 @@ public class HomeActivity extends BaseActivity {
         mVpContainer.setAdapter(viewpagerAdapter);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

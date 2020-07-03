@@ -7,20 +7,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author sly
  * @version 1.0
  * @date 2020/6/28
- * @description com.example.epidemicscenarioapplication.utils
+ * @description com.example.epidemicscenarioapplication.utils 这里的单例模式应该是有问题的吧烦死了
  */
 public class RetrofitManager {
-    private static final RetrofitManager ourInstance = new RetrofitManager();
+
     private final Retrofit mRetrofit;
 
-    public static RetrofitManager getInstance() {
-        return ourInstance;
+    public static RetrofitManager getInstance(String baseUrl) {
+        return new RetrofitManager(baseUrl);
     }
 
-    private RetrofitManager() {
-//        创建 retrofit  这种写法还真不行 接口地址全都不一样
+    private RetrofitManager(String baseUrl) {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("https://www.mxnzp.com/api/")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

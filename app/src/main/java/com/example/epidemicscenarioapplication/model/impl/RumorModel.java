@@ -28,13 +28,7 @@ public class RumorModel implements IRumorModel {
     public void loadData() {
         int i = new Random().nextInt(5);
         Log.d(TAG, "loadData: 生成的随机数是==>"+i);
-        if (i > 3) {
-            Log.d(TAG, "loadData: 大于3");
-            mIRumorPresenter.loadSuccess();
-        } else {
-            Log.d(TAG, "loadData: 小于等于3");
-            mIRumorPresenter.loadError();
-        }
+
     }
 
 
