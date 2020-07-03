@@ -1,9 +1,9 @@
 package com.example.epidemicscenarioapplication.domain.Api;
 
-import com.example.epidemicscenarioapplication.domain.WeatherDataBean;
+import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
+import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.utils.Constants;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -26,6 +26,13 @@ public interface API {
             "app_secret:"+Constants.WEATHER_APP_SECRET
 
     })
-    Call<WeatherDataBean> getWeatherJson(@Path("city")String city);
+    Call<VerticalBannerDataBeans.WeatherDataBean> getWeatherJson(@Path("city")String city);
 
+    /**
+     * @param cityName  获取所在城市小区及村镇确诊信息
+     * @return
+     */
+
+@GET("/ncov/village/getVillage2")
+    Call<NcovVillageDataBean> getVillageByCommunityName(@Query("cityName")String cityName);
 }

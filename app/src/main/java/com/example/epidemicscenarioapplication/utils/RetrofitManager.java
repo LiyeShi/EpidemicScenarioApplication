@@ -10,19 +10,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @description com.example.epidemicscenarioapplication.utils
  */
 public class RetrofitManager {
-    //单例模式 具体为什么这么写以后再学习
     private static final RetrofitManager ourInstance = new RetrofitManager();
-    private final Retrofit mRetrofitManager;
+    private final Retrofit mRetrofit;
+
+    public static RetrofitManager getInstance() {
+        return ourInstance;
+    }
 
     private RetrofitManager() {
-//        创建 retrofit
-        mRetrofitManager = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+//        创建 retrofit  这种写法还真不行 接口地址全都不一样
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl("https://www.mxnzp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
     public Retrofit getRetrofit() {
-        return mRetrofitManager;
+        return mRetrofit;
     }
 }

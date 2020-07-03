@@ -1,39 +1,43 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.content.Intent;
+import android.nfc.tech.NfcB;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomePageBannerAdapter;
-import com.example.epidemicscenarioapplication.adapter.HomePageBannerTipsAdapter;
+import com.example.epidemicscenarioapplication.adapter.HomePageVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.domain.Api.API;
-import com.example.epidemicscenarioapplication.domain.WeatherDataBean;
+import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
+import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
 import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
-import com.example.epidemicscenarioapplication.utils.ToastUtil;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
+import com.example.epidemicscenarioapplication.view.activity.MainActivity2;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.HTTP;
 
 /**
  * @author sly
@@ -42,12 +46,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
 public class HomeFragment extends BaseFragment implements IHomepageView, OnBannerListener {
+    private static final String TAG = "HomeFragment";
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
-    private static final String TAG = "HomeFragment";
     private Banner mHomepageBanner;
     private HomePagePresenter mHomePagePresenter;
     private Banner mHomepageTipBanner;
+    private ArrayList<VerticalBannerDataBeans> Datas;
+    private FrameLayout mFlVerticaContainer;
+    private Button mBtnGetCunzhen;
 
 
     @Override
@@ -66,41 +73,21 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     protected void initView() {
         mHomepageBanner = (Banner) mRootView.findViewById(R.id.homepager_banner);
         mHomepageTipBanner = mRootView.findViewById(R.id.banner_tips);
-        ArrayList<Integer> objects = new ArrayList<>();
-        objects.add(1);
-        objects.add(0);
         //添加生命周期观察者
         mHomepageTipBanner.addBannerLifecycleObserver(this)
-                .setAdapter(new HomePageBannerTipsAdapter(objects))
                 .setOrientation(Banner.VERTICAL)
                 .setDelayTime(6000)
+                .isAutoLoop(true)
+                .setBannerRound2(20)
                 .start();
-
-
-        Button viewById = mRootView.findViewById(R.id.weather);
-        viewById.setOnClickListener(v -> {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.mxnzp.com/api/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            API api = retrofit.create(API.class);
-            Call<WeatherDataBean> weatherJson = api.getWeatherJson("北京市");
-            weatherJson.enqueue(new Callback<WeatherDataBean>() {
-                @Override
-                public void onResponse(Call<WeatherDataBean> call, Response<WeatherDataBean> response) {
-                    if (response.code() == HttpsURLConnection.HTTP_OK) {
-                        Log.d(TAG, "onResponse: 请求成功==》" + response.body());
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<WeatherDataBean> call, Throwable t) {
-                    Log.e(TAG, "onFailure: 请求失败==>" + t.getMessage());
-                }
-            });
+        mFlVerticaContainer = mRootView.findViewById(R.id.fl_home_vertical_container);
+        mBtnGetCunzhen = mRootView.findViewById(R.id.btn_ncov_village);
+        mBtnGetCunzhen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mRootView.getContext(), MainActivity2.class));
+            }
         });
-
     }
 
     @Override
@@ -139,6 +126,22 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
 //        mHomepageBanner.setIndicatorSelectedColor()
     }
 
+
+    @Override
+    public void showBannerTipWeather(VerticalBannerDataBeans.WeatherDataBean dataBeans) {
+        Datas = new ArrayList<>();
+//        构建首页垂直滑动的banner bean对象
+        VerticalBannerDataBeans dataBeans1 = new VerticalBannerDataBeans(dataBeans, Constants.BANNER_TYPE_WEATER);
+        VerticalBannerDataBeans dataBeans2 = new VerticalBannerDataBeans(dataBeans, Constants.BANNER_TYPE_YIQING);
+        Datas.add(dataBeans1);
+        Datas.add(dataBeans2);
+        mHomepageTipBanner.setAdapter(new HomePageVerticalBannerAdapter(Datas));
+        mHomepageTipBanner.setVisibility(View.VISIBLE);
+// TODO: 2020/7/3 显示加载的进度条是不是还需要隐藏
+
+
+    }
+
     @Override
     public void OnBannerClick(Object data, int position) {
         switch (position) {
@@ -166,6 +169,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     }
 
 
+    /**
+     * 百度定位回调
+     */
     public class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -180,10 +186,12 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
             String adcode = location.getAdCode();    //获取adcode
             String town = location.getTown();    //获取乡镇信息
             Log.d(TAG, "详细地址==>" + addr);
-            if (district != null) {
+            // TODO: 2020/7/2  模拟器测试方便 别忘了这里改成成功获取定位后才请求天气信息
+            if (district == null) {
                 SpUtils.putString(mRootView.getContext(), Constants.LOCATION, district);
                 mLocationClient.stop();
-                // TODO: 2020/7/2 成功获取定位后发起当地天气请求
+                mHomePagePresenter.loadVerticalBannerWeather(mRootView.getContext());
+
             }
 //            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
 //            Log.d(TAG, "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);

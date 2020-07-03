@@ -8,4 +8,6 @@
     <color name="guildpagethree">#00BCD4</color>
     <color name="guildpagefour">#009688</color>
     <color name="guildpagefive">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="baseBackground" >#F5F5F5</color>
 </resources>

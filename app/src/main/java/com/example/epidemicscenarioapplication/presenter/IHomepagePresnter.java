@@ -1,5 +1,9 @@
 package com.example.epidemicscenarioapplication.presenter;
 
+import android.content.Context;
+
+import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
+
 import java.util.List;
 
 /**
@@ -14,4 +18,11 @@ public interface IHomepagePresnter {
     void loadBannerSuccess(List data);
 
     void loadBannerError();
+
+    void loadVerticalBannerWeatherSuccess(VerticalBannerDataBeans.WeatherDataBean dataBean);
+
+    void loadVerticalBannerWeatherError();
+
+    void loadVerticalBannerWeather(Context context);
+
 }

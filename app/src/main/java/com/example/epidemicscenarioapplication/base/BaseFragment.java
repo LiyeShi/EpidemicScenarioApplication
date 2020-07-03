@@ -16,17 +16,28 @@ import androidx.fragment.app.Fragment;
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseFragment extends Fragment {
+    // 控制View可不可见的类
+    public enum ViewState {
+        // 在第一行显式地列出枚举实例(枚举值)，系统会自动添加 public static final 修饰
+        SUCCESS, ERROR, LOADING;
+    }
     public View mRootView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//       一走进这个方法就加载默认的布局，如果子类重写该方法，显示子类的布局
+        loadRootView(inflater,container);
         loadView(inflater, container);
         initView();
         initPresenter();
         initListener();
         initData();
         return mRootView;
+    }
+
+    protected void loadRootView(LayoutInflater inflater, ViewGroup container) {
+
     }
 
     protected abstract void initListener();

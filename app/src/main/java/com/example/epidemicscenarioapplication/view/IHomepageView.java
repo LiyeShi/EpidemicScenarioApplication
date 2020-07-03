@@ -1,5 +1,7 @@
 package com.example.epidemicscenarioapplication.view;
 
+import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
+
 import java.util.List;
 
 /**
@@ -10,4 +12,6 @@ import java.util.List;
  */
 public interface IHomepageView {
     void showBanner(List data);
+
+    void showBannerTipWeather(VerticalBannerDataBeans.WeatherDataBean dataBeans);
 }

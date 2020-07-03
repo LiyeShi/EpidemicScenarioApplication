@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/baseBackground"
     android:orientation="vertical">
 
     <com.youth.banner.Banner
@@ -9,18 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="180dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="80dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:id="@+id/weather"
-        android:text="获取天气" />
-
-<com.youth.banner.Banner
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_ncov_village"
+            android:layout_height="wrap_content"
+            android:text="小区确诊人数查询" />
+    </LinearLayout>
+<FrameLayout
+    android:layout_marginTop="10dp"
+    android:id="@+id/fl_home_vertical_container"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:id="@+id/banner_tips"/>
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:tooltipText="拼命加载中"
+    android:layout_gravity="center"/>
+    <com.youth.banner.Banner
+        android:id="@+id/banner_tips"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+</FrameLayout>
 
 </LinearLayout>

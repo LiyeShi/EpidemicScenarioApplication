@@ -101,3 +101,9 @@ G
 `app/src/main/java/com/example/epidemicscenarioapplication/adapter/HomePageBannerTipsAdapter.java,d\a\da3bec414cf4443f6aa4895bd6c30c4b77d56a33
 ‚
 Rapp/src/main/java/com/example/epidemicscenarioapplication/utils/BaiduSDKutils.java,7\4\7427296fdfaa5e5c91841b8f29210ef6061b4756
+“
+capp/src/main/java/com/example/epidemicscenarioapplication/adapter/HomeActivityViewpagerAdapter.java,7\d\7dad4087378c567986e38b49dcbf0d5f3752c5be
+h
+8app/src/main/res/layout/item_homepager_banner_yiqing.xml,e\2\e267770bda193292df5c86f895c2f822a63820f1
+h
+8app/src/main/res/layout/item_homepage_banner_weather.xml,c\5\c537911cd89bff247e55f7b23c0e448f8b695ba1
