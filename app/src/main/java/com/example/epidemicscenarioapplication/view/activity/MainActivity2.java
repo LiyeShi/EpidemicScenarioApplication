@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.NcovVillageListViewAdapter;
+import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 
@@ -23,12 +25,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends BaseActivity {
     private static final String TAG = "MainActivity2";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(getViewId());
         ListView listView= findViewById(R.id.iv_ncov_village);
         RetrofitManager retrofitManager = RetrofitManager.getInstance(Constants.WULIANG_API);
         Retrofit retrofit = retrofitManager.getRetrofit();
@@ -56,4 +58,29 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void setStatusBarColor() {
+        NXStatusBar.setStatusBarLightMode(this);
     }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected int getViewId() {
+        return R.layout.activity_main2;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initPresenter() {
+
+    }
+}

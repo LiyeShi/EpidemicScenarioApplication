@@ -11,6 +11,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter;
+import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.view.fragment.FullPlatformDataFragment;
 import com.example.epidemicscenarioapplication.view.fragment.HomeFragment;
@@ -37,6 +38,11 @@ public class HomeActivity extends BaseActivity {
         isShowGuidePage();
         initFragment();
         initListener();
+    }
+
+    @Override
+    protected void setStatusBarColor() {
+        NXStatusBar.setStatusBarDarkMode(this);
     }
 
     @Override

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:layout_height="180dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="180dp">
+    <TextView
+        android:id="@+id/tv_news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15sp"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:maxLines="1"
+        android:text="hahahahhaf我试试hah你好发发发啥打法是否发斯蒂芬发送的发斯蒂芬"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_news_abs"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:layout_below="@id/tv_news_title"
+        android:layout_alignLeft="@id/tv_news_title"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="大家好，我爱我的祖国，坚决捍卫国家主权和领土完整，为人民服务，我感到无上光荣"
+        android:textSize="16sp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@id/tv_news_title"
+        android:layout_height="20dp">
+
+        <ImageView
+            android:id="@+id/iv_author_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true" />
+
+        <TextView
+            android:id="@+id/tv_news_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:textColor="#000000"
+            android:layout_toRightOf="@id/iv_author_icon"
+            android:text="腾讯医典"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -136,7 +136,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         switch (position) {
             case 0:
                 Log.d(TAG, "OnBannerClick: 点击了第一个");
-                startActivity(new Intent(mRootView.getContext(), EpidemicMapActivity.class));
+                Intent intent = new Intent(mRootView.getContext(), EpidemicMapActivity.class);
+                intent.putExtra("url", Constants.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
+                startActivity(intent);
                 break;
             case 1:
                 Log.d(TAG, "OnBannerClick: 点击了第二个");

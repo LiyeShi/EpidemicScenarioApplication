@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:layout_height="200dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_news_icon"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_news_icon"
+            android:layout_marginRight="15sp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="hahahahhaf我试试hah你好发发发啥打法是否发斯蒂芬发送的发斯蒂芬"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_news_abs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_news_title"
+            android:layout_alignLeft="@id/tv_news_title"
+            android:layout_alignRight="@id/tv_news_title"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:padding="5dp"
+            android:text="djjjjjjjjjjjjjjjjjjafda我通过沙的根深蒂固傻狗"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignLeft="@id/tv_news_title"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/iv_author_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_news_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/iv_author_icon"
+                android:text="腾讯医典"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -123,3 +123,5 @@ y
 Iapp/src/main/java/com/example/epidemicscenarioapplication/domain/API.java,0\8\08ad999d7875d7a09ab5f36cb4ba5c86e14b2c47
 è
 _app/src/main/java/com/example/epidemicscenarioapplication/adapter/WikipediaDiagnoseAdapter.java,a\7\a71ab77803f2782694f0eb5709e542b35f70fb20
+Ä
+Papp/src/main/java/com/example/epidemicscenarioapplication/utils/NXStatusBar.java,9\9\99cb8f042b7c357836b6e72bc2093e3796a39e4d

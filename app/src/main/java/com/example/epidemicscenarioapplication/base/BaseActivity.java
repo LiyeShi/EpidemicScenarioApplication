@@ -3,11 +3,16 @@ package com.example.epidemicscenarioapplication.base;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.annotation.ContentView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 
 /**
  * @author sly
@@ -25,8 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         initPresenter();
         initData();
         setImmersionMode();
+        setStatusBarColor();
 
     }
+
+    protected abstract void setStatusBarColor();
 
     protected abstract void initData();
 

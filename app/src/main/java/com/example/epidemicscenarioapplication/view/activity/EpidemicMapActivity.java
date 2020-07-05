@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -9,6 +10,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.presenter.impl.EpidemicMapPresenter;
 import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 import com.just.agentweb.AgentWeb;
 
@@ -16,14 +18,23 @@ import com.just.agentweb.AgentWeb;
  * @author 鑫宇
  */
 public class EpidemicMapActivity extends BaseActivity implements IEpidemicMapView {
-
+    private String url;
 
 
     private WebView mWvHomeMap;
     private EpidemicMapPresenter mEpidemicMapPresenter;
+    private String mUrl;
+
+
+    @Override
+    protected void setStatusBarColor() {
+        NXStatusBar.setStatusBarDarkMode(this);
+    }
 
     @Override
     protected void initData() {
+        Intent intent = getIntent();
+        mUrl = intent.getStringExtra("url");
         LinearLayout r = new LinearLayout(this);
         LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -35,7 +46,7 @@ public class EpidemicMapActivity extends BaseActivity implements IEpidemicMapVie
                 .useDefaultIndicator(R.color.colorPrimary,2)
                 .createAgentWeb()
                 .ready()
-                .go(Constants.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
+                .go(this.mUrl);
 
     }
 
