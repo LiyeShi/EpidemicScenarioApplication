@@ -1,10 +1,18 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.transition.Fade;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -28,6 +36,8 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.internal.Platform;
+
 /**
  * @author sly
  * @version 1.0
@@ -44,12 +54,45 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     private ArrayList<VerticalBannerDataBeans> Datas;
     private FrameLayout mFlVerticaContainer;
     private Button mBtnGetCunzhen;
+    private Button mBtnFullPlatform;
+    private View mView;
+    private LinearLayout mLlKuake;
+    private LinearLayout mLlAliijiankang;
+    private LinearLayout mLlZhihu;
+    private LinearLayout mLlTengxun;
+    private LinearLayout mLlDingxiangyuan;
+    private LinearLayout mLlBaidu;
+    private LinearLayout mLlDiyixaijing;
+    private LinearLayout mLlXinlang;
+    private Dialog mDialog;
+    private WindowManager.LayoutParams mLp;
 
 
     @Override
     protected void initListener() {
         Log.d(TAG, "initListener: 首页轮播图设置监听");
         mHomepageBanner.setOnBannerListener(this);
+        mBtnFullPlatform.setOnClickListener(v -> {
+            mLp = new WindowManager.LayoutParams();
+            Window window = mDialog.getWindow();
+            mLp.copyFrom(window.getAttributes());
+            mLp.width = 1000;
+            mLp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            //注意要在Dialog show之后，再将宽高属性设置进去，才有效果
+            mDialog.show();
+            window.setAttributes(mLp);
+            //设置点击屏幕其它地方不让消失弹窗，点击返回键对话框消失
+            mDialog.setCanceledOnTouchOutside(false);
+        });
+        MyOnclickListener myOnclickListener = new MyOnclickListener();
+        mLlAliijiankang.setOnClickListener(myOnclickListener);
+        mLlBaidu.setOnClickListener(myOnclickListener);
+        mLlDingxiangyuan.setOnClickListener(myOnclickListener);
+        mLlKuake.setOnClickListener(myOnclickListener);
+        mLlXinlang.setOnClickListener(myOnclickListener);
+        mLlTengxun.setOnClickListener(myOnclickListener);
+        mLlZhihu.setOnClickListener(myOnclickListener);
+        mLlDiyixaijing.setOnClickListener(myOnclickListener);
 
     }
 
@@ -58,8 +101,23 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         mHomePagePresenter = new HomePagePresenter(this);
     }
 
+    public void startWebView(String url) {
+        Intent intent = new Intent(mRootView.getContext(), EpidemicMapActivity.class);
+        intent.putExtra("url", url);
+        startActivity(intent);
+    }
     @Override
     protected void initView() {
+        initDialog();
+        mLlKuake = mView.findViewById(R.id.ll_kuake);
+        mLlAliijiankang = mView.findViewById(R.id.ll_aliijiankang);
+        mLlZhihu = mView.findViewById(R.id.ll_zhihu);
+        mLlBaidu = mView.findViewById(R.id.ll_baidu);
+        mLlDiyixaijing = mView.findViewById(R.id.ll_diyixaijing);
+        mLlXinlang = mView.findViewById(R.id.ll_xinlang);
+        mLlDingxiangyuan = mView.findViewById(R.id.ll_dingxiangyuan);
+        mLlTengxun = mView.findViewById(R.id.ll_tengxun);
+        mBtnFullPlatform = mRootView.findViewById(R.id.btn_full_platform_data);
         mHomepageBanner = (Banner) mRootView.findViewById(R.id.homepager_banner);
         mHomepageTipBanner = mRootView.findViewById(R.id.banner_tips);
         //添加生命周期观察者
@@ -77,6 +135,14 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
                 startActivity(new Intent(mRootView.getContext(), MainActivity2.class));
             }
         });
+
+    }
+
+    private void initDialog() {
+        mView = LayoutInflater.from(mRootView.getContext()).inflate(R.layout.view_dialog, null, false);
+        mDialog = new Dialog(mRootView.getContext(), R.style.custom_dialog);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(mView);
     }
 
     @Override
@@ -159,6 +225,41 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         }
     }
 
+    public class MyOnclickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.ll_aliijiankang:
+                    startWebView("https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
+                    Log.d(TAG, "onClick: 点击了阿里健康");
+                    break;
+                case R.id.ll_zhihu:
+                    startWebView("https://www.zhihu.com/special/19681091");
+                    break;
+                case R.id.ll_diyixaijing:
+                    startWebView("https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
+                    break;
+                case R.id.ll_dingxiangyuan:
+                    startWebView("https://ncov.dxy.cn/ncovh5/view/pneumonia");
+                    break;
+                case R.id.ll_tengxun:
+                    startWebView("https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
+                    break;
+                case R.id.ll_baidu:
+                    startWebView("https://news.sina.cn/zt_d/yiqing0121");
+                    break;
+                case R.id.ll_kuake:
+                    startWebView("https://broccoli.uc.cn/apps/pneumonia/routes/index");
+                    break;
+                case R.id.ll_xinlang:
+                    startWebView("");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     /**
      * 百度定位回调

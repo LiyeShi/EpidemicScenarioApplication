@@ -31,7 +31,6 @@
 <ProgressBar
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:tooltipText="拼命加载中"
     android:layout_gravity="center"/>
     <com.youth.banner.Banner
         android:id="@+id/banner_tips"
@@ -43,4 +42,9 @@
 
 </FrameLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全平台数据"
+        android:id="@+id/btn_full_platform_data" />
 </LinearLayout>

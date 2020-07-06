@@ -57,6 +57,7 @@ public class WikipediaDiagnoseAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (onItemCilckListener != null) {
+            Log.d(TAG, "onBindViewHolder: 点击了==》"+position);
             holder.itemView.setOnClickListener(v -> onItemCilckListener.onItemCilck(position));
         }
         if (holder instanceof ContainImagViewHolder) {

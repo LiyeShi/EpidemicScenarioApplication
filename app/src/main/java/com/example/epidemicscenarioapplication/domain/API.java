@@ -54,5 +54,5 @@ public interface API {
      * @return
      */
     @GET("/ncov/news/getGuideList")
-    Call<GuideListDataBean> getGuideListList(@Query("count") Integer count);
+    Call<DiagnoseDataBean> getGuideListList(@Query("count") Integer count);
 }

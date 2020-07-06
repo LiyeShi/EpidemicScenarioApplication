@@ -15,7 +15,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <!--AgentWeb 是默认允许定位的 ，如果你需要该功能 ， 请在你的 AndroidManifest 文件里面加入如下权限 。测试当地天气能不能用-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,12 +34,15 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote"></service>
-
-        <activity android:name=".view.activity.EpidemicMapActivity" />
+        <!--视频全屏播放-->
+        <activity android:name=".view.activity.EpidemicMapActivity"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".view.activity.SplashActivity" />
         <activity
             android:name=".view.activity.IntroActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
+
         <activity android:name=".view.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

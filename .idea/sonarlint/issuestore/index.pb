@@ -125,3 +125,7 @@ Iapp/src/main/java/com/example/epidemicscenarioapplication/domain/API.java,0\8\
 _app/src/main/java/com/example/epidemicscenarioapplication/adapter/WikipediaDiagnoseAdapter.java,a\7\a71ab77803f2782694f0eb5709e542b35f70fb20
 €
 Papp/src/main/java/com/example/epidemicscenarioapplication/utils/NXStatusBar.java,9\9\99cb8f042b7c357836b6e72bc2093e3796a39e4d
+l
+<app/src/main/res/layout/item_diagnose_contain_image_list.xml,7\7\770fdfbdafc290ee29aa5b527dcbee90307fdfd0
+h
+8app/src/main/res/layout/item_diagnose_only_text_list.xml,d\1\d109a2a5a9b1549dc0cfaf159cf29c2ff6d73b32
