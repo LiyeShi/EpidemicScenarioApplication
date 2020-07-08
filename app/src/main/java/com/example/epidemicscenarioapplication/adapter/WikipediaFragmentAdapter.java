@@ -15,11 +15,11 @@ import java.util.ArrayList;
  * @date 2020/7/6
  * @description com.example.epidemicscenarioapplication.adapter
  */
-public class tengxunAdapter  extends FragmentStateAdapter {
+public class WikipediaFragmentAdapter extends FragmentStateAdapter {
     private static final String TAG = "tengxunAdapter";
     ArrayList<Fragment> fragmentList=new ArrayList<>();
 
-    public tengxunAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public WikipediaFragmentAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
     public void setData(ArrayList<Fragment> fragmentArrayList) {

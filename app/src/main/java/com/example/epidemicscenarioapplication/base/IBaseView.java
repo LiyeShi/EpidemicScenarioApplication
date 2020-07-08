@@ -3,23 +3,23 @@ package com.example.epidemicscenarioapplication.base;
 /**
  * @author sly
  * @version 1.0
- * @date 2020/7/1
+ * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.base
  */
-public interface IBasePresenter {
+public interface IBaseView {
 
     /**
-     * 加载数据
+     * 请求中的view
      */
-    void loadData();
+    void loading();
 
     /**
-     * 数据加载成功
+     * 请求中的view
      */
-    void loadDataSuccess();
+    void loadSuccess();
 
     /**
-     * 数据加载失败
+     * 请求失败的view
      */
-    void loadDataError();
+    void loadError();
 }

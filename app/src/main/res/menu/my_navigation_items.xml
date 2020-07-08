@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/item_home"
+    <item
+        android:id="@+id/item_home"
         android:icon="@drawable/medicalmask"
-        android:title="疫情"/>
-   <item android:id="@+id/item_daiding"
+        android:title="首页" />
+    <item
+        android:id="@+id/item_xinwen"
         android:icon="@mipmap/ic_launcher"
-        android:title="谣言"/>
-   <item android:id="@+id/item_daiding1"
+        android:title="新闻" />
+    <item
+        android:id="@+id/item_daiding"
         android:icon="@mipmap/ic_launcher"
-        android:title="全平台数据"/>
+        android:title="疫情百科" />
+    <item
+        android:id="@+id/item_daiding1"
+        android:icon="@mipmap/ic_launcher"
+        android:title="关于我们" />
 
 
 </menu>

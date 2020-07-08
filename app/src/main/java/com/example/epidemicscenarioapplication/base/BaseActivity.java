@@ -31,6 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
         setImmersionMode();
         setStatusBarColor();
+//        NXStatusBar.addStatusViewWhite(this,savedInstanceState.G);
 
     }
 

@@ -23,13 +23,13 @@ import java.util.List;
  * @date 2020/7/2
  * @description com.example.epidemicscenarioapplication.adapter
  */
-public class HomePageVerticalBannerAdapter extends BannerAdapter<VerticalBannerDataBeans, RecyclerView.ViewHolder> {
+public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBannerDataBeans, RecyclerView.ViewHolder> {
     private static final String TAG = "HomePageBannerTipsAdapt";
     //两种类型的数据应该都在这个集合里
 
 
 
-    public HomePageVerticalBannerAdapter(List<VerticalBannerDataBeans> datas) {
+    public HomeFragmentVerticalBannerAdapter(List<VerticalBannerDataBeans> datas) {
         super(datas);
         Log.d(TAG, "HomePageBannerTipsAdapter: 初始化数据");
     }

@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * @date 2020/7/3
  * @description com.example.epidemicscenarioapplication.adapter
  */
-public class WikipediaDiagnoseAdapter extends RecyclerView.Adapter {
+public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
     private static final int CONTAIN_IMAGE = 0;
     private static final int ONLY_TEXTVIEW = 1;
     ArrayList<DiagnoseDataBean.DataBean.DocsBean> dataBeans;

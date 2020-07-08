@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.adapter.tengxunAdapter;
+import com.example.epidemicscenarioapplication.adapter.WikipediaFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.view.IRumorView;
 import com.google.android.material.tabs.TabLayout;
@@ -23,8 +23,8 @@ import java.util.ArrayList;
  * @date 2020/6/28
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-// TODO: 2020/7/5 tablayout 加 一个页面   适配状态栏 然后找接口 然后进行下一步
-public class RumorFragment extends BaseFragment implements IRumorView {
+
+public class WikipediaFragment extends BaseFragment implements IRumorView {
 
     private TabLayout mTlChangshi;
     private ViewPager2 mViewPager2;
@@ -43,35 +43,35 @@ public class RumorFragment extends BaseFragment implements IRumorView {
 
     @Override
     protected void initView() {
-        mTlChangshi = mRootView.findViewById(R.id.tl_changshi);
-        mViewPager2 = mRootView.findViewById(R.id.vp2_yiqingchishangtengxun);
+//       viewpager 在gone状态下不初始化fragment
+        setViewState(ViewState.SUCCESS);
+        mTlChangshi = mSuccessView.findViewById(R.id.tl_changshi);
+        mViewPager2 = mSuccessView.findViewById(R.id.vp2_yiqingchishangtengxun);
 
 
     }
 
     @Override
     protected void initData() {
-        //TabLayout的基本使用
-        for(int i=0;i<2;i++){
-            TabLayout.Tab tab=mTlChangshi.newTab();
-            tab.setTag(i);
-            tab.setText("第"+i+"页");
-            mTlChangshi.addTab(tab);
-        }
-
+        Log.d(TAG, "initData: 疫情百科初始化数据");
         FragmentManager manger = getFragmentManager();
         FragmentTransaction transaction = manger.beginTransaction();
-        tengxunAdapter tengxunAdapter = new tengxunAdapter(getActivity());
-        Tengxun1Fragment tengxun1Fragment = new Tengxun1Fragment();
-        Tengxun1Fragment2 tengxun1Fragment2 = new Tengxun1Fragment2();
+        WikipediaFragmentAdapter tengxunAdapter = new WikipediaFragmentAdapter(getActivity());
+        WikipediaDiagnosisPageFragment wikipediaDiagnosisPage = new WikipediaDiagnosisPageFragment();
+        WikipediaPreventionPageFragment wikipediaPreventionPage = new WikipediaPreventionPageFragment();
         mFragments = new ArrayList<>();
-        mFragments.add(tengxun1Fragment2);
-        mFragments.add(tengxun1Fragment);
+        mFragments.add(wikipediaPreventionPage);
+        mFragments.add(wikipediaDiagnosisPage);
         tengxunAdapter.setData(mFragments);
         mViewPager2.setAdapter(tengxunAdapter);
-//        mViewPager2.requestDisallowInterceptTouchEvent(true);
+//        这句话不知道有没有用
+        mViewPager2.requestDisallowInterceptTouchEvent(true);
+        ArrayList<String> title = new ArrayList<>();
+        title.add("预防指南");
+        title.add("检查诊断");
+
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(mTlChangshi, mViewPager2, (tab, position) -> {
-                tab.setText("sfdsdf"+position);
+            tab.setText(title.get(position));
         });
         tabLayoutMediator.attach();
 

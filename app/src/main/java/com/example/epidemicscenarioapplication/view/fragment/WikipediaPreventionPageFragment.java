@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.adapter.WikipediaDiagnoseAdapter;
+import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.DiagnoseDataBean;
-import com.example.epidemicscenarioapplication.domain.GuideListDataBean;
 import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
@@ -34,7 +33,7 @@ import retrofit2.Retrofit;
  * @date 2020/7/6
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-public class Tengxun1Fragment2 extends BaseFragment {
+public class WikipediaPreventionPageFragment extends BaseFragment {
     private static final String TAG = "Tengxun1Fragment2";
     private RecyclerView mRecyclerView;
 
@@ -60,17 +59,17 @@ public class Tengxun1Fragment2 extends BaseFragment {
             public void onResponse(Call<DiagnoseDataBean> call, Response<DiagnoseDataBean> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     DiagnoseDataBean body = response.body();
-                    Log.d(TAG, "onResponse: 数据为==>"+body);
-                    WikipediaDiagnoseAdapter    adapter = new WikipediaDiagnoseAdapter();
+                    Log.d(TAG, "onResponse: 数据为==>" + body);
+                    WikipediaPageFragmentAdapter adapter = new WikipediaPageFragmentAdapter();
                     adapter.setOnItemListener(position -> {
-                        Intent intent = new Intent(mRootView.getContext(), EpidemicMapActivity.class);
-                        intent.putExtra("url",response.body().getData().getDocs().get(position).getH5url());
+                        Intent intent = new Intent(mSuccessView.getContext(), EpidemicMapActivity.class);
+                        intent.putExtra("url", response.body().getData().getDocs().get(position).getH5url());
                         startActivity(intent);
                     });
                     adapter.setDataBeans((ArrayList<DiagnoseDataBean.DataBean.DocsBean>) response.body().getData().getDocs());
 //                    设置布局管理器 智障！忘了几次了
                     //设置布局管理器
-                    LinearLayoutManager manager = new LinearLayoutManager(mRootView.getContext());
+                    LinearLayoutManager manager = new LinearLayoutManager(mSuccessView.getContext());
                     manager.setOrientation(LinearLayoutManager.VERTICAL);
                     mRecyclerView.setLayoutManager(manager);
                     //设置分割线
@@ -87,13 +86,14 @@ public class Tengxun1Fragment2 extends BaseFragment {
 //设置动画
                     mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerView.setAdapter(adapter);
+                    setViewState(ViewState.SUCCESS);
 
                 }
             }
 
             @Override
             public void onFailure(Call<DiagnoseDataBean> call, Throwable t) {
-
+                setViewState(ViewState.ERROR);
             }
 
         });
@@ -101,7 +101,7 @@ public class Tengxun1Fragment2 extends BaseFragment {
 
     @Override
     protected void initView() {
-        mRecyclerView = mRootView.findViewById(R.id.rv_GuideList);
+        mRecyclerView = mSuccessView.findViewById(R.id.rv_GuideList);
     }
 
     @Override
