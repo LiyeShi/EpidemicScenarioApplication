@@ -1,7 +1,6 @@
 package com.example.epidemicscenarioapplication.presenter.impl;
 
 import com.example.epidemicscenarioapplication.model.IRumorModel;
-import com.example.epidemicscenarioapplication.model.impl.RumorModel;
 import com.example.epidemicscenarioapplication.presenter.IRumorPresenter;
 import com.example.epidemicscenarioapplication.view.IRumorView;
 
@@ -20,7 +19,7 @@ public class RumorPresenter implements IRumorPresenter {
 
     public RumorPresenter(IRumorView IRumorView) {
         mIRumorView = IRumorView;
-        mRumorModel = new RumorModel(this);
+//        mRumorModel = new RumorModel(this);
     }
 
     @Override

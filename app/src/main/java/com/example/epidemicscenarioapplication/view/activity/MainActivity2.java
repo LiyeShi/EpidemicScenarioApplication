@@ -2,13 +2,13 @@ package com.example.epidemicscenarioapplication.view.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.NcovVillageListViewAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.databinding.ActivityMain2Binding;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 import com.example.epidemicscenarioapplication.utils.Constants;
@@ -17,7 +17,6 @@ import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,7 +29,7 @@ public class MainActivity2 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getViewId());
+        setContentView(getView());
         ListView listView= findViewById(R.id.iv_ncov_village);
         RetrofitManager retrofitManager = RetrofitManager.getInstance(Constants.WULIANG_API);
         Retrofit retrofit = retrofitManager.getRetrofit();
@@ -70,8 +69,10 @@ public class MainActivity2 extends BaseActivity {
     }
 
     @Override
-    protected int getViewId() {
-        return R.layout.activity_main2;
+    protected View getView() {
+        ActivityMain2Binding mainBinding = ActivityMain2Binding.inflate(getLayoutInflater());
+        View view=mainBinding.getRoot();
+        return view;
     }
 
     @Override

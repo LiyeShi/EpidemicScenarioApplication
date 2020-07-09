@@ -3,22 +3,24 @@ package com.example.epidemicscenarioapplication.view.fragment;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.databinding.Tengxun1FragmentBinding;
 import com.example.epidemicscenarioapplication.domain.API;
-import com.example.epidemicscenarioapplication.domain.DiagnoseDataBean;
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter1;
 import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
-import com.example.epidemicscenarioapplication.utils.ToastUtil;
 import com.example.epidemicscenarioapplication.view.IRumorPager1View;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
 
@@ -42,6 +44,8 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
     private RumorPresenter1 mRumorPresenter;
     private RecyclerView mRvDiagnoseList;
     private WikipediaPageFragmentAdapter mWikipediaDiagnoseAdapter;
+    private LinearLayout mTengxun1FragmentBindingRoot;
+    private Tengxun1FragmentBinding mTengxun1FragmentBinding;
 
     @Override
     protected void initListener() {
@@ -55,34 +59,34 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
         Retrofit retrofit = instance.getRetrofit();
         API api = retrofit.create(API.class);
 //        返回20条数据
-        Call<DiagnoseDataBean> diagnoseList = api.getDiagnoseList(20);
-        diagnoseList.enqueue(new Callback<DiagnoseDataBean>() {
+        Call<WikipediaDataBean> diagnoseList = api.getDiagnoseList(20);
+        diagnoseList.enqueue(new Callback<WikipediaDataBean>() {
             @Override
-            public void onResponse(Call<DiagnoseDataBean> call, Response<DiagnoseDataBean> response) {
+            public void onResponse(Call<WikipediaDataBean> call, Response<WikipediaDataBean> response) {
                 Log.d(TAG, "onResponse: 百科知识检查返回码==>" + response.code());
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     String s = response.body().toString();
                     Log.d(TAG, "onResponse: 百科知识检查==>" + s);
-                    ArrayList<DiagnoseDataBean.DataBean.DocsBean> docsBeans;
+                    ArrayList<WikipediaDataBean.DataBean.DocsBean> docsBeans;
 //                    返回的就是docs集合对象
-                    docsBeans = (ArrayList<DiagnoseDataBean.DataBean.DocsBean>) response.body().getData().getDocs();
+                    docsBeans = (ArrayList<WikipediaDataBean.DataBean.DocsBean>) response.body().getData().getDocs();
                     mWikipediaDiagnoseAdapter = new WikipediaPageFragmentAdapter();
                     Log.d(TAG, "onResponse: 对象");
                     Log.d(TAG, "initListener: 监听");
                     mWikipediaDiagnoseAdapter.setOnItemListener(position -> {
-                        Intent intent = new Intent(mSuccessView.getContext(), EpidemicMapActivity.class);
+                        Intent intent = new Intent(mTengxun1FragmentBindingRoot.getContext(), EpidemicMapActivity.class);
                         intent.putExtra("url",docsBeans.get(position).getH5url());
                         startActivity(intent);
                     });
 
                     mWikipediaDiagnoseAdapter.setDataBeans(docsBeans);
                     //设置布局管理器
-                    LinearLayoutManager manager = new LinearLayoutManager(mSuccessView.getContext());
+                    LinearLayoutManager manager = new LinearLayoutManager(mTengxun1FragmentBindingRoot.getContext());
                     manager.setOrientation(LinearLayoutManager.VERTICAL);
-                    mRvDiagnoseList.setLayoutManager(manager);
+                    mTengxun1FragmentBinding.rvDiagnoseList.setLayoutManager(manager);
 
 //设置分割线
-                    mRvDiagnoseList.addItemDecoration(new RecyclerView.ItemDecoration() {
+                    mTengxun1FragmentBinding.rvDiagnoseList.addItemDecoration(new RecyclerView.ItemDecoration() {
                         @Override
                         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                             outRect.bottom = 10;
@@ -93,16 +97,16 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
                     });
 
 //设置动画
-                    mRvDiagnoseList.setItemAnimator(new DefaultItemAnimator());
+                    mTengxun1FragmentBinding.rvDiagnoseList.setItemAnimator(new DefaultItemAnimator());
 //设置Adapter
-                    mRvDiagnoseList.setAdapter(mWikipediaDiagnoseAdapter);
+                    mTengxun1FragmentBinding.rvDiagnoseList.setAdapter(mWikipediaDiagnoseAdapter);
                     setViewState(ViewState.SUCCESS);
 
                 }
             }
 
             @Override
-            public void onFailure(Call<DiagnoseDataBean> call, Throwable t) {
+            public void onFailure(Call<WikipediaDataBean> call, Throwable t) {
                 Log.d(TAG, "onFailure: 百科知识检查请求失败==>" + t.getMessage());
                 setViewState(ViewState.ERROR);
             }
@@ -116,25 +120,28 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
 
     @Override
     protected void initView() {
-        mRvDiagnoseList = mSuccessView.findViewById(R.id.rv_DiagnoseList);
+//        mRvDiagnoseList = mSuccessView.findViewById(R.id.rv_DiagnoseList);
     }
 
+    @Override
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        mTengxun1FragmentBinding = Tengxun1FragmentBinding.inflate(inflater, container, false);
+        mTengxun1FragmentBindingRoot = mTengxun1FragmentBinding.getRoot();
+        return mTengxun1FragmentBindingRoot;
+    }
 
 
     @Override
     public void showSuccessView() {
         Log.d(TAG, "showSuccessView: 加载成功");
-        ToastUtil.showToast(mSuccessView.getContext(), "数据加载成功");
+//        ToastUtil.showToast(mSuccessView.getContext(), "数据加载成功");
     }
 
     @Override
     public void showErrorTips() {
         Log.d(TAG, "showSuccessView: 加载失败");
-        ToastUtil.showToast(mSuccessView.getContext(), "数据加载失败");
+//        ToastUtil.showToast(mSuccessView.getContext(), "数据加载失败");
     }
 
-    @Override
-    protected int getResId() {
-        return R.layout.tengxun1_fragment;
-    }
+
 }

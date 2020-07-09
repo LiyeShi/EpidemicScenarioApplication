@@ -2,15 +2,21 @@ package com.example.epidemicscenarioapplication.view.fragment;
 
 
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.NewsFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.base.IBaseView;
+import com.example.epidemicscenarioapplication.databinding.NewsPageFragmentBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.NewsPagePresent;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -24,7 +30,8 @@ import java.util.ArrayList;
  */
 public class NewsFragment extends BaseFragment implements IBaseView {
     private static final String TAG = "NewsFragment";
-    private ViewPager2 mVp2Container;
+    private TabLayout mTlNewsTitle;
+    private @NotNull NewsPageFragmentBinding mFragmentBinding;
 
     @Override
     protected void initListener() {
@@ -40,10 +47,16 @@ public class NewsFragment extends BaseFragment implements IBaseView {
     @Override
     protected void initView() {
         setViewState(ViewState.SUCCESS);
-        mVp2Container = mRootView.findViewById(R.id.vp2_news);
-        mVp2Container.requestDisallowInterceptTouchEvent(true);
-        Log.d(TAG, "initView: mVp2Container==>"+mVp2Container);
+//        mTlNewsTitle = mRootView.findViewById(R.id.tl_news_title);
+        mFragmentBinding.vp2News.requestDisallowInterceptTouchEvent(true);
+        Log.d(TAG, "initView: mFragmentBinding.vp2Yiqingchishangtengxun==>"+mFragmentBinding.vp2News);
 
+    }
+
+    @Override
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        mFragmentBinding = NewsPageFragmentBinding.inflate(inflater, container, false);
+        return mFragmentBinding.getRoot();
     }
 
     @Override
@@ -55,13 +68,18 @@ public class NewsFragment extends BaseFragment implements IBaseView {
         fragments.add(localNewsPageFragment);
         NewsFragmentAdapter adapter = new NewsFragmentAdapter(getActivity());
         adapter.setData(fragments);
-        mVp2Container.setAdapter(adapter);
+        mFragmentBinding.vp2News.setAdapter(adapter);
+        ArrayList<String> title = new ArrayList<>();
+        title.add("新闻");
+        title.add("本地新闻");
+
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(mFragmentBinding.tlNewsTitle, mFragmentBinding.vp2News, (tab, position) -> {
+            tab.setText(title.get(position));
+        });
+        tabLayoutMediator.attach();
+
     }
 
-    @Override
-    protected int getResId() {
-        return R.layout.news_page_fragment;
-    }
 
     @Override
     public void loading() {

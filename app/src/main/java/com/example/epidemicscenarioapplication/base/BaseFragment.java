@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
+import com.example.epidemicscenarioapplication.databinding.NetworkErrorLayoutBinding;
+import com.example.epidemicscenarioapplication.databinding.NetworkLoadingLayoutBinding;
 
 /**
  * @author sly
@@ -19,13 +21,14 @@ import com.example.epidemicscenarioapplication.R;
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseFragment extends Fragment {
+//默认所有页面都是 加载状态
 
-    private FrameLayout mFlContainer;
-    private ViewState mCurrentState=ViewState.LOADING;
+    private ViewState mCurrentState = ViewState.LOADING;
     private View mErrorView;
     private View mLoadingView;
-    public View mSuccessView;
-    protected View mRootView;
+    private View mSuccessView;
+    protected DefaultBaseFragmentLayoutBinding mBaseFragmentLayoutBinding;
+    private FrameLayout mBaseFragmentRootview;
 
     // 控制View可不可见的类 即在不同网络状态下显示哪一个view
     public enum ViewState {
@@ -34,20 +37,18 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //       一走进这个方法就加载默认的布局，如果子类重写该方法，显示子类的布局
-        mRootView = loadRootView(inflater, container);
-        mFlContainer = mRootView.findViewById(R.id.base_fl_container);
+        loadRootView(inflater, container);
         loadStateView(inflater, container);
         initView();
         initPresenter();
         initData();
         initListener();
 //        返回根布局 因为每一个根布局里面都放了不同状态下的布局 在状态设置中控制这些不同的view显示那一个
-        return mRootView;
+        return mBaseFragmentLayoutBinding.getRoot();
     }
 
     public void setViewState(ViewState state) {
@@ -60,44 +61,47 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * @param inflater
-     * @param container
-     * 向容器中添加不同状态下的View
+     * @param container 向容器中添加不同状态下的View
      */
     protected void loadStateView(LayoutInflater inflater, ViewGroup container) {
-        loadSuccessView(inflater, container);
-        mFlContainer.addView(mSuccessView);
+        mSuccessView = loadSuccessView(inflater, container);
+        mBaseFragmentLayoutBinding.baseFlContainer.addView(mSuccessView);
         mErrorView = loadErrorView(inflater, container);
-        mFlContainer.addView(mErrorView);
+        mBaseFragmentLayoutBinding.baseFlContainer.addView(mErrorView);
         mLoadingView = loadLoadingView(inflater, container);
-        mFlContainer.addView(mLoadingView);
+        mBaseFragmentLayoutBinding.baseFlContainer.addView(mLoadingView);
         setViewState(mCurrentState);
     }
 
     //加载根布局
     protected View loadRootView(LayoutInflater inflater, ViewGroup container) {
 //       默认 只有一个FrameLayout 子类重写走子类 HomeFragment重写
-        return inflater.inflate(R.layout.default_base_fragment_layout, container, false);
+//       使用ViewBinding的写法
+        mBaseFragmentLayoutBinding = DefaultBaseFragmentLayoutBinding.inflate(inflater, container, false);
+        mBaseFragmentRootview = mBaseFragmentLayoutBinding.getRoot();
+        return mBaseFragmentRootview;
     }
 
     private View loadLoadingView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.network_loading_layout, container, false);
+        NetworkLoadingLayoutBinding inflate = NetworkLoadingLayoutBinding.inflate(inflater, container, false);
+        return inflate.getRoot();
     }
 
     private View loadErrorView(LayoutInflater inflater, ViewGroup container) {
-             return inflater.inflate(R.layout.network_error_layout, container, false);
+
+        NetworkErrorLayoutBinding inflate = NetworkErrorLayoutBinding.inflate(inflater, container, false);
+        return inflate.getRoot();
 
     }
 
     private View loadSuccessView(LayoutInflater inflater, ViewGroup container) {
-        int id = getResId();
-        mSuccessView = inflater.inflate(id, container, false);
-        return mSuccessView;
+        View view = getSuccessView(inflater,container);
+        return view;
     }
 
     protected abstract void initListener();
 
     protected abstract void initPresenter();
-
 
 
     protected void initData() {
@@ -106,5 +110,5 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initView();
 
-    protected abstract int getResId();
+    protected abstract View getSuccessView(LayoutInflater inflater, ViewGroup container);
 }

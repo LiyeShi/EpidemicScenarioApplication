@@ -3,18 +3,21 @@ package com.example.epidemicscenarioapplication.view.fragment;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.databinding.Tengxun1Fragment2Binding;
 import com.example.epidemicscenarioapplication.domain.API;
-import com.example.epidemicscenarioapplication.domain.DiagnoseDataBean;
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
@@ -36,6 +39,8 @@ import retrofit2.Retrofit;
 public class WikipediaPreventionPageFragment extends BaseFragment {
     private static final String TAG = "Tengxun1Fragment2";
     private RecyclerView mRecyclerView;
+    private LinearLayout mFragment2BindingRoot;
+    private Tengxun1Fragment2Binding mFragment2Binding;
 
     @Override
     protected void initListener() {
@@ -53,27 +58,27 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
         Retrofit retrofit = instance.getRetrofit();
         API api = retrofit.create(API.class);
 //        返回20条数据
-        Call<DiagnoseDataBean> getGuideListList = api.getGuideListList(20);
-        getGuideListList.enqueue(new Callback<DiagnoseDataBean>() {
+        Call<WikipediaDataBean> getGuideListList = api.getGuideListList(20);
+        getGuideListList.enqueue(new Callback<WikipediaDataBean>() {
             @Override
-            public void onResponse(Call<DiagnoseDataBean> call, Response<DiagnoseDataBean> response) {
+            public void onResponse(Call<WikipediaDataBean> call, Response<WikipediaDataBean> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
-                    DiagnoseDataBean body = response.body();
+                    WikipediaDataBean body = response.body();
                     Log.d(TAG, "onResponse: 数据为==>" + body);
                     WikipediaPageFragmentAdapter adapter = new WikipediaPageFragmentAdapter();
                     adapter.setOnItemListener(position -> {
-                        Intent intent = new Intent(mSuccessView.getContext(), EpidemicMapActivity.class);
+                        Intent intent = new Intent(mFragment2BindingRoot.getContext(), EpidemicMapActivity.class);
                         intent.putExtra("url", response.body().getData().getDocs().get(position).getH5url());
                         startActivity(intent);
                     });
-                    adapter.setDataBeans((ArrayList<DiagnoseDataBean.DataBean.DocsBean>) response.body().getData().getDocs());
+                    adapter.setDataBeans((ArrayList<WikipediaDataBean.DataBean.DocsBean>) response.body().getData().getDocs());
 //                    设置布局管理器 智障！忘了几次了
                     //设置布局管理器
-                    LinearLayoutManager manager = new LinearLayoutManager(mSuccessView.getContext());
+                    LinearLayoutManager manager = new LinearLayoutManager(mFragment2BindingRoot.getContext());
                     manager.setOrientation(LinearLayoutManager.VERTICAL);
-                    mRecyclerView.setLayoutManager(manager);
+                    mFragment2Binding.rvGuideList.setLayoutManager(manager);
                     //设置分割线
-                    mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                    mFragment2Binding.rvGuideList.addItemDecoration(new RecyclerView.ItemDecoration() {
                         @Override
                         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                             outRect.bottom = 10;
@@ -84,15 +89,15 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
                     });
 
 //设置动画
-                    mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-                    mRecyclerView.setAdapter(adapter);
+                    mFragment2Binding.rvGuideList.setItemAnimator(new DefaultItemAnimator());
+                    mFragment2Binding.rvGuideList.setAdapter(adapter);
                     setViewState(ViewState.SUCCESS);
 
                 }
             }
 
             @Override
-            public void onFailure(Call<DiagnoseDataBean> call, Throwable t) {
+            public void onFailure(Call<WikipediaDataBean> call, Throwable t) {
                 setViewState(ViewState.ERROR);
             }
 
@@ -101,11 +106,14 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        mRecyclerView = mSuccessView.findViewById(R.id.rv_GuideList);
+//        mRecyclerView = mSuccessView.findViewById(R.id.rv_GuideList);
     }
 
     @Override
-    protected int getResId() {
-        return R.layout.tengxun1_fragment2;
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        mFragment2Binding = Tengxun1Fragment2Binding.inflate(inflater, container, false);
+        mFragment2BindingRoot = mFragment2Binding.getRoot();
+        return mFragment2BindingRoot;
     }
+
 }

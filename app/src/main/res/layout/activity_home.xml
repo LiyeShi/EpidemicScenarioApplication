@@ -18,6 +18,6 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_home"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         app:menu="@menu/my_navigation_items" />
 </LinearLayout>

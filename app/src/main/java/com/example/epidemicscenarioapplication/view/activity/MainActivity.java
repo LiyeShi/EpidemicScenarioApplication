@@ -1,9 +1,5 @@
 package com.example.epidemicscenarioapplication.view.activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,9 +17,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.databinding.ActivityMainBinding;
 import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.ToastUtil;
 
@@ -76,8 +76,10 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected int getViewId() {
-        return R.layout.activity_main;
+    protected View getView() {
+        ActivityMainBinding mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view=mainBinding.getRoot();
+        return view;
     }
 
     @Override

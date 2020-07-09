@@ -1,7 +1,13 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
-import com.example.epidemicscenarioapplication.R;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.databinding.LocalNewsLayoutBinding;
 
 /**
  * @author sly
@@ -10,6 +16,9 @@ import com.example.epidemicscenarioapplication.base.BaseFragment;
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
 public class LocalNewsPageFragment extends BaseFragment {
+
+    private ConstraintLayout mLocalNewsLayoutBindingRoot;
+
     @Override
     protected void initListener() {
 
@@ -26,7 +35,11 @@ public class LocalNewsPageFragment extends BaseFragment {
     }
 
     @Override
-    protected int getResId() {
-        return R.layout.local_news_layout;
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        LocalNewsLayoutBinding localNewsLayoutBinding = LocalNewsLayoutBinding.inflate(inflater, container, false);
+        mLocalNewsLayoutBindingRoot = localNewsLayoutBinding.getRoot();
+        return mLocalNewsLayoutBindingRoot;
+
     }
+
 }

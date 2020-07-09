@@ -4,14 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.databinding.ActivityEpidemicMapBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.EpidemicMapPresenter;
-import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 import com.just.agentweb.AgentWeb;
@@ -93,8 +94,10 @@ public class EpidemicMapActivity extends BaseActivity implements IEpidemicMapVie
     }
 
     @Override
-    protected int getViewId() {
-        return R.layout.activity_epidemic_map;
+    protected View getView() {
+        ActivityEpidemicMapBinding epidemicMapBinding = ActivityEpidemicMapBinding.inflate(getLayoutInflater());
+        LinearLayout mapBindingRoot = epidemicMapBinding.getRoot();
+        return mapBindingRoot;
     }
 
     @Override

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.domain.DiagnoseDataBean;
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
     private static final int CONTAIN_IMAGE = 0;
     private static final int ONLY_TEXTVIEW = 1;
-    ArrayList<DiagnoseDataBean.DataBean.DocsBean> dataBeans;
+    ArrayList<WikipediaDataBean.DataBean.DocsBean> dataBeans;
     private Context mContext;
     private static final String TAG = "WikipediaDiagnoseAdapte";
     private View mView;
@@ -116,7 +116,7 @@ public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
     }
 
 
-    public void setDataBeans(ArrayList<DiagnoseDataBean.DataBean.DocsBean> dataBeans) {
+    public void setDataBeans(ArrayList<WikipediaDataBean.DataBean.DocsBean> dataBeans) {
         this.dataBeans = dataBeans;
         Log.d(TAG, "setDataBeans: 数据大小==>" + dataBeans.size());
     }

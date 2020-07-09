@@ -1,10 +1,8 @@
 package com.example.epidemicscenarioapplication.presenter.impl;
 
 import com.example.epidemicscenarioapplication.model.IRumorModel;
-import com.example.epidemicscenarioapplication.model.impl.RumorModel;
 import com.example.epidemicscenarioapplication.presenter.IRumorPresenter;
 import com.example.epidemicscenarioapplication.view.IRumorPager1View;
-import com.example.epidemicscenarioapplication.view.IRumorView;
 
 /**
  * @author sly
@@ -20,8 +18,8 @@ public class RumorPresenter1 implements IRumorPresenter {
     private IRumorPager1View mIRumorView;
 
     public RumorPresenter1(IRumorPager1View IRumorView) {
-        mIRumorView = IRumorView;
-        mRumorModel = new RumorModel(this);
+//        mIRumorView = IRumorView;
+////        mRumorModel = new RumorModel(this);
     }
 
     @Override

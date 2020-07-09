@@ -1,11 +1,8 @@
 package com.example.epidemicscenarioapplication.domain;
 
-import com.example.epidemicscenarioapplication.domain.DiagnoseDataBean;
-import com.example.epidemicscenarioapplication.domain.GuideListDataBean;
-import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
-import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.utils.Constants;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -47,12 +44,16 @@ public interface API {
      * @return
      */
     @GET("/ncov/news/getDiagnoseList")
-    Call<DiagnoseDataBean> getDiagnoseList(@Query("count") Integer count);
+    Call<WikipediaDataBean> getDiagnoseList(@Query("count") Integer count);
 
     /**
      * @param count 疫情百科知识 （预防指南）
      * @return
      */
     @GET("/ncov/news/getGuideList")
-    Call<DiagnoseDataBean> getGuideListList(@Query("count") Integer count);
+    Call<WikipediaDataBean> getGuideListList(@Query("count") Integer count);
+
+    @GET("data/getTimelineService")
+    Call<ResponseBody>getTimeLineService();
+
 }

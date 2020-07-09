@@ -2,10 +2,10 @@ package com.example.epidemicscenarioapplication.custom;
 
 import android.app.Dialog;
 import android.content.Context;
-
-import androidx.annotation.NonNull;
+import android.view.View;
 
 import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.databinding.ViewDialogBinding;
 
 /**
  * @author sly
@@ -14,12 +14,19 @@ import com.example.epidemicscenarioapplication.R;
  * @description com.example.epidemicscenarioapplication.custom
  */
 public class CustomDialog extends Dialog {
-    public CustomDialog(Context context,int layoutId) {
 
+    public  View mMView;
+
+    public   ViewDialogBinding mMBinding;
+
+    public CustomDialog(Context context, int layoutId) {
         //使用自定义Dialog样式
         super(context, R.style.custom_dialog);
-        //指定布局
-        setContentView(layoutId);
+//使用ViewBinding的写法
+        mMBinding = ViewDialogBinding.inflate(getLayoutInflater());
+        mMView = mMBinding.getRoot();
+
+        setContentView(mMView);
 
         //点击外部不可消失
         //setCancelable(false);

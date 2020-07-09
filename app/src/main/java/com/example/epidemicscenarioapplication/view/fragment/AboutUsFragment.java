@@ -1,9 +1,11 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.databinding.FullPlatformDataFragmentBinding;
 
 /**
  * @author sly
@@ -29,9 +31,14 @@ public class AboutUsFragment extends BaseFragment {
     }
 
     @Override
-    protected int getResId() {
-        return R.layout.full_platform_data_fragment;
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        FullPlatformDataFragmentBinding fullPlatformDataFragmentBinding = FullPlatformDataFragmentBinding.inflate(inflater, container, false);
+        return fullPlatformDataFragmentBinding.getRoot();
     }
+
+
+
+
 
     class MyListener implements View.OnClickListener {
 

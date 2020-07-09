@@ -1,7 +1,5 @@
 package com.example.epidemicscenarioapplication.domain;
 
-import com.example.epidemicscenarioapplication.utils.Constants;
-
 /**
  * @author sly
  * @version 1.0

@@ -1,8 +1,5 @@
 package com.example.epidemicscenarioapplication.model.impl;
 
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
 import com.example.epidemicscenarioapplication.model.IEpidemicMapModel;
 import com.example.epidemicscenarioapplication.presenter.impl.EpidemicMapPresenter;
 

@@ -3,16 +3,13 @@ package com.example.epidemicscenarioapplication.base;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.annotation.ContentView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.utils.NXStatusBar;
+import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
 
 /**
  * @author sly
@@ -21,11 +18,15 @@ import com.example.epidemicscenarioapplication.utils.NXStatusBar;
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private DefaultBaseFragmentLayoutBinding mBinding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int viewId = getViewId();
-        setContentView(viewId);
+        View view = getView();
+        setContentView(view);
+//        setContentView(viewId);
         initView();
         initPresenter();
         initData();
@@ -51,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         actionBar.hide();
     }
 
-    protected abstract int getViewId();
+    protected abstract View getView();
 
     protected abstract void initView();
 

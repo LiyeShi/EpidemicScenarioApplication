@@ -1,14 +1,12 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -18,11 +16,14 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.custom.CustomDialog;
+import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
 import com.example.epidemicscenarioapplication.utils.Constants;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
+import com.example.epidemicscenarioapplication.utils.ToastUtil;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
 import com.example.epidemicscenarioapplication.view.activity.MainActivity2;
@@ -43,31 +44,19 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     private static final String TAG = "HomeFragment";
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
-    private Banner mHomepageBanner;
     private HomePagePresenter mHomePagePresenter;
-    private Banner mHomepageTipBanner;
     private ArrayList<VerticalBannerDataBeans> Datas;
-    private FrameLayout mFlVerticaContainer;
-    private Button mBtnGetCunzhen;
-    private Button mBtnFullPlatform;
-    private View mView;
-    private LinearLayout mLlKuake;
-    private LinearLayout mLlAliijiankang;
-    private LinearLayout mLlZhihu;
-    private LinearLayout mLlTengxun;
-    private LinearLayout mLlDingxiangyuan;
-    private LinearLayout mLlBaidu;
-    private LinearLayout mLlDiyixaijing;
-    private LinearLayout mLlXinlang;
-    private Dialog mDialog;
+    private CustomDialog mDialog;
     private WindowManager.LayoutParams mLp;
+    private HomeFragmentBinding mHomeFragmentBinding;
+    private LinearLayout mHomeFragmentBindingRoot;
 
 
     @Override
     protected void initListener() {
         Log.d(TAG, "initListener: 首页轮播图设置监听");
-        mHomepageBanner.setOnBannerListener(this);
-        mBtnFullPlatform.setOnClickListener(v -> {
+        mHomeFragmentBinding.homepagerBanner.setOnBannerListener(this);
+        mHomeFragmentBinding.btnFullPlatformData.setOnClickListener(v -> {
             mLp = new WindowManager.LayoutParams();
             Window window = mDialog.getWindow();
             mLp.copyFrom(window.getAttributes());
@@ -80,14 +69,15 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
             mDialog.setCanceledOnTouchOutside(false);
         });
         MyOnclickListener myOnclickListener = new MyOnclickListener();
-        mLlAliijiankang.setOnClickListener(myOnclickListener);
-        mLlBaidu.setOnClickListener(myOnclickListener);
-        mLlDingxiangyuan.setOnClickListener(myOnclickListener);
-        mLlKuake.setOnClickListener(myOnclickListener);
-        mLlXinlang.setOnClickListener(myOnclickListener);
-        mLlTengxun.setOnClickListener(myOnclickListener);
-        mLlZhihu.setOnClickListener(myOnclickListener);
-        mLlDiyixaijing.setOnClickListener(myOnclickListener);
+
+        mDialog.mMBinding.llAliijiankang.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llBaidu.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llDingxiangyuan.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llKuake.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llXinlang.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llTengxun.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llZhihu.setOnClickListener(myOnclickListener);
+        mDialog.mMBinding.llDiyixaijing.setOnClickListener(myOnclickListener);
 
     }
 
@@ -97,7 +87,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     }
 
     public void startWebView(String url) {
-        Intent intent = new Intent(mSuccessView.getContext(), EpidemicMapActivity.class);
+        Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), EpidemicMapActivity.class);
         intent.putExtra("url", url);
         startActivity(intent);
     }
@@ -106,46 +96,33 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
 //        首页是不用显示不同网络请求状态下的view
         setViewState(ViewState.SUCCESS);
         initDialog();
-        mLlKuake = mView.findViewById(R.id.ll_kuake);
-        mLlAliijiankang = mView.findViewById(R.id.ll_aliijiankang);
-        mLlZhihu = mView.findViewById(R.id.ll_zhihu);
-        mLlBaidu = mView.findViewById(R.id.ll_baidu);
-        mLlDiyixaijing = mView.findViewById(R.id.ll_diyixaijing);
-        mLlXinlang = mView.findViewById(R.id.ll_xinlang);
-        mLlDingxiangyuan = mView.findViewById(R.id.ll_dingxiangyuan);
-        mLlTengxun = mView.findViewById(R.id.ll_tengxun);
-        mBtnFullPlatform = mSuccessView.findViewById(R.id.btn_full_platform_data);
-        mHomepageBanner = (Banner) mSuccessView.findViewById(R.id.homepager_banner);
-        mHomepageTipBanner = mSuccessView.findViewById(R.id.banner_tips);
         //添加生命周期观察者
-        mHomepageTipBanner.addBannerLifecycleObserver(this)
+        mHomeFragmentBinding.bannerTips.addBannerLifecycleObserver(this)
                 .setOrientation(Banner.VERTICAL)
                 .setDelayTime(6000)
                 .isAutoLoop(true)
                 .setBannerRound2(20)
                 .start();
-        mFlVerticaContainer = mSuccessView.findViewById(R.id.fl_home_vertical_container);
-        mBtnGetCunzhen = mSuccessView.findViewById(R.id.btn_ncov_village);
-        mBtnGetCunzhen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mSuccessView.getContext(), MainActivity2.class));
-            }
-        });
+        mHomeFragmentBinding.btnNcovVillage.setOnClickListener(v -> startActivity(new Intent(mHomeFragmentBindingRoot.getContext(), MainActivity2.class)));
 
-    }
-
-    private void initDialog() {
-        mView = LayoutInflater.from(mSuccessView.getContext()).inflate(R.layout.view_dialog, null, false);
-        mDialog = new Dialog(mSuccessView.getContext(), R.style.custom_dialog);
-        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDialog.setContentView(mView);
     }
 
     @Override
-    protected int getResId() {
-        return R.layout.home_fragment;
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        mHomeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
+        mHomeFragmentBindingRoot = mHomeFragmentBinding.getRoot();
+        return mHomeFragmentBindingRoot;
     }
+
+    private void initDialog() {
+        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.view_dialog);
+//        mView = LayoutInflater.from(mSuccessView.getContext()).inflate(R.layout.view_dialog, null, false);
+//        mDialog = new Dialog(mHomeFragmentBindingRoot.getContext(), R.style.custom_dialog);
+//        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        mDialog.setContentView(ViewDialogBinding.inflate(R.layout.view_dialog));
+    }
+
+
 
     @Override
     protected void initData() {
@@ -155,7 +132,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     }
 
     private void initLocationClient() {
-        mLocationClient = new LocationClient(mSuccessView.getContext());
+        mLocationClient = new LocationClient(mHomeFragmentBindingRoot.getContext());
         mLocationClient.registerLocationListener(myListener);
         mLocationClient.setLocOption(BaiduSDKutils.initSDK());
 //        打开定位
@@ -165,12 +142,12 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     @Override
     public void showBanner(List data) {
 //添加生命周期观察者
-        mHomepageBanner.addBannerLifecycleObserver(this)
+        mHomeFragmentBinding.homepagerBanner.addBannerLifecycleObserver(this)
                 .setAdapter(new HomeFragmentBannerAdapter(data))
                 .setDelayTime(5000)
                 .setOnBannerListener(this)
-                .setIndicator(new CircleIndicator(mSuccessView.getContext()))
-                .setIndicator(new CircleIndicator(mSuccessView.getContext()))
+                .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
+                .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
                 .start();
 //        设置指示器默认颜色
 //        mHomepageBanner.setIndicatorNormalColor()
@@ -187,8 +164,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         VerticalBannerDataBeans dataBeans2 = new VerticalBannerDataBeans(dataBeans, Constants.BANNER_TYPE_YIQING);
         Datas.add(dataBeans1);
         Datas.add(dataBeans2);
-        mHomepageTipBanner.setAdapter(new HomeFragmentVerticalBannerAdapter(Datas));
-        mHomepageTipBanner.setVisibility(View.VISIBLE);
+        mHomeFragmentBinding.bannerTips.setAdapter(new HomeFragmentVerticalBannerAdapter(Datas));
+        mHomeFragmentBinding.bannerTips.setVisibility(View.VISIBLE);
 // TODO: 2020/7/3 显示加载的进度条是不是还需要隐藏
 
 
@@ -199,7 +176,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         switch (position) {
             case 0:
                 Log.d(TAG, "OnBannerClick: 点击了第一个");
-                Intent intent = new Intent(mSuccessView.getContext(), EpidemicMapActivity.class);
+                Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), EpidemicMapActivity.class);
                 intent.putExtra("url", Constants.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
                 startActivity(intent);
                 break;
@@ -277,14 +254,14 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
             Log.d(TAG, "详细地址==>" + addr);
             // TODO: 2020/7/2  模拟器测试方便 别忘了这里改成成功获取定位后才请求天气信息
             if (district == null) {
-                SpUtils.putString(mSuccessView.getContext(), Constants.LOCATION, district);
+                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), Constants.LOCATION, district);
                 mLocationClient.stop();
-                mHomePagePresenter.loadVerticalBannerWeather(mSuccessView.getContext());
+                mHomePagePresenter.loadVerticalBannerWeather(mHomeFragmentBindingRoot.getContext());
 
             }
 //            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
 //            Log.d(TAG, "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
-//            ToastUtil.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
+            ToastUtil.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
         }
     }
 }

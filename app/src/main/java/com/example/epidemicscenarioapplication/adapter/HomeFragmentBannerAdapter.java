@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.youth.banner.adapter.BannerAdapter;
 
-
 import java.util.List;
 
 /**

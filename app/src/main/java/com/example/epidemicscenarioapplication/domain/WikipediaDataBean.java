@@ -8,7 +8,7 @@ import java.util.List;
  * @date 2020/7/3
  * @description com.example.epidemicscenarioapplication.domain
  */
-public class DiagnoseDataBean {
+public class WikipediaDataBean {
     @Override
     public String toString() {
         return "DiagnoseDataBean{" +

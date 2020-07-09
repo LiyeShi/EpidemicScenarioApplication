@@ -2,15 +2,19 @@ package com.example.epidemicscenarioapplication.view.fragment;
 
 
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.WikipediaFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.databinding.RumorFragmentBinding;
 import com.example.epidemicscenarioapplication.view.IRumorView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -30,6 +34,9 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
     private ViewPager2 mViewPager2;
     private ArrayList<Fragment> mFragments;
     private static final String TAG = "RumorFragment";
+    private LinearLayout mRumorFragmentBindingRoot;
+    private RumorFragmentBinding mRumorFragmentBinding;
+
     @Override
     protected void initListener() {
 
@@ -45,10 +52,14 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
     protected void initView() {
 //       viewpager 在gone状态下不初始化fragment
         setViewState(ViewState.SUCCESS);
-        mTlChangshi = mSuccessView.findViewById(R.id.tl_changshi);
-        mViewPager2 = mSuccessView.findViewById(R.id.vp2_yiqingchishangtengxun);
 
+    }
 
+    @Override
+    protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        mRumorFragmentBinding = RumorFragmentBinding.inflate(inflater, container, false);
+        mRumorFragmentBindingRoot = mRumorFragmentBinding.getRoot();
+        return mRumorFragmentBindingRoot;
     }
 
     @Override
@@ -63,24 +74,21 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
         mFragments.add(wikipediaPreventionPage);
         mFragments.add(wikipediaDiagnosisPage);
         tengxunAdapter.setData(mFragments);
-        mViewPager2.setAdapter(tengxunAdapter);
+        mRumorFragmentBinding.vp2Yiqingchishangtengxun.setAdapter(tengxunAdapter);
 //        这句话不知道有没有用
-        mViewPager2.requestDisallowInterceptTouchEvent(true);
+        mRumorFragmentBinding.vp2Yiqingchishangtengxun.requestDisallowInterceptTouchEvent(true);
         ArrayList<String> title = new ArrayList<>();
         title.add("预防指南");
         title.add("检查诊断");
 
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(mTlChangshi, mViewPager2, (tab, position) -> {
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(mRumorFragmentBinding.tlChangshi, mRumorFragmentBinding.vp2Yiqingchishangtengxun, (tab, position) -> {
             tab.setText(title.get(position));
         });
         tabLayoutMediator.attach();
 
     }
 
-    @Override
-    protected int getResId() {
-        return R.layout.rumor_fragment;
-    }
+
 
     @Override
     public void showSuccessView() {

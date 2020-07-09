@@ -3,7 +3,6 @@ package com.example.epidemicscenarioapplication.presenter.impl;
 import com.example.epidemicscenarioapplication.base.IBasePresenter;
 import com.example.epidemicscenarioapplication.model.IEpidemicMapModel;
 import com.example.epidemicscenarioapplication.model.impl.EpidemicMapModel;
-import com.example.epidemicscenarioapplication.presenter.IEpidemicMapPresenter;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 
 /**

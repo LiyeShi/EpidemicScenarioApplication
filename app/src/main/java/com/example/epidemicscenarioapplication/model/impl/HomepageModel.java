@@ -38,7 +38,7 @@ public class HomepageModel implements IHomepageModel {
     public void loadBanner() {
         ArrayList<Integer> bannerList = new ArrayList<>();
         bannerList.add(R.drawable.bannerone);
-        bannerList.add(R.drawable.bannertwo);
+        bannerList.add(R.drawable.banner);
         bannerList.add(R.drawable.bannerfour);
 
         //假装下载成功了
