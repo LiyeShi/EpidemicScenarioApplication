@@ -42,4 +42,5 @@ public class LocalNewsPageFragment extends BaseFragment {
 
     }
 
+
 }

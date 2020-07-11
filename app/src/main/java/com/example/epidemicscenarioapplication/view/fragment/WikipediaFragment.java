@@ -18,6 +18,7 @@ import com.example.epidemicscenarioapplication.databinding.RumorFragmentBinding;
 import com.example.epidemicscenarioapplication.view.IRumorView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,6 @@ import java.util.ArrayList;
 
 public class WikipediaFragment extends BaseFragment implements IRumorView {
 
-    private TabLayout mTlChangshi;
-    private ViewPager2 mViewPager2;
     private ArrayList<Fragment> mFragments;
     private static final String TAG = "RumorFragment";
     private LinearLayout mRumorFragmentBindingRoot;
@@ -99,4 +98,6 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
     public void showErrorTips() {
 
     }
+
+
 }

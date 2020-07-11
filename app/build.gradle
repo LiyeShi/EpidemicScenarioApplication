@@ -64,9 +64,11 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //noinspection GradleCompatible
-//    implementation 'com.android.support:cardview-v7:27.1.1'
-
+//    状态栏适配
+// 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+// fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
 
 }
 repositories {

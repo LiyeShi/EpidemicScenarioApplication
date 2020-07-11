@@ -42,7 +42,6 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
 
     private static final String TAG = "RumorFragment";
     private RumorPresenter1 mRumorPresenter;
-    private RecyclerView mRvDiagnoseList;
     private WikipediaPageFragmentAdapter mWikipediaDiagnoseAdapter;
     private LinearLayout mTengxun1FragmentBindingRoot;
     private Tengxun1FragmentBinding mTengxun1FragmentBinding;
@@ -142,6 +141,7 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
         Log.d(TAG, "showSuccessView: 加载失败");
 //        ToastUtil.showToast(mSuccessView.getContext(), "数据加载失败");
     }
+
 
 
 }

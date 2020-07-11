@@ -1,15 +1,16 @@
 package com.example.epidemicscenarioapplication.base;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
+import com.gyf.immersionbar.ImmersionBar;
 
 /**
  * @author sly
@@ -20,37 +21,30 @@ import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLa
 public abstract class BaseActivity extends AppCompatActivity {
 
     private DefaultBaseFragmentLayoutBinding mBinding;
+    private View mView;
+    protected ImmersionBar mImmersionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = getView();
-        setContentView(view);
-//        setContentView(viewId);
+        mView = getView();
+        setContentView(mView);
+//        适配状态栏 这个地方还必须在setContentView之后进行
+        InitImmersionBar();
         initView();
         initPresenter();
         initData();
-        setImmersionMode();
-        setStatusBarColor();
-//        NXStatusBar.addStatusViewWhite(this,savedInstanceState.G);
-
     }
 
-    protected abstract void setStatusBarColor();
+    protected void InitImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.fitsSystemWindows(true)
+                .statusBarColor(R.color.red).init();
+    }
+
 
     protected abstract void initData();
 
-    private void setImmersionMode() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-    }
 
     protected abstract View getView();
 
@@ -62,5 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ImmersionBar.destroy(this,null);
     }
 }

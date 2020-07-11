@@ -24,7 +24,6 @@ import androidx.core.content.ContextCompat;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityMainBinding;
-import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.ToastUtil;
 
 import java.io.File;
@@ -65,10 +64,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void setStatusBarColor() {
-        NXStatusBar.setStatusBarDarkMode(this);
-    }
+
 
     @Override
     protected void initData() {

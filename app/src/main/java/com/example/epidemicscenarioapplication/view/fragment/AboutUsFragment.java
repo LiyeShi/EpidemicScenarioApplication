@@ -38,8 +38,6 @@ public class AboutUsFragment extends BaseFragment {
 
 
 
-
-
     class MyListener implements View.OnClickListener {
 
         @Override

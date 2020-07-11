@@ -1,7 +1,6 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
  */
 public class NewsFragment extends BaseFragment implements IBaseView {
     private static final String TAG = "NewsFragment";
-    private TabLayout mTlNewsTitle;
     private @NotNull NewsPageFragmentBinding mFragmentBinding;
 
     @Override
@@ -47,10 +45,7 @@ public class NewsFragment extends BaseFragment implements IBaseView {
     @Override
     protected void initView() {
         setViewState(ViewState.SUCCESS);
-//        mTlNewsTitle = mRootView.findViewById(R.id.tl_news_title);
         mFragmentBinding.vp2News.requestDisallowInterceptTouchEvent(true);
-        Log.d(TAG, "initView: mFragmentBinding.vp2Yiqingchishangtengxun==>"+mFragmentBinding.vp2News);
-
     }
 
     @Override
@@ -95,4 +90,7 @@ public class NewsFragment extends BaseFragment implements IBaseView {
     public void loadError() {
 
     }
+
+
+
 }

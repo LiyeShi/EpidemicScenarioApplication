@@ -1,6 +1,9 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +11,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -17,6 +24,7 @@ import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.custom.CustomDialog;
+import com.example.epidemicscenarioapplication.custom.ImmersionFragment;
 import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
@@ -27,6 +35,10 @@ import com.example.epidemicscenarioapplication.utils.ToastUtil;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
 import com.example.epidemicscenarioapplication.view.activity.MainActivity2;
+import com.gyf.immersionbar.ImmersionBar;
+import com.gyf.immersionbar.components.ImmersionOwner;
+import com.gyf.immersionbar.components.ImmersionProxy;
+import com.gyf.immersionbar.components.SimpleImmersionOwner;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
@@ -69,7 +81,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
             mDialog.setCanceledOnTouchOutside(false);
         });
         MyOnclickListener myOnclickListener = new MyOnclickListener();
-
         mDialog.mMBinding.llAliijiankang.setOnClickListener(myOnclickListener);
         mDialog.mMBinding.llBaidu.setOnClickListener(myOnclickListener);
         mDialog.mMBinding.llDingxiangyuan.setOnClickListener(myOnclickListener);
@@ -91,6 +102,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         intent.putExtra("url", url);
         startActivity(intent);
     }
+
+
     @Override
     protected void initView() {
 //        首页是不用显示不同网络请求状态下的view
@@ -107,6 +120,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
 
     }
 
+
+
+
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
         mHomeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
@@ -116,12 +132,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
 
     private void initDialog() {
         mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.view_dialog);
-//        mView = LayoutInflater.from(mSuccessView.getContext()).inflate(R.layout.view_dialog, null, false);
-//        mDialog = new Dialog(mHomeFragmentBindingRoot.getContext(), R.style.custom_dialog);
-//        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        mDialog.setContentView(ViewDialogBinding.inflate(R.layout.view_dialog));
     }
-
 
 
     @Override
@@ -197,6 +208,11 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
                 break;
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     public class MyOnclickListener implements View.OnClickListener {

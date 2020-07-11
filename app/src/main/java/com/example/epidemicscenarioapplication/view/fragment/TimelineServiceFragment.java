@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.epidemicscenarioapplication.adapter.TimelineServicePageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.databinding.TimeLineNewsBinding;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
@@ -25,9 +26,9 @@ import java.util.ArrayList;
  */
 public class TimelineServiceFragment extends BaseFragment implements ITimeLineServiceView {
     private static final String TAG = "TimelineServiceFragment";
-    private RecyclerView mRvTimelineSerview;
     private TimelineNewsPageFragmentPresenter mPresenter;
     private LinearLayout mTimeLineNewsBindingRoot;
+    private TimeLineNewsBinding mTimeLineNewsBinding;
 
     @Override
     protected void initListener() {
@@ -41,13 +42,12 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
 
     @Override
     protected void initView() {
-//        mRvTimelineSerview = mRootView.findViewById(R.id.rv_time_news_list);
     }
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        TimeLineNewsBinding timeLineNewsBinding = TimeLineNewsBinding.inflate(inflater, container, false);
-        mTimeLineNewsBindingRoot = timeLineNewsBinding.getRoot();
+        mTimeLineNewsBinding = TimeLineNewsBinding.inflate(inflater, container, false);
+        mTimeLineNewsBindingRoot = mTimeLineNewsBinding.getRoot();
         return mTimeLineNewsBindingRoot;
     }
 
@@ -65,6 +65,11 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
     public void showSuccessView(ArrayList<TimelineServiceDataBean> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mTimeLineNewsBindingRoot.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
+        TimelineServicePageFragmentAdapter adapter = new TimelineServicePageFragmentAdapter();
+        adapter.setData(list);
+        mTimeLineNewsBinding.rvTimeNewsList.setLayoutManager(layoutManager);
+        mTimeLineNewsBinding.rvTimeNewsList.setAdapter(adapter);
+        setViewState(ViewState.SUCCESS);
 
     }
 
@@ -72,4 +77,5 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
     public void showErrorView() {
 
     }
+
 }

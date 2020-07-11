@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -14,12 +15,12 @@ import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdap
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityHomeBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter;
-import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.view.fragment.AboutUsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.HomeFragment;
 import com.example.epidemicscenarioapplication.view.fragment.NewsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.WikipediaFragment;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -28,14 +29,15 @@ import java.util.ArrayList;
  */
 public class HomeActivity extends BaseActivity {
 
-    private HomeFragment mHomePageFragment;
-    private WikipediaFragment mWikipediaPageFragment;
+    private HomeFragment mHomeFragment;
+    private WikipediaFragment mWikipediaFragment;
     private AboutUsFragment mAboutUsFragment;
-    private NewsFragment mNewsPagerFragment;
+    private NewsFragment mNewsFragment;
     private static final String TAG = "HomeActivity";
     private RumorPresenter mRumorPresenter;
     private ArrayList<Fragment> mFragmentArrayList = new ArrayList();
     private ActivityHomeBinding mHomeBinding;
+
 
 
     @Override
@@ -46,10 +48,7 @@ public class HomeActivity extends BaseActivity {
         initListener();
     }
 
-    @Override
-    protected void setStatusBarColor() {
-        NXStatusBar.setStatusBarDarkMode(this);
-    }
+
 
     @Override
     protected void initData() {
@@ -98,25 +97,20 @@ public class HomeActivity extends BaseActivity {
         mHomeBinding.vpContainer.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "onPageSelected: position==>" + position);
-                int id = mHomeBinding.bnvHome.getMenu().getItem(position).getItemId();
-                Log.d(TAG, "onPageSelected: id==>" + id);
-//                这个地方只能这么写吗 好别扭  神奇了又 底部导航栏添加一个选项 莫名爆炸 更换下面方式实现
-//                mHomeBinding.bnvHome.setSelectedItemId(id);
-                mHomeBinding.bnvHome.getMenu().getItem(position).setChecked(true);
             }
         });
     }
 
 
+
     private void initFragment() {
-        mHomePageFragment = new HomeFragment();
-        mWikipediaPageFragment = new WikipediaFragment();
+        mHomeFragment = new HomeFragment();
+        mWikipediaFragment = new WikipediaFragment();
         mAboutUsFragment = new AboutUsFragment();
-        mNewsPagerFragment = new NewsFragment();
-        mFragmentArrayList.add(mHomePageFragment);
-        mFragmentArrayList.add(mNewsPagerFragment);
-        mFragmentArrayList.add(mWikipediaPageFragment);
+        mNewsFragment = new NewsFragment();
+        mFragmentArrayList.add(mHomeFragment);
+        mFragmentArrayList.add(mNewsFragment);
+        mFragmentArrayList.add(mWikipediaFragment);
         mFragmentArrayList.add(mAboutUsFragment);
         mHomeBinding.vpContainer.setCurrentItem(0);
     }
@@ -131,7 +125,6 @@ public class HomeActivity extends BaseActivity {
         HomeActivityViewpagerAdapter viewpagerAdapter = new HomeActivityViewpagerAdapter(this);
         viewpagerAdapter.setData(mFragmentArrayList);
         mHomeBinding.vpContainer.setAdapter(viewpagerAdapter);
-
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.example.epidemicscenarioapplication.base;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.custom.ImmersionFragment;
 import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
 import com.example.epidemicscenarioapplication.databinding.NetworkErrorLayoutBinding;
 import com.example.epidemicscenarioapplication.databinding.NetworkLoadingLayoutBinding;
+import com.gyf.immersionbar.ImmersionBar;
+import com.gyf.immersionbar.components.ImmersionOwner;
+import com.gyf.immersionbar.components.SimpleImmersionOwner;
 
 /**
  * @author sly
@@ -21,14 +29,17 @@ import com.example.epidemicscenarioapplication.databinding.NetworkLoadingLayoutB
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseFragment extends Fragment {
-//默认所有页面都是 加载状态
-
+    //默认所有页面都是 加载状态
+    private static final String TAG = "BaseFragment";
     private ViewState mCurrentState = ViewState.LOADING;
     private View mErrorView;
     private View mLoadingView;
+
     private View mSuccessView;
     protected DefaultBaseFragmentLayoutBinding mBaseFragmentLayoutBinding;
     private FrameLayout mBaseFragmentRootview;
+    protected ImmersionBar mImmersionBar;
+
 
     // 控制View可不可见的类 即在不同网络状态下显示哪一个view
     public enum ViewState {
@@ -40,6 +51,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        InitImmersionBar();
 //       一走进这个方法就加载默认的布局，如果子类重写该方法，显示子类的布局
         loadRootView(inflater, container);
         loadStateView(inflater, container);
@@ -50,6 +62,14 @@ public abstract class BaseFragment extends Fragment {
 //        返回根布局 因为每一个根布局里面都放了不同状态下的布局 在状态设置中控制这些不同的view显示那一个
         return mBaseFragmentLayoutBinding.getRoot();
     }
+
+    @SuppressLint("ResourceAsColor")
+    protected void InitImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.fitsSystemWindows(true)
+                .statusBarColor(R.color.red).init();
+    }
+
 
     public void setViewState(ViewState state) {
 //        这里只是控制显示View 并不影响数据加载 深入理解面向对象 对于每一个继承自basefragment的fragment在创建时都会经历这些过程
@@ -88,14 +108,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private View loadErrorView(LayoutInflater inflater, ViewGroup container) {
-
         NetworkErrorLayoutBinding inflate = NetworkErrorLayoutBinding.inflate(inflater, container, false);
         return inflate.getRoot();
 
     }
 
     private View loadSuccessView(LayoutInflater inflater, ViewGroup container) {
-        View view = getSuccessView(inflater,container);
+        View view = getSuccessView(inflater, container);
         return view;
     }
 
@@ -106,6 +125,14 @@ public abstract class BaseFragment extends Fragment {
 
     protected void initData() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mImmersionBar != null) {
+            ImmersionBar.destroy(this);
+        }
     }
 
     protected abstract void initView();

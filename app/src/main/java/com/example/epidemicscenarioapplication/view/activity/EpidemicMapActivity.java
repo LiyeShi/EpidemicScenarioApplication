@@ -13,7 +13,6 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityEpidemicMapBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.EpidemicMapPresenter;
-import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 import com.just.agentweb.AgentWeb;
 
@@ -31,20 +30,12 @@ public class EpidemicMapActivity extends BaseActivity implements IEpidemicMapVie
     private AgentWeb mAgentWeb;
 
 
-    @Override
-    protected void setStatusBarColor() {
-        NXStatusBar.setStatusBarDarkMode(this);
-    }
-
     @SuppressLint("ResourceAsColor")
     @Override
     protected void initData() {
         Intent intent = getIntent();
         mUrl = intent.getStringExtra("url");
         LinearLayout r = new LinearLayout(this);
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         setContentView(r);
         mAgentWeb = AgentWeb.with(this)
@@ -103,6 +94,7 @@ public class EpidemicMapActivity extends BaseActivity implements IEpidemicMapVie
     @Override
     protected void initView() {
         mWvHomeMap = findViewById(R.id.wv_home_map);
+
     }
 
     @Override

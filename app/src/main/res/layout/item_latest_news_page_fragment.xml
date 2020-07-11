@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最新"
+            android:background="@drawable/item_latest_tip_news"
+            android:textColor="@color/white"
+            android:textSize="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_news_title_page"
+            android:text="美国新冠患者突破手动阀发送到发送到发斯蒂芬sdfasdfads"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="12dp"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_news_abs_page"
+        android:text="美国新冠患者突破手动阀发送到发送到发斯蒂芬sdfasdfads"
+        android:maxLines="8"
+        android:textSize="12dp"
+        android:ellipsize="end"
+        android:textColor="@color/black"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间："
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_news_updata_time"
+            android:text="21分钟前"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来源："
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_news_author_page"
+            android:text="央视新闻APP"
+            android:layout_gravity="end"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</LinearLayout>

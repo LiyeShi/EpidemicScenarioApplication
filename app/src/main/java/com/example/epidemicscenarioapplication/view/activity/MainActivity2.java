@@ -12,7 +12,6 @@ import com.example.epidemicscenarioapplication.databinding.ActivityMain2Binding;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 import com.example.epidemicscenarioapplication.utils.Constants;
-import com.example.epidemicscenarioapplication.utils.NXStatusBar;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 
@@ -58,10 +57,6 @@ public class MainActivity2 extends BaseActivity {
 
     }
 
-    @Override
-    protected void setStatusBarColor() {
-        NXStatusBar.setStatusBarLightMode(this);
-    }
 
     @Override
     protected void initData() {
