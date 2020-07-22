@@ -1,16 +1,21 @@
 package com.example.epidemicscenarioapplication.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.youth.banner.adapter.BannerAdapter;
 import com.youth.banner.util.BannerUtils;
 
@@ -25,7 +30,7 @@ import java.util.List;
  */
 public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBannerDataBeans, RecyclerView.ViewHolder> {
     private static final String TAG = "HomePageBannerTipsAdapt";
-    //两种类型的数据应该都在这个集合里
+   private Context mContext;
 
 
 
@@ -57,11 +62,12 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
     @Override
     public RecyclerView.ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case Constants.BANNER_TYPE_WEATER:
-                View view = BannerUtils.getView(parent, R.layout.item_homepage_banner_weather);
+            case ConstantsUtils.BANNER_TYPE_WEATER:
+                mContext=parent.getContext();
+                View view = BannerUtils.getView(parent, R.layout.item_homepage_weather);
                 return new WeatherViewaHolder(view);
-            case Constants.BANNER_TYPE_YIQING:
-                return new YiQingViewHolder(BannerUtils.getView(parent, R.layout.item_homepager_banner_yiqing));
+            case ConstantsUtils.BANNER_TYPE_YIQING:
+                return new YiQingViewHolder(BannerUtils.getView(parent, R.layout.item_homepage_epidemic_info));
             default:
                 break;
         }
@@ -72,11 +78,14 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
     public void onBindView(RecyclerView.ViewHolder holder, VerticalBannerDataBeans data, int position, int size) {
         int itemViewType = holder.getItemViewType();
         switch (itemViewType) {
-            case Constants.BANNER_TYPE_WEATER:
+            case ConstantsUtils.BANNER_TYPE_WEATER:
                 WeatherViewaHolder weatherViewaHolder= (WeatherViewaHolder) holder;
                 weatherViewaHolder.tvWeather.setText(data.getWeatherDataBean().getData().getWeather());
+                RequestOptions options = new RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+                Glide.with(mContext).load(R.drawable.giphy).apply(options).into(weatherViewaHolder.ivIcon);
                 break;
-            case Constants.BANNER_TYPE_YIQING:
+            case ConstantsUtils.BANNER_TYPE_YIQING:
                 break;
             default:
                 break;
@@ -86,10 +95,11 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
 //不同类型的ViewHolder
     public class WeatherViewaHolder extends RecyclerView.ViewHolder {
         TextView tvWeather;
-
+        ImageView ivIcon;
         public WeatherViewaHolder(@NonNull View itemView) {
             super(itemView);
             tvWeather = itemView.findViewById(R.id.tv_weather);
+            ivIcon=itemView.findViewById(R.id.weather_icon);
         }
 
 

@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.adapter.TimelineServicePageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.databinding.TimeLineNewsBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentEpidemicNewsBinding;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.presenter.impl.TimelineNewsPageFragmentPresenter;
 import com.example.epidemicscenarioapplication.view.ITimeLineServiceView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author sly
@@ -28,7 +29,7 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
     private static final String TAG = "TimelineServiceFragment";
     private TimelineNewsPageFragmentPresenter mPresenter;
     private LinearLayout mTimeLineNewsBindingRoot;
-    private TimeLineNewsBinding mTimeLineNewsBinding;
+    private FragmentEpidemicNewsBinding mTimeLineNewsBinding;
 
     @Override
     protected void initListener() {
@@ -46,7 +47,7 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mTimeLineNewsBinding = TimeLineNewsBinding.inflate(inflater, container, false);
+        mTimeLineNewsBinding = FragmentEpidemicNewsBinding.inflate(inflater, container, false);
         mTimeLineNewsBindingRoot = mTimeLineNewsBinding.getRoot();
         return mTimeLineNewsBindingRoot;
     }
@@ -62,16 +63,18 @@ public class TimelineServiceFragment extends BaseFragment implements ITimeLineSe
     }
 
     @Override
-    public void showSuccessView(ArrayList<TimelineServiceDataBean> list) {
+    public void showSuccessView(List<TimelineServiceDataBean> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mTimeLineNewsBindingRoot.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         TimelineServicePageFragmentAdapter adapter = new TimelineServicePageFragmentAdapter();
-        adapter.setData(list);
+        adapter.setData((ArrayList<TimelineServiceDataBean>) list);
         mTimeLineNewsBinding.rvTimeNewsList.setLayoutManager(layoutManager);
         mTimeLineNewsBinding.rvTimeNewsList.setAdapter(adapter);
         setViewState(ViewState.SUCCESS);
 
     }
+
+
 
     @Override
     public void showErrorView() {

@@ -1,6 +1,5 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.databinding.Tengxun1Fragment2Binding;
+import com.example.epidemicscenarioapplication.databinding.FragmentWikipediaPreventionBinding;
+
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
-import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
+import com.example.epidemicscenarioapplication.view.activity.PageLoadingActivity;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
     private static final String TAG = "Tengxun1Fragment2";
     private RecyclerView mRecyclerView;
     private LinearLayout mFragment2BindingRoot;
-    private Tengxun1Fragment2Binding mFragment2Binding;
+    private FragmentWikipediaPreventionBinding mFragment2Binding;
 
     @Override
     protected void initListener() {
@@ -54,7 +54,7 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        RetrofitManager instance = RetrofitManager.getInstance(Constants.BASE_URL);
+        RetrofitManager instance = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
         Retrofit retrofit = instance.getRetrofit();
         API api = retrofit.create(API.class);
 //        返回20条数据
@@ -62,14 +62,16 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
         getGuideListList.enqueue(new Callback<WikipediaDataBean>() {
             @Override
             public void onResponse(Call<WikipediaDataBean> call, Response<WikipediaDataBean> response) {
+                Log.d(TAG, "onResponse: 腾讯响应码==》"+response.code());
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     WikipediaDataBean body = response.body();
-                    Log.d(TAG, "onResponse: 数据为==>" + body);
+                    Log.d(TAG, "onResponse: 这个数据为==>" + body);
                     WikipediaPageFragmentAdapter adapter = new WikipediaPageFragmentAdapter();
                     adapter.setOnItemListener(position -> {
-                        Intent intent = new Intent(mFragment2BindingRoot.getContext(), EpidemicMapActivity.class);
-                        intent.putExtra("url", response.body().getData().getDocs().get(position).getH5url());
-                        startActivity(intent);
+                        PageLoadingActivity.start(mFragment2BindingRoot.getContext(), response.body().getData().getDocs().get(position).getH5url());
+//                        Intent intent = new Intent(mFragment2BindingRoot.getContext(), PageLoadingActivity.class);
+//                        intent.putExtra("url", response.body().getData().getDocs().get(position).getH5url());
+//                        startActivity(intent);
                     });
                     adapter.setDataBeans((ArrayList<WikipediaDataBean.DataBean.DocsBean>) response.body().getData().getDocs());
 //                    设置布局管理器 智障！忘了几次了
@@ -106,12 +108,12 @@ public class WikipediaPreventionPageFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-//        mRecyclerView = mSuccessView.findViewById(R.id.rv_GuideList);
+
     }
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mFragment2Binding = Tengxun1Fragment2Binding.inflate(inflater, container, false);
+        mFragment2Binding = FragmentWikipediaPreventionBinding.inflate(inflater, container, false);
         mFragment2BindingRoot = mFragment2Binding.getRoot();
         return mFragment2BindingRoot;
     }

@@ -1,9 +1,6 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +8,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -24,21 +17,17 @@ import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.custom.CustomDialog;
-import com.example.epidemicscenarioapplication.custom.ImmersionFragment;
-import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentHomeBinding;
+
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
-import com.example.epidemicscenarioapplication.utils.ToastUtil;
+import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
-import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
+import com.example.epidemicscenarioapplication.view.activity.PageLoadingActivity;
 import com.example.epidemicscenarioapplication.view.activity.MainActivity2;
-import com.gyf.immersionbar.ImmersionBar;
-import com.gyf.immersionbar.components.ImmersionOwner;
-import com.gyf.immersionbar.components.ImmersionProxy;
-import com.gyf.immersionbar.components.SimpleImmersionOwner;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
@@ -60,7 +49,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     private ArrayList<VerticalBannerDataBeans> Datas;
     private CustomDialog mDialog;
     private WindowManager.LayoutParams mLp;
-    private HomeFragmentBinding mHomeFragmentBinding;
+    private FragmentHomeBinding mHomeFragmentBinding;
     private LinearLayout mHomeFragmentBindingRoot;
 
 
@@ -97,11 +86,11 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         mHomePagePresenter = new HomePagePresenter(this);
     }
 
-    public void startWebView(String url) {
-        Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), EpidemicMapActivity.class);
-        intent.putExtra("url", url);
-        startActivity(intent);
-    }
+//    public void startWebView(String url) {
+//        Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), PageLoadingActivity.class);
+//        intent.putExtra("url", url);
+//        startActivity(intent);
+//    }
 
 
     @Override
@@ -121,17 +110,15 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     }
 
 
-
-
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mHomeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
+        mHomeFragmentBinding = FragmentHomeBinding.inflate(inflater, container, false);
         mHomeFragmentBindingRoot = mHomeFragmentBinding.getRoot();
         return mHomeFragmentBindingRoot;
     }
 
     private void initDialog() {
-        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.view_dialog);
+        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.dialog_home_platform);
     }
 
 
@@ -151,15 +138,16 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     }
 
     @Override
-    public void showBanner(List data) {
+    public void showSuccessView(List data) {
 //添加生命周期观察者
         mHomeFragmentBinding.homepagerBanner.addBannerLifecycleObserver(this)
                 .setAdapter(new HomeFragmentBannerAdapter(data))
                 .setDelayTime(5000)
                 .setOnBannerListener(this)
-                .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
+                .setBannerRound2(15)
                 .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
                 .start();
+//        mHomeFragmentBinding.homepagerBanner.setBannerGalleryMZ(20, 2);
 //        设置指示器默认颜色
 //        mHomepageBanner.setIndicatorNormalColor()
 //        设置指示器选中颜色
@@ -171,8 +159,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     public void showBannerTipWeather(VerticalBannerDataBeans.WeatherDataBean dataBeans) {
         Datas = new ArrayList<>();
 //        构建首页垂直滑动的banner bean对象
-        VerticalBannerDataBeans dataBeans1 = new VerticalBannerDataBeans(dataBeans, Constants.BANNER_TYPE_WEATER);
-        VerticalBannerDataBeans dataBeans2 = new VerticalBannerDataBeans(dataBeans, Constants.BANNER_TYPE_YIQING);
+        VerticalBannerDataBeans dataBeans1 = new VerticalBannerDataBeans(dataBeans, ConstantsUtils.BANNER_TYPE_WEATER);
+        VerticalBannerDataBeans dataBeans2 = new VerticalBannerDataBeans(dataBeans, ConstantsUtils.BANNER_TYPE_YIQING);
         Datas.add(dataBeans1);
         Datas.add(dataBeans2);
         mHomeFragmentBinding.bannerTips.setAdapter(new HomeFragmentVerticalBannerAdapter(Datas));
@@ -187,9 +175,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         switch (position) {
             case 0:
                 Log.d(TAG, "OnBannerClick: 点击了第一个");
-                Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), EpidemicMapActivity.class);
-                intent.putExtra("url", Constants.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
-                startActivity(intent);
+                PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
                 break;
             case 1:
                 Log.d(TAG, "OnBannerClick: 点击了第二个");
@@ -215,35 +201,46 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         super.onDestroy();
     }
 
+
+
+    @Override
+    public void showErrorView() {
+
+    }
+
     public class MyOnclickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ll_aliijiankang:
-                    startWebView("https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
                     Log.d(TAG, "onClick: 点击了阿里健康");
                     break;
                 case R.id.ll_zhihu:
-                    startWebView("https://www.zhihu.com/special/19681091");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://www.zhihu.com/special/19681091");
+
                     break;
                 case R.id.ll_diyixaijing:
-                    startWebView("https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
+
                     break;
                 case R.id.ll_dingxiangyuan:
-                    startWebView("https://ncov.dxy.cn/ncovh5/view/pneumonia");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://ncov.dxy.cn/ncovh5/view/pneumonia");
+
                     break;
                 case R.id.ll_tengxun:
-                    startWebView("https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
                     break;
                 case R.id.ll_baidu:
-                    startWebView("https://news.sina.cn/zt_d/yiqing0121");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
                     break;
                 case R.id.ll_kuake:
-                    startWebView("https://broccoli.uc.cn/apps/pneumonia/routes/index");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://broccoli.uc.cn/apps/pneumonia/routes/index");
                     break;
                 case R.id.ll_xinlang:
-                    startWebView("");
+                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
+//
                     break;
                 default:
                     break;
@@ -270,14 +267,14 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
             Log.d(TAG, "详细地址==>" + addr);
             // TODO: 2020/7/2  模拟器测试方便 别忘了这里改成成功获取定位后才请求天气信息
             if (district == null) {
-                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), Constants.LOCATION, district);
+                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION, district);
                 mLocationClient.stop();
                 mHomePagePresenter.loadVerticalBannerWeather(mHomeFragmentBindingRoot.getContext());
 
             }
 //            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
 //            Log.d(TAG, "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
-            ToastUtil.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
+            ToastUtils.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
         }
     }
 }

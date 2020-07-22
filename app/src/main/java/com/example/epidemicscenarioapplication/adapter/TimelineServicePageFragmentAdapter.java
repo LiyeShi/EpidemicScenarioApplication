@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.databinding.ItemLatestNewsPageFragmentBinding;
-import com.example.epidemicscenarioapplication.databinding.ItemNewsPageFragmentBinding;
-import com.example.epidemicscenarioapplication.databinding.NewsPageFragmentBinding;
+
+import com.example.epidemicscenarioapplication.databinding.RecycleItemLatestNewsBinding;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 
 import java.util.ArrayList;
@@ -34,10 +33,10 @@ public class TimelineServicePageFragmentAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if (viewType == TYPE_LATEST_NEWS) {
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_latest_news_page_fragment, parent, false);
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_latest_news, parent, false);
             return new ContainTipViewHolder(view);
         }else {
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_page_fragment, parent, false);
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_news_page, parent, false);
 
         }
         return new NormalViewHolder(view);
@@ -86,20 +85,20 @@ public class TimelineServicePageFragmentAdapter extends RecyclerView.Adapter {
     }
     class ContainTipViewHolder extends RecyclerView.ViewHolder{
 
-        private final ItemLatestNewsPageFragmentBinding mItemLatestNewsPageFragmentBinding;
+        private RecycleItemLatestNewsBinding mItemLatestNewsPageFragmentBinding;
 
         public ContainTipViewHolder(@NonNull View itemView) {
             super(itemView);
-            mItemLatestNewsPageFragmentBinding = ItemLatestNewsPageFragmentBinding.bind(itemView);
+            mItemLatestNewsPageFragmentBinding = RecycleItemLatestNewsBinding.bind(itemView);
         }
     }
     class NormalViewHolder extends RecyclerView.ViewHolder{
 
-        private final ItemNewsPageFragmentBinding mNewsPageFragmentBinding;
+        private RecycleItemLatestNewsBinding mNewsPageFragmentBinding;
 
         public NormalViewHolder(@NonNull View itemView) {
             super(itemView);
-            mNewsPageFragmentBinding = ItemNewsPageFragmentBinding.bind(itemView);
+            mNewsPageFragmentBinding = RecycleItemLatestNewsBinding.bind(itemView);
         }
     }
 }

@@ -44,12 +44,12 @@
             android:enabled="true"
             android:process=":remote"></service>
         <!--视频全屏播放-->
-        <activity android:name=".view.activity.EpidemicMapActivity"
+        <activity android:name=".view.activity.PageLoadingActivity"
             android:hardwareAccelerated="true"
             android:configChanges="orientation|screenSize"/>
         <activity android:name=".view.activity.SplashActivity" />
         <activity
-            android:name=".view.activity.IntroActivity"
+            android:name=".view.activity.GuideActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
 
         <activity android:name=".view.activity.HomeActivity">

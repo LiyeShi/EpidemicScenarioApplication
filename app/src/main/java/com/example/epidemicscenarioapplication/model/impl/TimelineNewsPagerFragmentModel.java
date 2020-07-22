@@ -6,7 +6,7 @@ import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.model.ITimelineNewsPagerFragmentModel;
 import com.example.epidemicscenarioapplication.presenter.ITimelineNewsPageFragmentPresenter;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,7 +39,7 @@ ITimelineNewsPageFragmentPresenter mITimelineNewsPageFragmentPresenter;
 
     @Override
     public void loadData() {
-        RetrofitManager manager = RetrofitManager.getInstance(Constants.HTTP_BASE_URL_SECOND);
+        RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.HTTP_BASE_URL_SECOND);
         Retrofit retrofit = manager.getRetrofit();
         API api = retrofit.create(API.class);
         api.getTimeLineService().enqueue(new Callback<ResponseBody>() {

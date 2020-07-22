@@ -29,11 +29,11 @@ public class RumorPresenter1 implements IRumorPresenter {
 
     @Override
     public void loadSuccess() {
-        mIRumorView.showSuccessView();
+//        mIRumorView.showSuccessView();
     }
 
     @Override
     public void loadError() {
-        mIRumorView.showErrorTips();
+        mIRumorView.showErrorView();
     }
 }

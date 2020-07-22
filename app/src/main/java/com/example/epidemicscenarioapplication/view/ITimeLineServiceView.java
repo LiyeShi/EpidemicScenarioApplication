@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.view;
 
+import com.example.epidemicscenarioapplication.base.IIBaseView;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 
 import java.util.ArrayList;
@@ -10,8 +11,6 @@ import java.util.ArrayList;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.view
  */
-public interface ITimeLineServiceView {
-    void showSuccessView(ArrayList<TimelineServiceDataBean> list);
+public interface ITimeLineServiceView extends IIBaseView<TimelineServiceDataBean> {
 
-    void showErrorView();
 }

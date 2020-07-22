@@ -3,7 +3,7 @@ package com.example.epidemicscenarioapplication.custom
 /**
  * @author sly
  * @date 2020/7/6
- * @description com.example.epidemicscenarioapplication.utils
+ * @description 解决Viewpager2 嵌套滑动冲突的问题
  * @version 1.0
  */
 import android.content.Context

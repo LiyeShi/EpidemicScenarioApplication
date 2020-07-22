@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
+
 import com.gyf.immersionbar.ImmersionBar;
 
 /**
@@ -20,7 +20,7 @@ import com.gyf.immersionbar.ImmersionBar;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private DefaultBaseFragmentLayoutBinding mBinding;
+
     private View mView;
     protected ImmersionBar mImmersionBar;
 
@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void InitImmersionBar() {
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.fitsSystemWindows(true)
-                .statusBarColor(R.color.red).init();
+                .statusBarColor(R.color.colorPrimaryDark).init();
     }
 
 

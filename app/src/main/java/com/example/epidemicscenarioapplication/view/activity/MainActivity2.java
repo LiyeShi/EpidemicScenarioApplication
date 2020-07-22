@@ -11,7 +11,7 @@ import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityMain2Binding;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 
@@ -30,9 +30,9 @@ public class MainActivity2 extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(getView());
         ListView listView= findViewById(R.id.iv_ncov_village);
-        RetrofitManager retrofitManager = RetrofitManager.getInstance(Constants.WULIANG_API);
+        RetrofitManager retrofitManager = RetrofitManager.getInstance(ConstantsUtils.WULIANG_API);
         Retrofit retrofit = retrofitManager.getRetrofit();
-        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName(SpUtils.getString(this, Constants.LOCATION, "临沂市"));
+        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName(SpUtils.getString(this, ConstantsUtils.LOCATION, "临沂市"));
         village.enqueue(new Callback<NcovVillageDataBean>() {
             @Override
             public void onResponse(Call<NcovVillageDataBean> call, Response<NcovVillageDataBean> response) {

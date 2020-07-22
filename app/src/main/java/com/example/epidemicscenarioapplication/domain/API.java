@@ -1,6 +1,6 @@
 package com.example.epidemicscenarioapplication.domain;
 
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,8 +25,8 @@ public interface API {
     @GET("weather/current/{city}")
 
     @Headers({
-            "app_id:" + Constants.WEATHER_APP_ID,
-            "app_secret:" + Constants.WEATHER_APP_SECRET
+            "app_id:" + ConstantsUtils.WEATHER_APP_ID,
+            "app_secret:" + ConstantsUtils.WEATHER_APP_SECRET
 
     })
     Call<VerticalBannerDataBeans.WeatherDataBean> getWeatherJson(@Path("city") String city);

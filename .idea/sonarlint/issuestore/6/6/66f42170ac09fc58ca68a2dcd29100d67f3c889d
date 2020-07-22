@@ -1,0 +1,9 @@
+
+Ÿsquid:S1186P"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Á–ã8Ú¾Ç–³.
+squid:S1186U"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‹‚æ\8Ú¾Ç–³.
+Isquid:S1602G",Remove useless curly braces around statement(äP8Ú¾Ç–³.
+Ssquid:S1481)"0Remove this unused "pagePresent" local variable.(çäíìşÿÿÿÿ8õ„€Š³.
+Jsquid:S1068"'Remove this unused "TAG" private field.(Äù£Ñùÿÿÿÿ8ì…ûÁ³.
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.android.material.tabs.TabLayout'.(é‘™Òıÿÿÿÿ8Õƒ´Ã³.
+¤squid:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ç­¦ÿüÿÿÿÿ8Ú¾Ç–³.
+¤squid:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ8õ„€Š³.

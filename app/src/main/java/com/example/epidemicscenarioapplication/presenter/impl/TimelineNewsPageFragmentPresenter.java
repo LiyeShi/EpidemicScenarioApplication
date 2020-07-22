@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.presenter.impl;
 
+import com.example.epidemicscenarioapplication.base.IIBaseView;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.model.ITimelineNewsPagerFragmentModel;
 import com.example.epidemicscenarioapplication.model.impl.TimelineNewsPagerFragmentModel;
@@ -16,11 +17,11 @@ import java.util.ArrayList;
  */
 public class TimelineNewsPageFragmentPresenter implements ITimelineNewsPageFragmentPresenter {
 ITimelineNewsPagerFragmentModel mITimelineNewsPagerFragmentModel;
-ITimeLineServiceView mITimeLineServiceView;
+IIBaseView mITimeLineServiceView;
 
-    public TimelineNewsPageFragmentPresenter( ITimeLineServiceView ITimeLineServiceView) {
+    public TimelineNewsPageFragmentPresenter( IIBaseView iTimeLineServiceView) {
         mITimelineNewsPagerFragmentModel = new TimelineNewsPagerFragmentModel(this);
-        mITimeLineServiceView = ITimeLineServiceView;
+        mITimeLineServiceView = iTimeLineServiceView;
     }
 
     @Override

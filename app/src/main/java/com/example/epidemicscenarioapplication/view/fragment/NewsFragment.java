@@ -10,15 +10,11 @@ import androidx.fragment.app.Fragment;
 import com.example.epidemicscenarioapplication.adapter.NewsFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.base.IBaseView;
-import com.example.epidemicscenarioapplication.databinding.NewsPageFragmentBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentNewsBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.NewsPagePresent;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-
 
 
 /**
@@ -29,7 +25,7 @@ import java.util.ArrayList;
  */
 public class NewsFragment extends BaseFragment implements IBaseView {
     private static final String TAG = "NewsFragment";
-    private @NotNull NewsPageFragmentBinding mFragmentBinding;
+    private  FragmentNewsBinding mFragmentBinding;
 
     @Override
     protected void initListener() {
@@ -50,7 +46,7 @@ public class NewsFragment extends BaseFragment implements IBaseView {
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mFragmentBinding = NewsPageFragmentBinding.inflate(inflater, container, false);
+        mFragmentBinding = FragmentNewsBinding.inflate(inflater, container, false);
         return mFragmentBinding.getRoot();
     }
 
@@ -90,7 +86,6 @@ public class NewsFragment extends BaseFragment implements IBaseView {
     public void loadError() {
 
     }
-
 
 
 }

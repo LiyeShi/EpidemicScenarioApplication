@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    buildToolsVersion '30.0.1'
 
     defaultConfig {
         applicationId "com.example.epidemicscenarioapplication"
@@ -69,6 +69,7 @@ dependencies {
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 // fragment快速实现（可选）
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+
 
 }
 repositories {

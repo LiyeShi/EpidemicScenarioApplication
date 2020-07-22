@@ -1,0 +1,5 @@
+
+Ÿsquid:S1186""€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ô§§ã8ÆÂÎÂ°.
+Zsquid:S1068"7Remove this unused "EpidemicMapActivity" private field.(ßéïşÿÿÿÿ8ğöÉÂ°.
+‚squid:S00116"^Rename this field "EpidemicMapActivity" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßéïşÿÿÿÿ8ğöÉÂ°.
+¤squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¬Ë¼¤üÿÿÿÿ8ÆÂÎÂ°.

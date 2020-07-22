@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:text="新闻" />
+    </LinearLayout>
+    <!--ViewPager2不允许添加任何子View，TabLayout必须与ViewPager2一起放在另一个ViewGroup中。-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_news_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <!--解决viewpage2嵌套viewpage2滑动冲突的问题-->
+    <com.example.epidemicscenarioapplication.custom.NestedScrollableHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:overScrollMode="never"
+            android:id="@+id/vp2_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.example.epidemicscenarioapplication.custom.NestedScrollableHost>
+
+
+</LinearLayout>

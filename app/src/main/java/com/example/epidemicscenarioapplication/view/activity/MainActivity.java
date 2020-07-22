@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityMainBinding;
-import com.example.epidemicscenarioapplication.utils.ToastUtil;
+import com.example.epidemicscenarioapplication.utils.ToastUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity {
 
     @OnShowRationale(Manifest.permission.CAMERA)
     void showWhy() {
-        ToastUtil.showToast(getApplicationContext(),"请授予我们不要的权限，否则您无法获得最佳体验");
+        ToastUtils.showToast(getApplicationContext(),"请授予我们不要的权限，否则您无法获得最佳体验");
     }
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})

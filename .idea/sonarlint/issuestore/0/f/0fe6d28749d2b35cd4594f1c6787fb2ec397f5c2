@@ -1,0 +1,25 @@
+
+msquid:S00116?"PRename this field "Datas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚêòüÿÿÿÿ
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8Ü¥ôã³.
+¥squid:S1186ß"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ÄŸÇıÿÿÿÿ8Ş¢µ.
+Qsquid:S1135¶"2Complete the task associated to this TODO comment.(Ë‹›Õ8Š£ªå³.
+^squid:UselessImportCheck".Remove this unused import 'android.os.Bundle'.(°şÊóøÿÿÿÿ8…¯·Á³.
+squid:UselessImportCheck"]Remove this unused import 'com.example.epidemicscenarioapplication.custom.ImmersionFragment'.(ğ¼ˆ™üÿÿÿÿ8šıÚâ³.
+Lsquid:S1185Ø"(Remove this method to simply inherit it.(İßéàúÿÿÿÿ8Š£ªå³.
+psquid:S1450?"TRemove the "Datas" field and declare it as a local variable in the relevant methods.(ÄÚêòüÿÿÿÿ
+osquid:CommentedOutCodeLine¤"<This block of commented-out lines of code should be removed.(ŠÅ€©ıÿÿÿÿ8ëœæ³.
+squid:UselessImportCheck)"QRemove this unused import 'com.gyf.immersionbar.components.SimpleImmersionOwner'.(âÆ‹õúÿÿÿÿ8Æïóâ³.
+Msquid:S1481".Remove this unused "errorCode" local variable.(÷êÏç8Š£ªå³.
+ysquid:UselessImportCheck."NRemove this unused import 'com.youth.banner.transformer.DepthPageTransformer'.(±­Ò8µò²å³.
+Psquid:S1135˜"2Complete the task associated to this TODO comment.(Ô…î8Š£ªå³.
+Jsquid:S1481•"+Remove this unused "adcode" local variable.(îùÍ8Š£ªå³.
+usquid:UselessImportCheck("KRemove this unused import 'com.gyf.immersionbar.components.ImmersionProxy'.(ÿ×Ş\8¤·Á³.
+zsquid:UselessImportCheck/"PRemove this unused import 'com.youth.banner.transformer.ZoomOutPageTransformer'.(÷„œ8İĞŒæ³.
+csquid:UselessImportCheck"8Remove this unused import 'androidx.annotation.NonNull'.(ˆÛúÜ8ªå³.
+~squid:UselessImportCheck-"NRemove this unused import 'com.youth.banner.transformer.AlphaPageTransformer'.(¹ÒÈ’ÿÿÿÿÿ8îĞ°å³.
+dsquid:UselessImportCheck"9Remove this unused import 'androidx.annotation.Nullable'.(¾Èêš8…¯·Á³.
+{squid:UselessImportCheck'"KRemove this unused import 'com.gyf.immersionbar.components.ImmersionOwner'.(†Ş©ºşÿÿÿÿ8—¿¶Á³.
+nsquid:UselessImportCheck">Remove this unused import 'android.content.res.Configuration'.(ßºÊƒûÿÿÿÿ8ì ¸Á³.
+jsquid:CommentedOutCodeLineŸ"<This block of commented-out lines of code should be removed.(öÇòû8Š£ªå³.
+hsquid:UselessImportCheck&">Remove this unused import 'com.gyf.immersionbar.ImmersionBar'.(í‚ær8Ô¿ôã³.
+‰"squid:ClassVariableVisibilityCheck<"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(â…ëè

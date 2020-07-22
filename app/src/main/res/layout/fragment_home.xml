@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseBackground"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:text="首页" />
+    </LinearLayout>
+    <com.youth.banner.Banner
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/homepager_banner"
+        android:layout_width="390dp"
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="80dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_ncov_village"
+            android:layout_height="wrap_content"
+            android:text="小区确诊人数查询" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_ncov_mohusousuo"
+            android:layout_height="wrap_content"
+            android:text="小区模糊搜索" />
+    </LinearLayout>
+<FrameLayout
+    android:layout_marginTop="10dp"
+    android:id="@+id/fl_home_vertical_container"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+<ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"/>
+    <com.youth.banner.Banner
+        android:id="@+id/banner_tips"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+</FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全平台数据"
+        android:id="@+id/btn_full_platform_data" />
+</LinearLayout>

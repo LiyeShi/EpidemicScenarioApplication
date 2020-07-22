@@ -1,9 +1,7 @@
 package com.example.epidemicscenarioapplication.base;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.custom.ImmersionFragment;
-import com.example.epidemicscenarioapplication.databinding.DefaultBaseFragmentLayoutBinding;
-import com.example.epidemicscenarioapplication.databinding.NetworkErrorLayoutBinding;
-import com.example.epidemicscenarioapplication.databinding.NetworkLoadingLayoutBinding;
+import com.example.epidemicscenarioapplication.databinding.BaseFragmentDefaultBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentNetworkErrorBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentNetworkLoadingBinding;
 import com.gyf.immersionbar.ImmersionBar;
-import com.gyf.immersionbar.components.ImmersionOwner;
-import com.gyf.immersionbar.components.SimpleImmersionOwner;
 
 /**
  * @author sly
@@ -36,7 +31,7 @@ public abstract class BaseFragment extends Fragment {
     private View mLoadingView;
 
     private View mSuccessView;
-    protected DefaultBaseFragmentLayoutBinding mBaseFragmentLayoutBinding;
+    protected BaseFragmentDefaultBinding mBaseFragmentLayoutBinding;
     private FrameLayout mBaseFragmentRootview;
     protected ImmersionBar mImmersionBar;
 
@@ -67,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
     protected void InitImmersionBar() {
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.fitsSystemWindows(true)
-                .statusBarColor(R.color.red).init();
+                .statusBarColor(R.color.colorPrimaryDark).init();
     }
 
 
@@ -97,18 +92,18 @@ public abstract class BaseFragment extends Fragment {
     protected View loadRootView(LayoutInflater inflater, ViewGroup container) {
 //       默认 只有一个FrameLayout 子类重写走子类 HomeFragment重写
 //       使用ViewBinding的写法
-        mBaseFragmentLayoutBinding = DefaultBaseFragmentLayoutBinding.inflate(inflater, container, false);
+        mBaseFragmentLayoutBinding = BaseFragmentDefaultBinding.inflate(inflater, container, false);
         mBaseFragmentRootview = mBaseFragmentLayoutBinding.getRoot();
         return mBaseFragmentRootview;
     }
 
     private View loadLoadingView(LayoutInflater inflater, ViewGroup container) {
-        NetworkLoadingLayoutBinding inflate = NetworkLoadingLayoutBinding.inflate(inflater, container, false);
+        FragmentNetworkLoadingBinding inflate = FragmentNetworkLoadingBinding.inflate(inflater, container, false);
         return inflate.getRoot();
     }
 
     private View loadErrorView(LayoutInflater inflater, ViewGroup container) {
-        NetworkErrorLayoutBinding inflate = NetworkErrorLayoutBinding.inflate(inflater, container, false);
+        FragmentNetworkErrorBinding inflate = FragmentNetworkErrorBinding.inflate(inflater, container, false);
         return inflate.getRoot();
 
     }

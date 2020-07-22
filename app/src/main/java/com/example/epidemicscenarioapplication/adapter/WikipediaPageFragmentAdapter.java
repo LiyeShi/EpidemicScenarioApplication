@@ -39,10 +39,10 @@ public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         if (viewType == CONTAIN_IMAGE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_diagnose_contain_image_list, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_diagnose_contain_image, parent, false);
             return new ContainImagViewHolder(view);
         } else {
-            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_diagnose_only_text_list, parent, false);
+            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_diagnose_only_text, parent, false);
             return new OnlyTextViewHolder(mView);
         }
 

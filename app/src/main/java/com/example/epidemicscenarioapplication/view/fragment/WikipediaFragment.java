@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.epidemicscenarioapplication.adapter.WikipediaFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.databinding.RumorFragmentBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentWikipediaBinding;
 import com.example.epidemicscenarioapplication.view.IRumorView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -34,7 +34,7 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
     private ArrayList<Fragment> mFragments;
     private static final String TAG = "RumorFragment";
     private LinearLayout mRumorFragmentBindingRoot;
-    private RumorFragmentBinding mRumorFragmentBinding;
+    private FragmentWikipediaBinding mRumorFragmentBinding;
 
     @Override
     protected void initListener() {
@@ -56,7 +56,7 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mRumorFragmentBinding = RumorFragmentBinding.inflate(inflater, container, false);
+        mRumorFragmentBinding = FragmentWikipediaBinding.inflate(inflater, container, false);
         mRumorFragmentBindingRoot = mRumorFragmentBinding.getRoot();
         return mRumorFragmentBindingRoot;
     }

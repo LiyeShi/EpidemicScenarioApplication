@@ -8,7 +8,7 @@ import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.model.IHomepageModel;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 
@@ -48,9 +48,9 @@ public class HomepageModel implements IHomepageModel {
 
     @Override
     public void loadVerticalBannerWeatherInfo(Context context) {
-        Retrofit retrofit = RetrofitManager.getInstance(Constants.WEATHER_API).getRetrofit();
+        Retrofit retrofit = RetrofitManager.getInstance(ConstantsUtils.WEATHER_API).getRetrofit();
         API api = retrofit.create(API.class);
-        String location = SpUtils.getString(context, Constants.LOCATION, "临沂市");
+        String location = SpUtils.getString(context, ConstantsUtils.LOCATION, "临沂市");
         Log.d(TAG, "当前位置==>" + location);
         Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(location);
         weatherJson.enqueue(new Callback<VerticalBannerDataBeans.WeatherDataBean>() {

@@ -1,6 +1,5 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,17 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.databinding.Tengxun1FragmentBinding;
+import com.example.epidemicscenarioapplication.databinding.FragmentWikipediaDiagnosisBinding;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter1;
-import com.example.epidemicscenarioapplication.utils.Constants;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.example.epidemicscenarioapplication.view.IRumorPager1View;
-import com.example.epidemicscenarioapplication.view.activity.EpidemicMapActivity;
+import com.example.epidemicscenarioapplication.view.activity.PageLoadingActivity;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +44,7 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
     private RumorPresenter1 mRumorPresenter;
     private WikipediaPageFragmentAdapter mWikipediaDiagnoseAdapter;
     private LinearLayout mTengxun1FragmentBindingRoot;
-    private Tengxun1FragmentBinding mTengxun1FragmentBinding;
+    private FragmentWikipediaDiagnosisBinding mTengxun1FragmentBinding;
 
     @Override
     protected void initListener() {
@@ -54,7 +54,7 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
     @Override
     protected void initData() {
         Log.d(TAG, "initData: 百科详情页初始化数据");
-        RetrofitManager instance = RetrofitManager.getInstance(Constants.BASE_URL);
+        RetrofitManager instance = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
         Retrofit retrofit = instance.getRetrofit();
         API api = retrofit.create(API.class);
 //        返回20条数据
@@ -73,9 +73,7 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
                     Log.d(TAG, "onResponse: 对象");
                     Log.d(TAG, "initListener: 监听");
                     mWikipediaDiagnoseAdapter.setOnItemListener(position -> {
-                        Intent intent = new Intent(mTengxun1FragmentBindingRoot.getContext(), EpidemicMapActivity.class);
-                        intent.putExtra("url",docsBeans.get(position).getH5url());
-                        startActivity(intent);
+                        PageLoadingActivity.start(mTengxun1FragmentBindingRoot.getContext(),docsBeans.get(position).getH5url());
                     });
 
                     mWikipediaDiagnoseAdapter.setDataBeans(docsBeans);
@@ -119,29 +117,37 @@ public class WikipediaDiagnosisPageFragment extends BaseFragment implements IRum
 
     @Override
     protected void initView() {
-//        mRvDiagnoseList = mSuccessView.findViewById(R.id.rv_DiagnoseList);
+
     }
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mTengxun1FragmentBinding = Tengxun1FragmentBinding.inflate(inflater, container, false);
+        mTengxun1FragmentBinding = FragmentWikipediaDiagnosisBinding.inflate(inflater, container, false);
         mTengxun1FragmentBindingRoot = mTengxun1FragmentBinding.getRoot();
         return mTengxun1FragmentBindingRoot;
     }
 
 
+//    @Override
+//    public void showSuccessView() {
+//        Log.d(TAG, "showSuccessView: 加载成功");
+////        ToastUtil.showToast(mSuccessView.getContext(), "数据加载成功");
+//    }
+//
+//    @Override
+//    public void showErrorTips() {
+//        Log.d(TAG, "showSuccessView: 加载失败");
+////        ToastUtil.showToast(mSuccessView.getContext(), "数据加载失败");
+//    }
+
+
     @Override
-    public void showSuccessView() {
-        Log.d(TAG, "showSuccessView: 加载成功");
-//        ToastUtil.showToast(mSuccessView.getContext(), "数据加载成功");
+    public void showSuccessView(List list) {
+
     }
 
     @Override
-    public void showErrorTips() {
-        Log.d(TAG, "showSuccessView: 加载失败");
-//        ToastUtil.showToast(mSuccessView.getContext(), "数据加载失败");
+    public void showErrorView() {
+
     }
-
-
-
 }

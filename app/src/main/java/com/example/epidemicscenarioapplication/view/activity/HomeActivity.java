@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -20,7 +19,6 @@ import com.example.epidemicscenarioapplication.view.fragment.AboutUsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.HomeFragment;
 import com.example.epidemicscenarioapplication.view.fragment.NewsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.WikipediaFragment;
-import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -28,7 +26,7 @@ import java.util.ArrayList;
  * @author 鑫宇
  */
 public class HomeActivity extends BaseActivity {
-
+    private static  final String PREF_ISFIRST="isFirst";
     private HomeFragment mHomeFragment;
     private WikipediaFragment mWikipediaFragment;
     private AboutUsFragment mAboutUsFragment;
@@ -56,10 +54,10 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void isShowGuidePage() {
-        boolean isFirst = SpUtils.getBoolean(this, "isFirst", true);
+        boolean isFirst = SpUtils.getBoolean(this, PREF_ISFIRST, true);
         if (isFirst) {
-            startActivity(new Intent(this, IntroActivity.class));
-            SpUtils.putBoolean(this, "isFirst", false);
+            startActivity(new Intent(this, GuideActivity.class));
+            SpUtils.putBoolean(this, PREF_ISFIRST, false);
         }
     }
 
@@ -97,6 +95,7 @@ public class HomeActivity extends BaseActivity {
         mHomeBinding.vpContainer.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                mHomeBinding.bnvHome.getMenu().getItem(position).setChecked(true);
             }
         });
     }

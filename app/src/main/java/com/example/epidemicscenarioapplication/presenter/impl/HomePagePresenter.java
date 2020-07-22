@@ -7,6 +7,7 @@ import com.example.epidemicscenarioapplication.model.impl.HomepageModel;
 import com.example.epidemicscenarioapplication.presenter.IHomepagePresnter;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,7 +36,7 @@ public class HomePagePresenter implements IHomepagePresnter {
 
     @Override
     public void loadBannerSuccess(List data) {
-        mIHomepageview.showBanner(data);
+        mIHomepageview.showSuccessView((ArrayList) data);
     }
 
     @Override
