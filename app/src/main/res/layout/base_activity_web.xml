@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.PageLoadingActivity">
+    tools:context=".view.activity.WebPageActivity">
 
-    <include layout="@layout/activity_top_tips" />
+    <include layout="@layout/base_activity_top_tips" />
 
 </LinearLayout>

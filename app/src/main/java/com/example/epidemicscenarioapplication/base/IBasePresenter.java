@@ -1,5 +1,8 @@
 package com.example.epidemicscenarioapplication.base;
 
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
+import com.example.epidemicscenarioapplication.model.impl.WikipediaModel;
+
 /**
  * @author sly
  * @version 1.0
@@ -10,13 +13,15 @@ public interface IBasePresenter {
 
     /**
      * 加载数据
+     * @param diagonsis
      */
-    void loadData();
+    void loadData(WikipediaModel.WikipediaType diagonsis);
 
     /**
      * 数据加载成功
+     * @param body
      */
-    void loadDataSuccess();
+    void loadDataSuccess(WikipediaDataBean body);
 
     /**
      * 数据加载失败

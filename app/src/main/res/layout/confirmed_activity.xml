@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MainActivity2">
+    android:orientation="vertical"
+    tools:context=".view.activity.AroundConfirmedActivity">
+
+    <include layout="@layout/base_activity_top_tips"
+        android:id="@+id/include_head"/>
 
     <ListView
+        android:id="@+id/lv_ncov_village"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/iv_ncov_village" />
+        android:layout_height="match_parent" />
 </LinearLayout>

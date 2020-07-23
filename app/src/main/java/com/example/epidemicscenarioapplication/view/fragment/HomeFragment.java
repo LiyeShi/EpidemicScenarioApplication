@@ -17,8 +17,9 @@ import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.custom.CustomDialog;
-import com.example.epidemicscenarioapplication.databinding.FragmentHomeBinding;
 
+
+import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
@@ -26,8 +27,8 @@ import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
-import com.example.epidemicscenarioapplication.view.activity.PageLoadingActivity;
-import com.example.epidemicscenarioapplication.view.activity.MainActivity2;
+import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
+import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
@@ -41,7 +42,7 @@ import java.util.List;
  * @date 2020/6/28
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-public class HomeFragment extends BaseFragment implements IHomepageView, OnBannerListener {
+public class HomeFragment extends BaseFragment implements IHomepageView<List>, OnBannerListener {
     private static final String TAG = "HomeFragment";
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
@@ -49,7 +50,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
     private ArrayList<VerticalBannerDataBeans> Datas;
     private CustomDialog mDialog;
     private WindowManager.LayoutParams mLp;
-    private FragmentHomeBinding mHomeFragmentBinding;
+    private HomeFragmentBinding mHomeFragmentBinding;
     private LinearLayout mHomeFragmentBindingRoot;
 
 
@@ -86,11 +87,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         mHomePagePresenter = new HomePagePresenter(this);
     }
 
-//    public void startWebView(String url) {
-//        Intent intent = new Intent(mHomeFragmentBindingRoot.getContext(), PageLoadingActivity.class);
-//        intent.putExtra("url", url);
-//        startActivity(intent);
-//    }
+
 
 
     @Override
@@ -105,20 +102,20 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
                 .isAutoLoop(true)
                 .setBannerRound2(20)
                 .start();
-        mHomeFragmentBinding.btnNcovVillage.setOnClickListener(v -> startActivity(new Intent(mHomeFragmentBindingRoot.getContext(), MainActivity2.class)));
+        mHomeFragmentBinding.btnNcovVillage.setOnClickListener(v -> startActivity(new Intent(mHomeFragmentBindingRoot.getContext(), AroundConfirmedActivity.class)));
 
     }
 
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mHomeFragmentBinding = FragmentHomeBinding.inflate(inflater, container, false);
+        mHomeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
         mHomeFragmentBindingRoot = mHomeFragmentBinding.getRoot();
         return mHomeFragmentBindingRoot;
     }
 
     private void initDialog() {
-        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.dialog_home_platform);
+        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.home_dialog_platform);
     }
 
 
@@ -135,6 +132,11 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         mLocationClient.setLocOption(BaiduSDKutils.initSDK());
 //        打开定位
         mLocationClient.start();
+    }
+
+    @Override
+    public void showLoadingView() {
+
     }
 
     @Override
@@ -175,7 +177,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         switch (position) {
             case 0:
                 Log.d(TAG, "OnBannerClick: 点击了第一个");
-                PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
+                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.HTTPS_LZXUE_GITHUB_IO_YIQINGDITU);
                 break;
             case 1:
                 Log.d(TAG, "OnBannerClick: 点击了第二个");
@@ -214,32 +216,32 @@ public class HomeFragment extends BaseFragment implements IHomepageView, OnBanne
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ll_aliijiankang:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
                     Log.d(TAG, "onClick: 点击了阿里健康");
                     break;
                 case R.id.ll_zhihu:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://www.zhihu.com/special/19681091");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://www.zhihu.com/special/19681091");
 
                     break;
                 case R.id.ll_diyixaijing:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
 
                     break;
                 case R.id.ll_dingxiangyuan:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://ncov.dxy.cn/ncovh5/view/pneumonia");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://ncov.dxy.cn/ncovh5/view/pneumonia");
 
                     break;
                 case R.id.ll_tengxun:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
                     break;
                 case R.id.ll_baidu:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
                     break;
                 case R.id.ll_kuake:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://broccoli.uc.cn/apps/pneumonia/routes/index");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://broccoli.uc.cn/apps/pneumonia/routes/index");
                     break;
                 case R.id.ll_xinlang:
-                    PageLoadingActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
+                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
 //
                     break;
                 default:

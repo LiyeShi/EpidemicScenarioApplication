@@ -3,13 +3,15 @@ package com.example.epidemicscenarioapplication.model.impl;
 import com.example.epidemicscenarioapplication.base.IBaseModel;
 import com.example.epidemicscenarioapplication.base.IBasePresenter;
 
+import java.util.List;
+
 /**
  * @author sly
  * @version 1.0
  * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.model.impl
  */
-public class NewsPageModel implements IBaseModel {
+public class NewsPageModel implements IBaseModel<List> {
     IBasePresenter newsPresenter;
 
     public NewsPageModel(IBasePresenter newsPresenter) {
@@ -17,7 +19,7 @@ public class NewsPageModel implements IBaseModel {
     }
 
     @Override
-    public void loadData() {
+    public void loadData(List list) {
 
     }
 }

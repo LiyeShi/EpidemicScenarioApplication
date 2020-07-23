@@ -1,25 +1,18 @@
 package com.example.epidemicscenarioapplication.base;
 
+import java.util.List;
+
 /**
  * @author sly
  * @version 1.0
  * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.base
  */
-public interface IBaseView {
+public interface IBaseView<T> {
 
-    /**
-     * 请求中的view
-     */
-    void loading();
+    void showLoadingView();
 
-    /**
-     * 请求中的view
-     */
-    void loadSuccess();
+    void showSuccessView(T data);
 
-    /**
-     * 请求失败的view
-     */
-    void loadError();
+    void showErrorView();
 }

@@ -64,10 +64,10 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
         switch (viewType) {
             case ConstantsUtils.BANNER_TYPE_WEATER:
                 mContext=parent.getContext();
-                View view = BannerUtils.getView(parent, R.layout.item_homepage_weather);
+                View view = BannerUtils.getView(parent, R.layout.home_item_weather);
                 return new WeatherViewaHolder(view);
             case ConstantsUtils.BANNER_TYPE_YIQING:
-                return new YiQingViewHolder(BannerUtils.getView(parent, R.layout.item_homepage_epidemic_info));
+                return new YiQingViewHolder(BannerUtils.getView(parent, R.layout.home_item_epidemic_info));
             default:
                 break;
         }

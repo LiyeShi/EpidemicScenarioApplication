@@ -13,8 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.databinding.BaseFragmentDefaultBinding;
-import com.example.epidemicscenarioapplication.databinding.FragmentNetworkErrorBinding;
-import com.example.epidemicscenarioapplication.databinding.FragmentNetworkLoadingBinding;
+import com.example.epidemicscenarioapplication.databinding.BaseFragmentNetworkErrorBinding;
+import com.example.epidemicscenarioapplication.databinding.BaseFragmentNetworkLoadingBinding;
+
 import com.gyf.immersionbar.ImmersionBar;
 
 /**
@@ -27,13 +28,13 @@ public abstract class BaseFragment extends Fragment {
     //默认所有页面都是 加载状态
     private static final String TAG = "BaseFragment";
     private ViewState mCurrentState = ViewState.LOADING;
-    private View mErrorView;
+    protected View mErrorView;
     private View mLoadingView;
-
     private View mSuccessView;
     protected BaseFragmentDefaultBinding mBaseFragmentLayoutBinding;
     private FrameLayout mBaseFragmentRootview;
     protected ImmersionBar mImmersionBar;
+    protected BaseFragmentNetworkErrorBinding mNetworkErrorBinding;
 
 
     // 控制View可不可见的类 即在不同网络状态下显示哪一个view
@@ -98,14 +99,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private View loadLoadingView(LayoutInflater inflater, ViewGroup container) {
-        FragmentNetworkLoadingBinding inflate = FragmentNetworkLoadingBinding.inflate(inflater, container, false);
+        BaseFragmentNetworkLoadingBinding inflate = BaseFragmentNetworkLoadingBinding.inflate(inflater, container, false);
         return inflate.getRoot();
     }
 
     private View loadErrorView(LayoutInflater inflater, ViewGroup container) {
-        FragmentNetworkErrorBinding inflate = FragmentNetworkErrorBinding.inflate(inflater, container, false);
-        return inflate.getRoot();
-
+        mNetworkErrorBinding = BaseFragmentNetworkErrorBinding.inflate(inflater, container, false);
+        return mNetworkErrorBinding.getRoot();
     }
 
     private View loadSuccessView(LayoutInflater inflater, ViewGroup container) {

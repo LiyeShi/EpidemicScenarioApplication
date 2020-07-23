@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.R;
-
-import com.example.epidemicscenarioapplication.databinding.RecycleItemLatestNewsBinding;
+import com.example.epidemicscenarioapplication.databinding.NewsRecycleItemLatestBinding;
+import com.example.epidemicscenarioapplication.databinding.NewsRecycleItemNormalBinding;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
+import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 
 import java.util.ArrayList;
 
@@ -26,40 +28,66 @@ public class TimelineServicePageFragmentAdapter extends RecyclerView.Adapter {
     private static final int TYPE_LATEST_NEWS = 0;
     private static final int TYPE_NORMAL_NEWS = 1;
     private ArrayList<TimelineServiceDataBean> list;
-
+    private Context mContext;
+    private View mView;
+    private NormalViewHolder mHolder;
+    private WikipediaPageFragmentAdapter.onItemCilckListener onItemCilckListener;
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
+        mContext = parent.getContext();
         if (viewType == TYPE_LATEST_NEWS) {
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_latest_news, parent, false);
-            return new ContainTipViewHolder(view);
+            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_recycle_item_latest, parent, false);
+            ContainTipViewHolder viewHolder = new ContainTipViewHolder(mView);
+//            viewHolder.itemView.setOnClickListener((v)->{
+//                int position = viewHolder.getAdapterPosition();
+//                WebPageActivity.start(mContext,list.get(position).getSourceUrl());
+//            });
+             return viewHolder;
         }else {
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_news_page, parent, false);
+            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_recycle_item_normal, parent, false);
+            mHolder = new NormalViewHolder(mView);
+//            mHolder.itemView.setOnClickListener(v -> {
+//                int position = mHolder.getAdapterPosition();
+//                Log.d(TAG, "onCreateViewHolder: position==>"+position);
+////                这个地方还有问题 position怎么累计了
+//                WebPageActivity.start(mContext,list.get(position-1).getSourceUrl());
+//            });
 
         }
-        return new NormalViewHolder(view);
+        return mHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (onItemCilckListener != null) {
+            Log.d(TAG, "onBindViewHolder: 点击了==》" + position);
+            holder.itemView.setOnClickListener(v -> onItemCilckListener.onItemCilck(position));
+        }
         int viewType = holder.getItemViewType();
         if (viewType== TYPE_LATEST_NEWS){
             ContainTipViewHolder containTipViewHolder= (ContainTipViewHolder) holder;
-            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsTitlePage.setText(list.get(position).getTitle());
-            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsAbsPage.setText(list.get(position).getSummary());
+            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsTitle.setText(list.get(position).getTitle());
+            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsAbs.setText(list.get(position).getSummary());
             containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsAuthorPage.setText(list.get(position).getInfoSource());
             containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsUpdataTime.setText(list.get(position).getPubDateStr());
         }else {
             NormalViewHolder normalViewHolder= (NormalViewHolder) holder;
-            normalViewHolder.mNewsPageFragmentBinding.tvNewsTitlePage.setText(list.get(position).getTitle());
-            normalViewHolder.mNewsPageFragmentBinding. tvNewsAbsPage.setText(list.get(position).getSummary());
+            normalViewHolder.mNewsPageFragmentBinding.tvNewsTitle.setText(list.get(position).getTitle());
+            normalViewHolder.mNewsPageFragmentBinding. tvNewsAbs.setText(list.get(position).getSummary());
             normalViewHolder.mNewsPageFragmentBinding.tvNewsAuthorPage.setText(list.get(position).getInfoSource());
             normalViewHolder.mNewsPageFragmentBinding.  tvNewsUpdataTime.setText(list.get(position).getPubDateStr());
         }
     }
 
+    public void setOnItemListener(WikipediaPageFragmentAdapter.onItemCilckListener itemListener) {
+        this.onItemCilckListener = itemListener;
+    }
+
+    public interface onItemCilckListener {
+        void onItemCilck(int position);
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -85,20 +113,20 @@ public class TimelineServicePageFragmentAdapter extends RecyclerView.Adapter {
     }
     class ContainTipViewHolder extends RecyclerView.ViewHolder{
 
-        private RecycleItemLatestNewsBinding mItemLatestNewsPageFragmentBinding;
+        private NewsRecycleItemLatestBinding mItemLatestNewsPageFragmentBinding;
 
         public ContainTipViewHolder(@NonNull View itemView) {
             super(itemView);
-            mItemLatestNewsPageFragmentBinding = RecycleItemLatestNewsBinding.bind(itemView);
+            mItemLatestNewsPageFragmentBinding = NewsRecycleItemLatestBinding.bind(itemView);
         }
     }
     class NormalViewHolder extends RecyclerView.ViewHolder{
 
-        private RecycleItemLatestNewsBinding mNewsPageFragmentBinding;
+        private NewsRecycleItemNormalBinding mNewsPageFragmentBinding;
 
         public NormalViewHolder(@NonNull View itemView) {
             super(itemView);
-            mNewsPageFragmentBinding = RecycleItemLatestNewsBinding.bind(itemView);
+            mNewsPageFragmentBinding = NewsRecycleItemNormalBinding.bind(itemView);
         }
     }
 }

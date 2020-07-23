@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.epidemicscenarioapplication.adapter.NewsFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.base.IBaseView;
-import com.example.epidemicscenarioapplication.databinding.FragmentNewsBinding;
-import com.example.epidemicscenarioapplication.presenter.impl.NewsPagePresent;
+
+import com.example.epidemicscenarioapplication.databinding.NewsFragmentContainerBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
@@ -23,9 +22,9 @@ import java.util.ArrayList;
  * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-public class NewsFragment extends BaseFragment implements IBaseView {
+public class NewsFragment extends BaseFragment {
     private static final String TAG = "NewsFragment";
-    private  FragmentNewsBinding mFragmentBinding;
+    private NewsFragmentContainerBinding mFragmentBinding;
 
     @Override
     protected void initListener() {
@@ -34,7 +33,7 @@ public class NewsFragment extends BaseFragment implements IBaseView {
 
     @Override
     protected void initPresenter() {
-        NewsPagePresent pagePresent = new NewsPagePresent(this);
+//        NewsPagePresent pagePresent = new NewsPagePresent(this);
 
     }
 
@@ -46,13 +45,13 @@ public class NewsFragment extends BaseFragment implements IBaseView {
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mFragmentBinding = FragmentNewsBinding.inflate(inflater, container, false);
+        mFragmentBinding = NewsFragmentContainerBinding.inflate(inflater, container, false);
         return mFragmentBinding.getRoot();
     }
 
     @Override
     protected void initData() {
-        TimelineServiceFragment timelineServiceFragment = new TimelineServiceFragment();
+        TimelineNewsFragment timelineServiceFragment = new TimelineNewsFragment();
         LocalNewsPageFragment localNewsPageFragment = new LocalNewsPageFragment();
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(timelineServiceFragment);
@@ -72,20 +71,6 @@ public class NewsFragment extends BaseFragment implements IBaseView {
     }
 
 
-    @Override
-    public void loading() {
-
-    }
-
-    @Override
-    public void loadSuccess() {
-
-    }
-
-    @Override
-    public void loadError() {
-
-    }
 
 
 }

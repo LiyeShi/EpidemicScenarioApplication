@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.epidemicscenarioapplication">
+
     <!-- 拍照权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,6 +18,7 @@
     <!--AgentWeb 是默认允许定位的 ，如果你需要该功能 ， 请在你的 AndroidManifest 文件里面加入如下权限 。测试当地天气能不能用-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,23 +36,25 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
-        <activity android:name=".view.activity.MainActivity2"></activity>
+        <activity android:name=".view.activity.AroundConfirmedActivity" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="D94QkoNnnwEkoNzXsx54qZKDAIwAynTE"></meta-data> <!-- 百度定位sdk单独的定位service -->
+            android:value="D94QkoNnnwEkoNzXsx54qZKDAIwAynTE"/>
+        <!-- 百度定位sdk单独的定位service -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
         <!--视频全屏播放-->
-        <activity android:name=".view.activity.PageLoadingActivity"
+        <activity android:name=".view.activity.WebPageActivity"
+            android:launchMode="singleTask"
             android:hardwareAccelerated="true"
             android:configChanges="orientation|screenSize"/>
         <activity android:name=".view.activity.SplashActivity" />
         <activity
             android:name=".view.activity.GuideActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
 
         <activity android:name=".view.activity.HomeActivity">
             <intent-filter>
@@ -60,6 +64,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.MainActivity" />
+        <!--屏幕适配-->
         <meta-data
             android:name="design_width_in_dp"
             android:value="410"/>

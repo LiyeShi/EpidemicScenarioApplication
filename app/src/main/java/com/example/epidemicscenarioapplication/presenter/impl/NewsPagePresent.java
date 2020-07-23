@@ -3,7 +3,9 @@ package com.example.epidemicscenarioapplication.presenter.impl;
 import com.example.epidemicscenarioapplication.base.IBaseModel;
 import com.example.epidemicscenarioapplication.base.IBasePresenter;
 import com.example.epidemicscenarioapplication.base.IBaseView;
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 import com.example.epidemicscenarioapplication.model.impl.NewsPageModel;
+import com.example.epidemicscenarioapplication.model.impl.WikipediaModel;
 
 /**
  * @author sly
@@ -21,12 +23,12 @@ public class NewsPagePresent implements IBasePresenter {
     }
 
     @Override
-    public void loadData() {
+    public void loadData(WikipediaModel.WikipediaType diagonsis) {
 
     }
 
     @Override
-    public void loadDataSuccess() {
+    public void loadDataSuccess(WikipediaDataBean body) {
 
     }
 

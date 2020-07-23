@@ -11,7 +11,8 @@ import android.widget.LinearLayout;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
-import com.example.epidemicscenarioapplication.databinding.ActivityWebBinding;
+
+import com.example.epidemicscenarioapplication.databinding.BaseActivityWebBinding;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 import com.just.agentweb.AgentWeb;
 
@@ -20,7 +21,7 @@ import com.just.agentweb.AgentWeb;
  * 所有网页的浏览都在这里实现
  * @author 鑫宇
  */
-public class PageLoadingActivity extends BaseActivity implements IEpidemicMapView {
+public class WebPageActivity extends BaseActivity implements IEpidemicMapView {
     private static final String EXTRA_URL="url";
     private static final String TAG = "PageLoadingActivity";
 
@@ -50,7 +51,7 @@ public class PageLoadingActivity extends BaseActivity implements IEpidemicMapVie
     }
 
     public static void start(Context context, String url) {
-        Intent starter = new Intent(context, PageLoadingActivity.class);
+        Intent starter = new Intent(context, WebPageActivity.class);
         starter.putExtra("url", url);
         context.startActivity(starter);
     }
@@ -89,7 +90,7 @@ public class PageLoadingActivity extends BaseActivity implements IEpidemicMapVie
 
     @Override
     protected View getView() {
-        ActivityWebBinding epidemicMapBinding = ActivityWebBinding.inflate(getLayoutInflater());
+        BaseActivityWebBinding epidemicMapBinding = BaseActivityWebBinding.inflate(getLayoutInflater());
         mMapBindingRoot = epidemicMapBinding.getRoot();
         return mMapBindingRoot;
     }

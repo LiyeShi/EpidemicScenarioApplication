@@ -10,15 +10,12 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.epidemicscenarioapplication.adapter.WikipediaFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.databinding.FragmentWikipediaBinding;
-import com.example.epidemicscenarioapplication.view.IRumorView;
-import com.google.android.material.tabs.TabLayout;
+
+import com.example.epidemicscenarioapplication.databinding.WikipediaFragmentContainerBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.ArrayList;
 
@@ -29,12 +26,12 @@ import java.util.ArrayList;
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
 
-public class WikipediaFragment extends BaseFragment implements IRumorView {
+public class WikipediaFragment extends BaseFragment  {
 
     private ArrayList<Fragment> mFragments;
     private static final String TAG = "RumorFragment";
     private LinearLayout mRumorFragmentBindingRoot;
-    private FragmentWikipediaBinding mRumorFragmentBinding;
+    private WikipediaFragmentContainerBinding mRumorFragmentBinding;
 
     @Override
     protected void initListener() {
@@ -56,7 +53,7 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        mRumorFragmentBinding = FragmentWikipediaBinding.inflate(inflater, container, false);
+        mRumorFragmentBinding = WikipediaFragmentContainerBinding.inflate(inflater, container, false);
         mRumorFragmentBindingRoot = mRumorFragmentBinding.getRoot();
         return mRumorFragmentBindingRoot;
     }
@@ -86,18 +83,5 @@ public class WikipediaFragment extends BaseFragment implements IRumorView {
         tabLayoutMediator.attach();
 
     }
-
-
-
-    @Override
-    public void showSuccessView() {
-
-    }
-
-    @Override
-    public void showErrorTips() {
-
-    }
-
 
 }

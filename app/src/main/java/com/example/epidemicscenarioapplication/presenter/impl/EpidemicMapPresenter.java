@@ -1,8 +1,10 @@
 package com.example.epidemicscenarioapplication.presenter.impl;
 
 import com.example.epidemicscenarioapplication.base.IBasePresenter;
+import com.example.epidemicscenarioapplication.domain.WikipediaDataBean;
 import com.example.epidemicscenarioapplication.model.IEpidemicMapModel;
 import com.example.epidemicscenarioapplication.model.impl.EpidemicMapModel;
+import com.example.epidemicscenarioapplication.model.impl.WikipediaModel;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
 
 /**
@@ -21,12 +23,12 @@ public class EpidemicMapPresenter implements IBasePresenter {
     }
 
     @Override
-    public void loadData() {
+    public void loadData(WikipediaModel.WikipediaType diagonsis) {
         mEpidemicMapModel.loadWebview();
     }
 
     @Override
-    public void loadDataSuccess() {
+    public void loadDataSuccess(WikipediaDataBean body) {
 
     }
 

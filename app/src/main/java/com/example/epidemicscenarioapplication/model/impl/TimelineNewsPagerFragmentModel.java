@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
-import com.example.epidemicscenarioapplication.model.ITimelineNewsPagerFragmentModel;
+import com.example.epidemicscenarioapplication.model.INewsPagerFragmentModel;
 import com.example.epidemicscenarioapplication.presenter.ITimelineNewsPageFragmentPresenter;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
@@ -29,14 +29,14 @@ import retrofit2.Retrofit;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.model
  */
-public class TimelineNewsPagerFragmentModel implements ITimelineNewsPagerFragmentModel {
+
+public class TimelineNewsPagerFragmentModel implements INewsPagerFragmentModel {
 ITimelineNewsPageFragmentPresenter mITimelineNewsPageFragmentPresenter;
     private static final String TAG = "TimelineNewsPagerFragme";
 
     public TimelineNewsPagerFragmentModel(ITimelineNewsPageFragmentPresenter ITimelineNewsPageFragmentPresenter) {
         mITimelineNewsPageFragmentPresenter = ITimelineNewsPageFragmentPresenter;
     }
-
     @Override
     public void loadData() {
         RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.HTTP_BASE_URL_SECOND);
@@ -54,7 +54,7 @@ ITimelineNewsPageFragmentPresenter mITimelineNewsPageFragmentPresenter;
                     try {
                         result = response.body().string();
                         Gson gson = new Gson();
-                        mList = new ArrayList<TimelineServiceDataBean>();
+                        mList = new ArrayList<>();
                         Type listType = new TypeToken<List<TimelineServiceDataBean>>() {}.getType();
                         mList = gson.fromJson(result, listType);
                     } catch (IOException e) {
@@ -68,8 +68,12 @@ ITimelineNewsPageFragmentPresenter mITimelineNewsPageFragmentPresenter;
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "onFailure: 加载失败==》"+t.getMessage());
+                mITimelineNewsPageFragmentPresenter.onloadDataError();
             }
         });
 
     }
+
+
+
 }

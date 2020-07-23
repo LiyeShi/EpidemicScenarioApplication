@@ -13,7 +13,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivityHomeBinding;
-import com.example.epidemicscenarioapplication.presenter.impl.RumorPresenter;
+import com.example.epidemicscenarioapplication.presenter.impl.WikipediaPresenter;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.view.fragment.AboutUsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.HomeFragment;
@@ -32,7 +32,7 @@ public class HomeActivity extends BaseActivity {
     private AboutUsFragment mAboutUsFragment;
     private NewsFragment mNewsFragment;
     private static final String TAG = "HomeActivity";
-    private RumorPresenter mRumorPresenter;
+    private WikipediaPresenter mRumorPresenter;
     private ArrayList<Fragment> mFragmentArrayList = new ArrayList();
     private ActivityHomeBinding mHomeBinding;
 

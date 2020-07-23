@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">全民战疫</string>
+    <string name="network_error_retry_tip">网络错误，点击重试</string>
+    <string name="news_latest_logo">最新</string>
+    <string name="confirmed_info_time">确诊时间:</string>
+    <string name="confirmed_info_location">具体地址:</string>
 </resources>

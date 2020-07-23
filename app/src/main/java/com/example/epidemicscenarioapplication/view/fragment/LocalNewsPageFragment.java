@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-
-import com.example.epidemicscenarioapplication.databinding.FragmentNewsLocalBinding;
+import com.example.epidemicscenarioapplication.databinding.NewsFragmentLocalBinding;
 
 
 /**
@@ -38,7 +37,7 @@ public class LocalNewsPageFragment extends BaseFragment {
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
-        FragmentNewsLocalBinding localNewsLayoutBinding = FragmentNewsLocalBinding.inflate(inflater, container, false);
+        NewsFragmentLocalBinding localNewsLayoutBinding = NewsFragmentLocalBinding.inflate(inflater, container, false);
         mLocalNewsLayoutBindingRoot = localNewsLayoutBinding.getRoot();
         return mLocalNewsLayoutBindingRoot;
 

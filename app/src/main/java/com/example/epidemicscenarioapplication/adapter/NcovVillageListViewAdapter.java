@@ -50,7 +50,7 @@ public class NcovVillageListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = new ViewHolder();
         if (convertView==null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_ncov_village, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirmed_list_item_ncov_village, parent, false);
             holder.tvLocation=convertView.findViewById(R.id.tv_ncov_village);
             holder.tvTime = convertView.findViewById(R.id.tv_ncov_update_time);
             convertView.setTag(holder);

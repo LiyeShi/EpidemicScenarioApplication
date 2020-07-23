@@ -39,25 +39,27 @@ public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         if (viewType == CONTAIN_IMAGE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_diagnose_contain_image, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wikipedia_recycle_item_contain_image, parent, false);
             return new ContainImagViewHolder(view);
         } else {
-            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item_diagnose_only_text, parent, false);
+            mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.wikipedia_recycle_item_only_text, parent, false);
             return new OnlyTextViewHolder(mView);
         }
 
     }
+
     public void setOnItemListener(onItemCilckListener itemListener) {
-        this.onItemCilckListener=itemListener;
+        this.onItemCilckListener = itemListener;
     }
-   public interface onItemCilckListener {
+
+    public interface onItemCilckListener {
         void onItemCilck(int position);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (onItemCilckListener != null) {
-            Log.d(TAG, "onBindViewHolder: 点击了==》"+position);
+            Log.d(TAG, "onBindViewHolder: 点击了==》" + position);
             holder.itemView.setOnClickListener(v -> onItemCilckListener.onItemCilck(position));
         }
         if (holder instanceof ContainImagViewHolder) {

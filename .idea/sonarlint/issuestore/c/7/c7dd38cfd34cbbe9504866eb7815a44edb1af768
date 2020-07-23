@@ -1,10 +1,5 @@
 
-squid:S1488u"\Immediately return this expression instead of assigning it to the temporary variable "view".(äÄ©Êüÿÿÿÿ8º•Â³.
-{squid:UselessImportCheck"KRemove this unused import 'com.gyf.immersionbar.components.ImmersionOwner'.(†Ş©ºşÿÿÿÿ8ç§‚â³.
-_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8úØºä³.
-squid:UselessImportCheck"]Remove this unused import 'com.example.epidemicscenarioapplication.custom.ImmersionFragment'.(ğ¼ˆ™üÿÿÿÿ8ëšÆâ³.
-Esquid:S1068!"'Remove this unused "TAG" private field.(ı’ù8®¼çã³.
-msquid:S00100C"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ“»½8¾¡“ä³.
-‡squid:S1450("dRemove the "mBaseFragmentRootview" field and declare it as a local variable in the relevant methods.(¯áÇîúÿÿÿÿ8÷ûÓ¹³.
-squid:UselessImportCheck"QRemove this unused import 'com.gyf.immersionbar.components.SimpleImmersionOwner'.(âÆ‹õúÿÿÿÿ8Ã¸ã³.
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8®ö¶ä³.
+squid:S1488p"\Immediately return this expression instead of assigning it to the temporary variable "view".(äÄ©Êüÿÿÿÿ8º•Â³.
+Esquid:S1068"'Remove this unused "TAG" private field.(ı’ù8®¼çã³.
+msquid:S00100?"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ“»½8¾¡“ä³.
+‡squid:S1450$"dRemove the "mBaseFragmentRootview" field and declare it as a local variable in the relevant methods.(¯áÇîúÿÿÿÿ8÷ûÓ¹³.
