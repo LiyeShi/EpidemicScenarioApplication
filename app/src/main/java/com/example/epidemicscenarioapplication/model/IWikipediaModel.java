@@ -1,6 +1,6 @@
 package com.example.epidemicscenarioapplication.model;
 
-import com.example.epidemicscenarioapplication.base.IBaseModel;
+
 import com.example.epidemicscenarioapplication.model.impl.WikipediaModel;
 
 /**

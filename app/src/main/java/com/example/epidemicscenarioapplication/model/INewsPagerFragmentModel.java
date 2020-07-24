@@ -1,6 +1,9 @@
 package com.example.epidemicscenarioapplication.model;
 
-import com.example.epidemicscenarioapplication.base.IBaseModel;
+
+import android.content.Context;
+
+
 
 /**
  * @author sly
@@ -8,6 +11,8 @@ import com.example.epidemicscenarioapplication.base.IBaseModel;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.model
  */
-public interface INewsPagerFragmentModel  {
-  void   loadData();
+public interface INewsPagerFragmentModel {
+
+
+    void loadData();
 }

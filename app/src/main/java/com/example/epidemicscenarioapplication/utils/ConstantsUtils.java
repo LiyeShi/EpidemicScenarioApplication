@@ -26,4 +26,6 @@ public class ConstantsUtils {
     //    疫情三纬可视图
     public static final String HTTPS_LZXUE_GITHUB_IO_YIQINGDITU = "https://lzxue.github.io/yiqingditu/";
     public static final String HTTP_BASE_URL_SECOND = "http://49.232.173.220:3001/";
+    public static final String LOCATION_DISTRICT = "district";
+    public static final String LOCATION_CITY = "city";
 }

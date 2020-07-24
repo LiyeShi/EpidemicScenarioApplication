@@ -10,10 +10,10 @@ import java.util.ArrayList;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.presenter
  */
-public interface ITimelineNewsPageFragmentPresenter {
+public interface INewsFragmentPresenter<T> {
     void loadData();
 
-    void onloadDataSuccess(ArrayList<TimelineServiceDataBean> list);
+    void onloadDataSuccess(ArrayList<T> list);
 
     void onloadDataError();
 

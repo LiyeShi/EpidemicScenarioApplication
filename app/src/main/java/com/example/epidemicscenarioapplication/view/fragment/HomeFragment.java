@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -242,7 +243,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     break;
                 case R.id.ll_xinlang:
                     WebPageActivity.start(mHomeFragmentBindingRoot.getContext(),"https://news.sina.cn/zt_d/yiqing0121");
-//
                     break;
                 default:
                     break;
@@ -268,15 +268,14 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
             String town = location.getTown();    //获取乡镇信息
             Log.d(TAG, "详细地址==>" + addr);
             // TODO: 2020/7/2  模拟器测试方便 别忘了这里改成成功获取定位后才请求天气信息
-            if (district == null) {
-                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION, district);
+            if (district != null) {
+                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION_DISTRICT, district);
+                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION_CITY, city);
                 mLocationClient.stop();
                 mHomePagePresenter.loadVerticalBannerWeather(mHomeFragmentBindingRoot.getContext());
-
             }
-//            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
-//            Log.d(TAG, "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
             ToastUtils.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
+            Log.d(TAG, "onReceiveLocation: 定位失败==>"+errorCode);
         }
     }
 }

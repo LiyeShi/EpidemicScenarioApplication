@@ -6,10 +6,10 @@ package com.example.epidemicscenarioapplication.base;
  * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.base
  */
-public interface IBaseModel<T> {
+public interface IBaseModel {
 
     /**
      * 网络请求获取数据
      */
-    void loadData(T data);
+    void loadData();
 }

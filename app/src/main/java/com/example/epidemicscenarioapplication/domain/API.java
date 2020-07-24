@@ -35,7 +35,6 @@ public interface API {
      * @param cityName 获取所在城市小区及村镇确诊信息
      * @return
      */
-
     @GET("/ncov/village/getVillage2")
     Call<NcovVillageDataBean> getVillageByCommunityName(@Query("cityName") String cityName);
 
@@ -52,8 +51,15 @@ public interface API {
      */
     @GET("/ncov/news/getGuideList")
     Call<WikipediaDataBean> getGuideListList(@Query("count") Integer count);
-
+    /**
+     * 获取疫情时间线信息
+     * @return
+     */
     @GET("data/getTimelineService")
     Call<ResponseBody>getTimeLineService();
+
+
+    @GET("/ncov/news/getCityNewsList")
+    Call<LocalNewsDataBean> getLocalNews(@Query("cityName") String cityName);
 
 }

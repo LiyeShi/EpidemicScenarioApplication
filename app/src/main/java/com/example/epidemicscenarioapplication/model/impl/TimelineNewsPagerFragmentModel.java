@@ -1,11 +1,12 @@
 package com.example.epidemicscenarioapplication.model.impl;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.model.INewsPagerFragmentModel;
-import com.example.epidemicscenarioapplication.presenter.ITimelineNewsPageFragmentPresenter;
+import com.example.epidemicscenarioapplication.presenter.INewsFragmentPresenter;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
 import com.google.gson.Gson;
@@ -31,10 +32,10 @@ import retrofit2.Retrofit;
  */
 
 public class TimelineNewsPagerFragmentModel implements INewsPagerFragmentModel {
-ITimelineNewsPageFragmentPresenter mITimelineNewsPageFragmentPresenter;
+INewsFragmentPresenter mITimelineNewsPageFragmentPresenter;
     private static final String TAG = "TimelineNewsPagerFragme";
 
-    public TimelineNewsPagerFragmentModel(ITimelineNewsPageFragmentPresenter ITimelineNewsPageFragmentPresenter) {
+    public TimelineNewsPagerFragmentModel(INewsFragmentPresenter ITimelineNewsPageFragmentPresenter) {
         mITimelineNewsPageFragmentPresenter = ITimelineNewsPageFragmentPresenter;
     }
     @Override

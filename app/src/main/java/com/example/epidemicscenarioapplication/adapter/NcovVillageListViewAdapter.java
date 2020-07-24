@@ -46,25 +46,35 @@ public class NcovVillageListViewAdapter extends BaseAdapter {
         return 0;
     }
 
+    /**
+     * 这个地方还真得谨慎一些，一不小心各种神奇现象都会出现
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = new ViewHolder();
+        ViewHolder holder;
         if (convertView==null) {
+            holder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirmed_list_item_ncov_village, parent, false);
             holder.tvLocation=convertView.findViewById(R.id.tv_ncov_village);
             holder.tvTime = convertView.findViewById(R.id.tv_ncov_update_time);
+            holder.tvCount = convertView.findViewById(R.id.tv_confirmed_number);
             convertView.setTag(holder);
         }else {
-            ViewHolder  viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.tvLocation.setText(datas.get(position).getPosi_address());
-            viewHolder.tvTime.setText(datas.get(position).getUpdate_time());
+            holder = (ViewHolder) convertView.getTag();
         }
+        holder.tvLocation.setText(datas.get(position).getPosi_address());
+        holder.tvTime.setText(datas.get(position).getUpdate_time());
+        holder.tvCount.setText(datas.get(position).getCnt_sum_certain()+"人");
         return convertView;
     }
 
     class ViewHolder{
         TextView tvLocation;
         TextView tvTime;
-
+        TextView tvCount;
     }
 }

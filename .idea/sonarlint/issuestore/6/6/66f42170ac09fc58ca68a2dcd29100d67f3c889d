@@ -1,8 +1,5 @@
 
-Jsquid:S1068"'Remove this unused "TAG" private field.(Äù£Ñùÿÿÿÿ8ì…ûÁ³.
-¤squid:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ8õ„€Š³.
-squid:S1186R"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‹‚æ\8Ú¾Ç–³.
-Isquid:S1602D",Remove useless curly braces around statement(äP8Ú¾Ç–³.
-Ÿsquid:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Á–ã8Ú¾Ç–³.
-¤squid:S1186W"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ç­¦ÿüÿÿÿÿ8Ú¾Ç–³.
-Ssquid:S1481&"0Remove this unused "pagePresent" local variable.(çäíìşÿÿÿÿ8õ„€Š³.
+¤squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ8õ„€Š³.
+Jsquid:S1068"'Remove this unused "TAG" private field.(Äù£Ñùÿÿÿÿ8ì…ûÁ³.
+Isquid:S1602B",Remove useless curly braces around statement(äP8Ú¾Ç–³.
+isquid:CommentedOutCodeLine$"<This block of commented-out lines of code should be removed.(ªªÔ¸8ğ€°Î·.

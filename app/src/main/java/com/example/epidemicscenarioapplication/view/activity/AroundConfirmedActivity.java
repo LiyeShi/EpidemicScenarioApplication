@@ -35,7 +35,8 @@ public class AroundConfirmedActivity extends BaseActivity {
         ListView listView= findViewById(R.id.lv_ncov_village);
         RetrofitManager retrofitManager = RetrofitManager.getInstance(ConstantsUtils.WULIANG_API);
         Retrofit retrofit = retrofitManager.getRetrofit();
-        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName(SpUtils.getString(this, ConstantsUtils.LOCATION, "临沂市"));
+//        SpUtils.getString(this, ConstantsUtils.LOCATION_CITY, "临沂市")
+        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName("临沂市");
         village.enqueue(new Callback<NcovVillageDataBean>() {
             @Override
             public void onResponse(Call<NcovVillageDataBean> call, Response<NcovVillageDataBean> response) {
@@ -47,8 +48,8 @@ public class AroundConfirmedActivity extends BaseActivity {
                     NcovVillageListViewAdapter ncovVillageListViewAdapter = new NcovVillageListViewAdapter(data);
                     listView.setAdapter(ncovVillageListViewAdapter);
                     Log.d(TAG, "onResponse: 设置适配器");
-                    String location = SpUtils.getString(AroundConfirmedActivity.this, ConstantsUtils.LOCATION, "临沂市121");
-                    mConfirmedActivityBinding.includeHead.tvTip.setText("当前位置是:"+location+"(累计确诊"+body.getData().size()+")人");
+                    String location = SpUtils.getString(AroundConfirmedActivity.this, ConstantsUtils.LOCATION_CITY, "临沂市121");
+                    mConfirmedActivityBinding.includeHead.tvTip.setText("location+"+"共有"+body.getData().size()+"小区、村镇出现疫情)");
                 }
             }
 

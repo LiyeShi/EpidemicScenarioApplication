@@ -3,8 +3,8 @@ package com.example.epidemicscenarioapplication.presenter.impl;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.model.INewsPagerFragmentModel;
 import com.example.epidemicscenarioapplication.model.impl.TimelineNewsPagerFragmentModel;
-import com.example.epidemicscenarioapplication.presenter.ITimelineNewsPageFragmentPresenter;
-import com.example.epidemicscenarioapplication.view.ITimeLineServiceView;
+import com.example.epidemicscenarioapplication.presenter.INewsFragmentPresenter;
+import com.example.epidemicscenarioapplication.view.INewsView;
 
 import java.util.ArrayList;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.presenter
  */
-public class TimelineNewsPageFragmentPresenter implements ITimelineNewsPageFragmentPresenter {
+public class TimelineNewsPageFragmentPresenter implements INewsFragmentPresenter<TimelineServiceDataBean> {
     INewsPagerFragmentModel mITimelineNewsPagerFragmentModel;
-    ITimeLineServiceView mITimeLineServiceView;
+    INewsView mITimeLineServiceView;
 
-    public TimelineNewsPageFragmentPresenter(ITimeLineServiceView iTimeLineServiceView) {
+    public TimelineNewsPageFragmentPresenter(INewsView iTimeLineServiceView) {
         mITimelineNewsPagerFragmentModel = new TimelineNewsPagerFragmentModel(this);
         mITimeLineServiceView = iTimeLineServiceView;
     }

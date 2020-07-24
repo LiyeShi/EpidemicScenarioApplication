@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.adapter.TimelineServicePageFragmentAdapter;
-import com.example.epidemicscenarioapplication.adapter.WikipediaPageFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 
 import com.example.epidemicscenarioapplication.databinding.NewsFragmentEpidemicBinding;
 import com.example.epidemicscenarioapplication.domain.TimelineServiceDataBean;
 import com.example.epidemicscenarioapplication.presenter.impl.TimelineNewsPageFragmentPresenter;
-import com.example.epidemicscenarioapplication.view.ITimeLineServiceView;
+import com.example.epidemicscenarioapplication.view.INewsView;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ import java.util.List;
  * @date 2020/7/8
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-public class TimelineNewsFragment extends BaseFragment implements ITimeLineServiceView<List> {
+public class TimelineNewsFragment extends BaseFragment implements INewsView<List> {
     private static final String TAG = "TimelineServiceFragment";
     private TimelineNewsPageFragmentPresenter mTimelineNewsPageFragmentPresenter;
     private LinearLayout mTimeLineNewsBindingRoot;

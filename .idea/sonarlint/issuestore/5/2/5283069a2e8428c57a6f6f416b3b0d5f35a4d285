@@ -1,6 +1,6 @@
 
 bsquid:UselessImportCheck"7Remove this unused import 'android.view.WindowManager'.(Ü³‹Å8ïŸóä³.
-xsquid:S2637;"ZParameter 2 to this call is marked "androidx.annotation.NonNull" but null could be passed.(ĞìôË8±ÀÙÂ³.
 wsquid:S1450"TRemove the "mView" field and declare it as a local variable in the relevant methods.(¼ğŠışÿÿÿÿ8Ú¦çß³.
+xsquid:S2637;"ZParameter 2 to this call is marked "androidx.annotation.NonNull" but null could be passed.(ĞìôË8±ÀÙÂ³.
 `squid:UselessImportCheck"0Remove this unused import 'android.view.Window'.(¿è™÷úÿÿÿÿ8ïŸóä³.
 lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(õµóï8¾ ¾Ã¯.

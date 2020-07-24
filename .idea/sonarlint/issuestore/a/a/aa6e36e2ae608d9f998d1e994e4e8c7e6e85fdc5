@@ -1,12 +1,7 @@
 
-Jsquid:S1602T",Remove useless curly braces around statement(úÀöª8Œ‰µé².
-Gsquid:S1481E"0Remove this unused "transaction" local variable.(°ƒ‰¦
-˜squid:S1186c"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×É®
-hsquid:UselessImportCheck">Remove this unused import 'com.gyf.immersionbar.ImmersionBar'.(í‚ær8«ıı¼³.
-psquid:S1450#"YRemove the "mFragments" field and declare it as a local variable in the relevant methods.(™­Î
-…squid:S1450%"hRemove the "mRumorFragmentBindingRoot" field and declare it as a local variable in the relevant methods.(ÖÓÃc8ôÌ¹—³.
-wsquid:UselessImportCheck"GRemove this unused import 'com.google.android.material.tabs.TabLayout'.(é‘™Òıÿÿÿÿ8ê£®â³.
-msquid:UselessImportCheck"BRemove this unused import 'androidx.viewpager2.widget.ViewPager2'.(Âè½8ê£®â³.
-˜squid:S1186^"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤˜ß
-squid:S1186)"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ
-˜squid:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜
+…squid:S1450!"hRemove the "mRumorFragmentBindingRoot" field and declare it as a local variable in the relevant methods.(ÖÓÃc8ôÌ¹—³.
+Jsquid:S1602P",Remove useless curly braces around statement(úÀöª8Œ‰µé².
+Gsquid:S1481A"0Remove this unused "transaction" local variable.(°ƒ‰¦
+squid:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ
+˜squid:S1186*"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜
+psquid:S1450"YRemove the "mFragments" field and declare it as a local variable in the relevant methods.(™­Î

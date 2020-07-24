@@ -8,6 +8,6 @@ import com.example.epidemicscenarioapplication.base.IBaseView;
  * @date 2020/7/9
  * @description com.example.epidemicscenarioapplication.view
  */
-public interface ITimeLineServiceView<T> extends IBaseView<T> {
+public interface INewsView<T> extends IBaseView<T> {
 
 }
