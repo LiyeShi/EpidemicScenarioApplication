@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.epidemicscenarioapplication.R;
@@ -124,6 +125,11 @@ public class HomeActivity extends BaseActivity {
         HomeActivityViewpagerAdapter viewpagerAdapter = new HomeActivityViewpagerAdapter(this);
         viewpagerAdapter.setData(mFragmentArrayList);
         mHomeBinding.vpContainer.setAdapter(viewpagerAdapter);
+//        去掉最外层ViewPager2阴影动画
+        View child = mHomeBinding.vpContainer.getChildAt(0);
+        if (child instanceof RecyclerView) {
+            child.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        }
     }
 
     @Override

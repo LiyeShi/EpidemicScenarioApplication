@@ -51,15 +51,32 @@ public interface API {
      */
     @GET("/ncov/news/getGuideList")
     Call<WikipediaDataBean> getGuideListList(@Query("count") Integer count);
+
     /**
      * 获取疫情时间线信息
+     *
      * @return
      */
     @GET("data/getTimelineService")
-    Call<ResponseBody>getTimeLineService();
+    Call<ResponseBody> getTimeLineService();
 
 
+    /**
+     * 获取当前城市的新闻
+     *
+     * @param cityName
+     * @return
+     */
     @GET("/ncov/news/getCityNewsList")
     Call<LocalNewsDataBean> getLocalNews(@Query("cityName") String cityName);
+
+    /**
+     * 获取当前省份的疫情历史数据
+     *
+     * @param provinceName
+     * @return
+     */
+    @GET("/ncov/statistics/getProvinceHistoryList")
+    Call<ProvinceHistoryListDataBean> getProvinceHistoryList(@Query("provinceName") String provinceName);
 
 }

@@ -30,7 +30,6 @@
         android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:overScrollMode="never"
             android:id="@+id/vp2_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

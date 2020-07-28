@@ -1,7 +1,7 @@
 
-Jsquid:S1068!"'Remove this unused "TAG" private field.(àË§¯ûÿÿÿÿ8Ï³ÿÊ·.
-Osquid:S1602(",Remove useless curly braces around statement(’Ï¤îÿÿÿÿÿ8ùÑĞ·.
-[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8æ£ŸÎ·.
-Usquid:S1611("2Remove the parentheses around the "view" parameter(’Ï¤îÿÿÿÿÿ8è¸ĞĞ·.
 Osquid:S1602L",Remove useless curly braces around statement(€æÉÇûÿÿÿÿ8¼ıøÊ·.
+Usquid:S1611("2Remove the parentheses around the "view" parameter(’Ï¤îÿÿÿÿÿ8è¸ĞĞ·.
+Osquid:S1602(",Remove useless curly braces around statement(’Ï¤îÿÿÿÿÿ8ùÑĞ·.
 ¤squid:S11868"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(îÔ˜÷ùÿÿÿÿ8Òòôª·.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8æ£ŸÎ·.
+Jsquid:S1068!"'Remove this unused "TAG" private field.(àË§¯ûÿÿÿÿ8Ï³ÿÊ·.

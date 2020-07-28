@@ -6,4 +6,9 @@
     <string name="confirmed_info_location">具体地址:</string>
     <string name="confirmed_info_number">累计确诊人数:</string>
     <string name="news_local_govern">公告</string>
+    <string name="home_btn_data_back">历史数据回溯</string>
+    <string name="home_community_des">周边确诊小区查询</string>
+    <string name="home_car_des">同乘车辆查询</string>
+    <string name="home_data_des">疫情数据回顾</string>
+    <string name="home_platform_des">全平台数据</string>
 </resources>

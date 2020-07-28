@@ -1,4 +1,4 @@
 
+psquid:S1450!"TRemove the "mView" field and declare it as a local variable in the relevant methods.(¼ğŠışÿÿÿÿ
 nsquid:S001147"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·ÚÊßùÿÿÿÿ
 squid:S1319y"tThe type of the "dataBeans" object should be an interface such as "List" rather than the implementation "ArrayList".( ›õøÿÿÿÿ
-psquid:S1450!"TRemove the "mView" field and declare it as a local variable in the relevant methods.(¼ğŠışÿÿÿÿ

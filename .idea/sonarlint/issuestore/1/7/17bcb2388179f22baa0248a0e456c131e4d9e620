@@ -1,11 +1,11 @@
 
-Vsquid:S1068#"3Remove this unused "mRumorPresenter" private field.(¥“Ì´úÿÿÿÿ8û³ÂÕ¯.
-„squid:S1450"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8±æÎè².
-qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8ÞìÊ°.
-Gsquid:S1185‚"(Remove this method to simply inherit it.(ÍÙ÷¢8‚ˆ©Ä³.
-zsquid:S1450"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8ë¸èã³.
-ysquid:S1488C"\Immediately return this expression instead of assigning it to the temporary variable "view".(Þ–œR8îÌÎ•³.
-}squid:S1450 "_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8¡…ýð¯.
-Ÿsquid:S1186v"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8‚ˆ©Ä³.
-squid:S1450!"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8…ø‡Ä³.
-žsquid:S11864"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8ÕØ²ç².
+}squid:S1450!"_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8¡…ýð¯.
+Vsquid:S1068$"3Remove this unused "mRumorPresenter" private field.(¥“Ì´úÿÿÿÿ8û³ÂÕ¯.
+Gsquid:S1185ˆ"(Remove this method to simply inherit it.(ÍÙ÷¢8‚ˆ©Ä³.
+Ÿsquid:S1186w"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8‚ˆ©Ä³.
+žsquid:S11865"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8ÕØ²ç².
+squid:S1450""\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8…ø‡Ä³.
+zsquid:S1450"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8ë¸èã³.
+„squid:S1450 "aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8±æÎè².
+ysquid:S1488D"\Immediately return this expression instead of assigning it to the temporary variable "view".(Þ–œR8îÌÎ•³.
+qsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8ÞìÊ°.

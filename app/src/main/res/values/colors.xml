@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#4169E2</color>
     <color name="colorPrimaryDark">#03A9F4</color>
+    <color name="markViewBg">#9503A9F4</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="guildpageone">#F44336</color>
     <color name="guildpagethree">#00BCD4</color>
@@ -10,4 +11,5 @@
     <color name="white">#ffffff</color>
     <color name="baseBackground" >#F5F5F5</color>
     <color name="red">#FF5A5A</color>
+    <color name="darkRed">#d81e06</color>
 </resources>

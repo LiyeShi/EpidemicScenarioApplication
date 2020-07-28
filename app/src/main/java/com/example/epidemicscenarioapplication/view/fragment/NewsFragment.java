@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epidemicscenarioapplication.adapter.NewsFragmentAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
@@ -33,7 +34,7 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     protected void initPresenter() {
-//        NewsPagePresent pagePresent = new NewsPagePresent(this);
+
 
     }
 
@@ -41,6 +42,7 @@ public class NewsFragment extends BaseFragment {
     protected void initView() {
         setViewState(ViewState.SUCCESS);
         mFragmentBinding.vp2News.requestDisallowInterceptTouchEvent(true);
+
     }
 
     @Override
@@ -60,9 +62,8 @@ public class NewsFragment extends BaseFragment {
         adapter.setData(fragments);
         mFragmentBinding.vp2News.setAdapter(adapter);
         ArrayList<String> title = new ArrayList<>();
-        title.add("新闻");
+        title.add("疫情新闻");
         title.add("本地新闻");
-
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(mFragmentBinding.tlNewsTitle, mFragmentBinding.vp2News, (tab, position) -> {
             tab.setText(title.get(position));
         });
