@@ -19,6 +19,16 @@
             android:text="首页"
             android:textColor="@color/white"
             android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:padding="5dp"
+            android:focusable="false"
+            android:layout_marginLeft="50dp"
+            android:background="@color/white"
+            android:hint="@string/home_et_search"
+            android:layout_height="50dp"
+            android:id="@+id/et_search" />
     </LinearLayout>
 
     <com.youth.banner.Banner
@@ -63,6 +73,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="80dp"
+            android:id="@+id/ll_car"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -125,11 +136,6 @@
 
         </LinearLayout>
 
-        <!--        <com.google.android.material.button.MaterialButton-->
-        <!--            android:id="@+id/btn_ncov_mohusousuo"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="小区模糊搜索" />-->
     </LinearLayout>
 
     <FrameLayout
@@ -141,6 +147,7 @@
         android:layout_marginRight="10dp">
 
         <ProgressBar
+            android:id="@+id/pb_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
@@ -150,20 +157,10 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
+            android:visibility="gone"
             android:layout_marginRight="10dp"
-            android:visibility="gone" />
+            />
 
     </FrameLayout>
 
-    <!--    <com.google.android.material.button.MaterialButton-->
-    <!--        android:id="@+id/btn_full_platform_data"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="全平台数据" />-->
-
-    <!--    <com.google.android.material.button.MaterialButton-->
-    <!--        android:id="@+id/btn_data_back"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="@string/home_btn_data_back" />-->
 </LinearLayout>

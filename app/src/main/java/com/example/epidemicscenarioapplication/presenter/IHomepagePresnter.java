@@ -25,4 +25,10 @@ public interface IHomepagePresnter {
 
     void loadVerticalBannerWeather(Context context);
 
+    void loadCountyList();
+
+    void loadCountyListSuccess(VerticalBannerDataBeans.CountyListDataBean dataBean);
+
+    void loadCountyListError();
+
 }

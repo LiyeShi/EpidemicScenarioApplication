@@ -1,6 +1,6 @@
 
 Isquid:S1602C",Remove useless curly braces around statement(äP8Ú¾Ç–³.
-Jsquid:S1068"'Remove this unused "TAG" private field.(Äù£Ñùÿÿÿÿ8ì…ûÁ³.
-Ÿsquid:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8»êÓ…¸.
 vsquid:UselessImportCheck	"FRemove this unused import 'androidx.recyclerview.widget.RecyclerView'.(Îèòçøÿÿÿÿ8§°ø…¸.
+Ÿsquid:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8»êÓ…¸.
 ¤squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ8õ„€Š³.
+Jsquid:S1068"'Remove this unused "TAG" private field.(Äù£Ñùÿÿÿÿ8ì…ûÁ³.

@@ -12,4 +12,6 @@ import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 public interface IHomepageView<T> extends IBaseView<T> {
 
     void showBannerTipWeather(VerticalBannerDataBeans.WeatherDataBean dataBeans);
+
+    void showCountyListMessage(VerticalBannerDataBeans.CountyListDataBean countyListDataBean);
 }

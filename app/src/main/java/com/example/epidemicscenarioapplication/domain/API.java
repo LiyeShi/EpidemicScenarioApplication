@@ -79,4 +79,11 @@ public interface API {
     @GET("/ncov/statistics/getProvinceHistoryList")
     Call<ProvinceHistoryListDataBean> getProvinceHistoryList(@Query("provinceName") String provinceName);
 
+    /**
+     * 获取当前市各个县区疫情信息
+     * @param cityName
+     * @return
+     */
+    @GET("/ncov/statistics/getCountyList/")
+    Call<VerticalBannerDataBeans.CountyListDataBean> getCountyList(@Query("cityName") String cityName);
 }

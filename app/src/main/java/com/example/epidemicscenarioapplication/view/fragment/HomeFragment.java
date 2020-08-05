@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -31,6 +29,7 @@ import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.DataBackActivity;
+import com.example.epidemicscenarioapplication.view.activity.SearchActivity;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
 import com.youth.banner.Banner;
@@ -73,6 +72,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mDialog.mMBinding.llDiyixaijing.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.llDataBack.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.llFullPlatformData.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.llCar.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.etSearch.setOnClickListener(myOnclickListener);
     }
 
     @Override
@@ -112,8 +113,11 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
     @Override
     protected void initData() {
+        Datas = new ArrayList<>();
         //假装加载
         mHomePagePresenter.loadBanner();
+        mHomePagePresenter.loadCountyList();
+        mHomePagePresenter.loadVerticalBannerWeather(getContext());
         initLocationClient();
     }
 
@@ -130,6 +134,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
     }
 
+
     @Override
     public void showSuccessView(List data) {
 //添加生命周期观察者
@@ -137,29 +142,31 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 .setAdapter(new HomeFragmentBannerAdapter(data))
                 .setDelayTime(5000)
                 .setOnBannerListener(this)
-                .setBannerRound2(15)
                 .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
+                .setIndicatorSelectedColorRes(R.color.colorPrimaryDark)
+                .setIndicatorNormalColorRes(R.color.white)
+                .setBannerRound2(15)
                 .start();
-//        mHomeFragmentBinding.homepagerBanner.setBannerGalleryMZ(20, 2);
-//        设置指示器默认颜色
-//        mHomepageBanner.setIndicatorNormalColor()
-//        设置指示器选中颜色
-//        mHomepageBanner.setIndicatorSelectedColor()
     }
 
 
     @Override
     public void showBannerTipWeather(VerticalBannerDataBeans.WeatherDataBean dataBeans) {
-        Datas = new ArrayList<>();
 //        构建首页垂直滑动的banner bean对象
-        VerticalBannerDataBeans dataBeans1 = new VerticalBannerDataBeans(dataBeans, ConstantsUtils.BANNER_TYPE_WEATER);
-        VerticalBannerDataBeans dataBeans2 = new VerticalBannerDataBeans(dataBeans, ConstantsUtils.BANNER_TYPE_YIQING);
-        Datas.add(dataBeans1);
-        Datas.add(dataBeans2);
+        VerticalBannerDataBeans dataBean = new VerticalBannerDataBeans(dataBeans, ConstantsUtils.BANNER_TYPE_WEATER);
+        Datas.add(dataBean);
         mHomeFragmentBinding.bannerTips.setAdapter(new HomeFragmentVerticalBannerAdapter(Datas));
         mHomeFragmentBinding.bannerTips.setVisibility(View.VISIBLE);
-// TODO: 2020/7/3 显示加载的进度条是不是还需要隐藏
+        mHomeFragmentBinding.pbLoading.setVisibility(View.GONE);
 
+
+    }
+
+    @Override
+    public void showCountyListMessage(VerticalBannerDataBeans.CountyListDataBean countyListDataBean) {
+        for (int i = 0; i < countyListDataBean.getData().getResult().getDistrict().getList().size(); i++) {
+            Datas.add(new VerticalBannerDataBeans(countyListDataBean.getData().getResult().getDistrict().getList().get(i), ConstantsUtils.BANNER_TYPE_YIQING));
+        }
 
     }
 
@@ -234,8 +241,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 case R.id.ll_xinlang:
                     WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://news.sina.cn/zt_d/yiqing0121");
                     break;
-                case R.id.ll_data_back:
-                    startActivity(new Intent(getContext(), DataBackActivity.class));
+                case R.id.ll_car:
+//                    去哪网提供同乘车辆查询
+                    WebPageActivity.start(getContext(), "https://wxapp.qunar.com/site/feiyansearch/index.html?bd_source=hbzf#/?_k=vih3l0");
                     break;
                 case R.id.ll_full_platform_data:
                     mLp = new WindowManager.LayoutParams();
@@ -249,12 +257,13 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     //设置点击屏幕其它地方不让消失弹窗，点击返回键对话框消失
                     mDialog.setCanceledOnTouchOutside(false);
                     break;
-//                case R.id.ll_data_back:
-//                    startActivity(new Intent(getContext(), DataBackActivity.class));
-//                    break;
-//                case R.id.ll_data_back:
-//                    startActivity(new Intent(getContext(), DataBackActivity.class));
-//                    break;
+                case R.id.ll_data_back:
+                    startActivity(new Intent(getContext(), DataBackActivity.class));
+                    break;
+                case R.id.et_search:
+                    startActivity(new Intent(getContext(), SearchActivity.class));
+                    getActivity().overridePendingTransition(R.anim.search_activity_translate_in, 0);
+                    break;
                 default:
                     break;
             }

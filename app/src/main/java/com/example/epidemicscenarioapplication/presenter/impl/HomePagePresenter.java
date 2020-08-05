@@ -59,4 +59,19 @@ public class HomePagePresenter implements IHomepagePresnter {
     public void loadVerticalBannerWeather(Context context) {
         mHomepageModel.loadVerticalBannerWeatherInfo(context);
     }
+
+    @Override
+    public void loadCountyList() {
+        mHomepageModel.loadCountyList();
+    }
+
+    @Override
+    public void loadCountyListSuccess(VerticalBannerDataBeans.CountyListDataBean dataBean) {
+        mIHomepageview.showCountyListMessage(dataBean);
+    }
+
+    @Override
+    public void loadCountyListError() {
+
+    }
 }

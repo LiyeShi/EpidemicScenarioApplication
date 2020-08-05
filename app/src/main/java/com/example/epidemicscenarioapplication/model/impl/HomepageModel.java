@@ -29,6 +29,7 @@ import retrofit2.Retrofit;
 public class HomepageModel implements IHomepageModel {
     private static final String TAG = "HomepageModel";
     private HomePagePresenter homePagePresenter;
+    private String mLocation;
 
     public HomepageModel(HomePagePresenter homePagePresenter) {
         this.homePagePresenter = homePagePresenter;
@@ -50,27 +51,49 @@ public class HomepageModel implements IHomepageModel {
     public void loadVerticalBannerWeatherInfo(Context context) {
         Retrofit retrofit = RetrofitManager.getInstance(ConstantsUtils.WEATHER_API).getRetrofit();
         API api = retrofit.create(API.class);
-        String location = SpUtils.getString(context, ConstantsUtils.LOCATION, "临沂市");
-        Log.d(TAG, "当前位置==>" + location);
-        Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(location);
+        mLocation = SpUtils.getString(context, ConstantsUtils.LOCATION, "临沂市");
+        Log.d(TAG, "当前位置==>" + mLocation);
+        Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(mLocation);
         weatherJson.enqueue(new Callback<VerticalBannerDataBeans.WeatherDataBean>() {
             @Override
             public void onResponse(Call<VerticalBannerDataBeans.WeatherDataBean> call, Response<VerticalBannerDataBeans.WeatherDataBean> response) {
                 int code = response.code();
-                Log.d(TAG, "onResponse: 天气返回码==》"+code);
+                Log.d(TAG, "onResponse: 天气返回码==》" + code);
                 if (code == HttpURLConnection.HTTP_OK) {
                     String s = response.body().toString();
-                    Log.d(TAG, "onResponse: 数据==》"+s);
+                    Log.d(TAG, "onResponse: 数据==》" + s);
                     homePagePresenter.loadVerticalBannerWeatherSuccess(response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<VerticalBannerDataBeans.WeatherDataBean> call, Throwable t) {
-                Log.d(TAG, "onFailure: 失败==>"+t.getMessage());
+                Log.d(TAG, "onFailure: 失败==>" + t.getMessage());
             }
 
         });
 
+    }
+
+    @Override
+    public void loadCountyList() {
+        Retrofit retrofit = RetrofitManager.getInstance(ConstantsUtils.BASE_URL).getRetrofit();
+        API api = retrofit.create(API.class);
+        Call<VerticalBannerDataBeans.CountyListDataBean> countyList = api.getCountyList("临沂市");
+        countyList.enqueue(new Callback<VerticalBannerDataBeans.CountyListDataBean>() {
+            @Override
+            public void onResponse(Call<VerticalBannerDataBeans.CountyListDataBean> call, Response<VerticalBannerDataBeans.CountyListDataBean> response) {
+                if (response.code() == HttpURLConnection.HTTP_OK) {
+                    VerticalBannerDataBeans.CountyListDataBean dataBean = response.body();
+                    Log.d(TAG, "onResponse: 返回结果：==>" + dataBean);
+                    homePagePresenter.loadCountyListSuccess(dataBean);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VerticalBannerDataBeans.CountyListDataBean> call, Throwable t) {
+
+            }
+        });
     }
 }

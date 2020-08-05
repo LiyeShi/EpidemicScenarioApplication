@@ -30,8 +30,7 @@ import java.util.List;
  */
 public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBannerDataBeans, RecyclerView.ViewHolder> {
     private static final String TAG = "HomePageBannerTipsAdapt";
-   private Context mContext;
-
+    private Context mContext;
 
 
     public HomeFragmentVerticalBannerAdapter(List<VerticalBannerDataBeans> datas) {
@@ -58,12 +57,11 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
     }
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case ConstantsUtils.BANNER_TYPE_WEATER:
-                mContext=parent.getContext();
+                mContext = parent.getContext();
                 View view = BannerUtils.getView(parent, R.layout.home_item_weather);
                 return new WeatherViewaHolder(view);
             case ConstantsUtils.BANNER_TYPE_YIQING:
@@ -73,33 +71,37 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
         }
         return null;
     }
-//在这里设置数据
+
+    //在这里设置数据
     @Override
     public void onBindView(RecyclerView.ViewHolder holder, VerticalBannerDataBeans data, int position, int size) {
         int itemViewType = holder.getItemViewType();
         switch (itemViewType) {
             case ConstantsUtils.BANNER_TYPE_WEATER:
-                WeatherViewaHolder weatherViewaHolder= (WeatherViewaHolder) holder;
+                WeatherViewaHolder weatherViewaHolder = (WeatherViewaHolder) holder;
                 weatherViewaHolder.tvWeather.setText(data.getWeatherDataBean().getData().getWeather());
                 RequestOptions options = new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(mContext).load(R.drawable.giphy).apply(options).into(weatherViewaHolder.ivIcon);
                 break;
             case ConstantsUtils.BANNER_TYPE_YIQING:
+
                 break;
             default:
                 break;
-    }
+        }
 
     }
-//不同类型的ViewHolder
+
+    //不同类型的ViewHolder
     public class WeatherViewaHolder extends RecyclerView.ViewHolder {
         TextView tvWeather;
         ImageView ivIcon;
+
         public WeatherViewaHolder(@NonNull View itemView) {
             super(itemView);
             tvWeather = itemView.findViewById(R.id.tv_weather);
-            ivIcon=itemView.findViewById(R.id.weather_icon);
+            ivIcon = itemView.findViewById(R.id.weather_icon);
         }
 
 
@@ -107,7 +109,7 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
 
     public class YiQingViewHolder extends RecyclerView.ViewHolder {
 
-        public YiQingViewHolder(@NonNull View itemView) {
+        public YiQingViewHolder(View itemView) {
             super(itemView);
         }
     }

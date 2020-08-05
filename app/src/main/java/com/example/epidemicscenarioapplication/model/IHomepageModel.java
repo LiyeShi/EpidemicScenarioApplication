@@ -13,4 +13,6 @@ public interface IHomepageModel {
 
     void loadVerticalBannerWeatherInfo(Context context);
 
+    void loadCountyList();
+
 }
