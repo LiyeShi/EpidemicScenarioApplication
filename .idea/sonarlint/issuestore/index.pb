@@ -243,3 +243,13 @@ Z
 .app/src/main/res/layout/activity_data_back.xml,9\5\958c615ade5d40c9edf5e23e82f93f7ba2884d57
 g
 7app/src/main/res/layout/databack_linechart_markview.xml,7\d\7d84c459f6be0aed675b91dfd10c4b77c3213766
+‹
+[app/src/main/java/com/example/epidemicscenarioapplication/view/activity/SearchActivity.java,6\9\69e69525b88604f48960d0702f2e83313b5dcba4
+f
+6app/src/main/res/anim/search_activity_translate_in.xml,e\0\e05cd95d6764fb104b9bbc449feb11dfe38ef940
+g
+7app/src/main/res/anim/search_activity_translate_out.xml,d\5\d553c02c3071c8a949d1b99aa1f797fe20fed972
+[
++app/src/main/res/layout/activity_search.xml,4\3\43a49d525450187d5540a17df8c86d54ca56e6d2
+\
+,app/src/main/res/layout/home_county_item.xml,a\0\a001488026568e11c0fd6d2a442829cdac27e6c5

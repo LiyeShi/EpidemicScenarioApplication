@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.base;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,8 +20,7 @@ import com.gyf.immersionbar.ImmersionBar;
  * @description com.example.epidemicscenarioapplication.base
  */
 public abstract class BaseActivity extends AppCompatActivity {
-
-
+    private static final String TAG = "BaseActivity";
     private View mView;
     protected ImmersionBar mImmersionBar;
 
@@ -34,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         initPresenter();
         initData();
+        Log.d(TAG, "onCreate: finish");
     }
 
     protected void InitImmersionBar() {

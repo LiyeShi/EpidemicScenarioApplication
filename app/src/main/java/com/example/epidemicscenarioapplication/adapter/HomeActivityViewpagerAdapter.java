@@ -23,7 +23,9 @@ public class HomeActivityViewpagerAdapter extends FragmentStateAdapter {
 
 
     public void setData(ArrayList<Fragment> fragmentArrayList) {
-        mFragmentArrayList=fragmentArrayList;
+        mFragmentArrayList.clear();
+        mFragmentArrayList.addAll(fragmentArrayList);
+        notifyDataSetChanged();
     }
 
 

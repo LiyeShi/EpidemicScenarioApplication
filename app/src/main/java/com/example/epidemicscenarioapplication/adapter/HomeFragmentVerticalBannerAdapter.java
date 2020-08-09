@@ -65,7 +65,7 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
                 View view = BannerUtils.getView(parent, R.layout.home_item_weather);
                 return new WeatherViewaHolder(view);
             case ConstantsUtils.BANNER_TYPE_YIQING:
-                return new YiQingViewHolder(BannerUtils.getView(parent, R.layout.home_item_epidemic_info));
+                return new EpidemicHolder(BannerUtils.getView(parent, R.layout.home_item_epidemic_info));
             default:
                 break;
         }
@@ -85,7 +85,11 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
                 Glide.with(mContext).load(R.drawable.giphy).apply(options).into(weatherViewaHolder.ivIcon);
                 break;
             case ConstantsUtils.BANNER_TYPE_YIQING:
-
+                EpidemicHolder epidemicHolder = (EpidemicHolder) holder;
+                epidemicHolder.tvCount.setText(data.getCountyListDataBean().getSure()+"人");
+                epidemicHolder.tvName.setText(data.getCountyListDataBean().getName());
+                epidemicHolder.tvTime.setText(data.getTime());
+                epidemicHolder.tvSource.setText(data.getCountyListDataBean().getSource());
                 break;
             default:
                 break;
@@ -107,10 +111,17 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
 
     }
 
-    public class YiQingViewHolder extends RecyclerView.ViewHolder {
-
-        public YiQingViewHolder(View itemView) {
+    public class EpidemicHolder extends RecyclerView.ViewHolder {
+        TextView tvName;
+        TextView tvCount;
+        TextView tvTime;
+        TextView tvSource;
+        public EpidemicHolder(View itemView) {
             super(itemView);
+            tvName = itemView.findViewById(R.id.tv_home_item_epidemic_name);
+            tvTime = itemView.findViewById(R.id.tv_home_item_epidemic_time);
+            tvSource = itemView.findViewById(R.id.tv_home_item_epidemic_source);
+            tvCount = itemView.findViewById(R.id.tv_home_item_epidemic_count);
         }
     }
 

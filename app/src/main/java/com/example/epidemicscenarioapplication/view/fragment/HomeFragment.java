@@ -165,7 +165,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     @Override
     public void showCountyListMessage(VerticalBannerDataBeans.CountyListDataBean countyListDataBean) {
         for (int i = 0; i < countyListDataBean.getData().getResult().getDistrict().getList().size(); i++) {
-            Datas.add(new VerticalBannerDataBeans(countyListDataBean.getData().getResult().getDistrict().getList().get(i), ConstantsUtils.BANNER_TYPE_YIQING));
+            VerticalBannerDataBeans beans = new VerticalBannerDataBeans(countyListDataBean.getData().getResult().getDistrict().getList().get(i), ConstantsUtils.BANNER_TYPE_YIQING);
+            beans.setTime(countyListDataBean.getData().getResult().getRealtime().getTime());
+            Datas.add(beans);
         }
 
     }

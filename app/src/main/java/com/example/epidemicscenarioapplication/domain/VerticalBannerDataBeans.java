@@ -1,5 +1,7 @@
 package com.example.epidemicscenarioapplication.domain;
 
+import android.widget.TextView;
+
 import java.util.List;
 
 /**
@@ -12,10 +14,20 @@ public class VerticalBannerDataBeans {
     private int viewType;
     WeatherDataBean mWeatherDataBean;
     CountyListDataBean.DataBean.ResultBean.DistrictBean.ListBean mCountyListDataBean;
+    String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public  CountyListDataBean.DataBean.ResultBean.DistrictBean.ListBean getCountyListDataBean() {
         return mCountyListDataBean;
     }
+
 
     public WeatherDataBean getWeatherDataBean() {
         return mWeatherDataBean;
@@ -225,6 +237,7 @@ public class VerticalBannerDataBeans {
         }
 
         public static class DataBean {
+
 
 
             @Override
