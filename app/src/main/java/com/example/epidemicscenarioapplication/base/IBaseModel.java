@@ -1,5 +1,7 @@
 package com.example.epidemicscenarioapplication.base;
 
+import android.content.Context;
+
 /**
  * @author sly
  * @version 1.0
@@ -11,5 +13,5 @@ public interface IBaseModel {
     /**
      * 网络请求获取数据
      */
-    void loadData();
+    void loadData(Context context);
 }

@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.model.impl;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.epidemicscenarioapplication.base.IBaseModel;
@@ -8,6 +9,8 @@ import com.example.epidemicscenarioapplication.domain.ProvinceHistoryListDataBea
 import com.example.epidemicscenarioapplication.presenter.impl.DataBackActibityPresenter;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
+import com.example.epidemicscenarioapplication.utils.SpUtils;
+import com.example.epidemicscenarioapplication.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,19 +37,28 @@ public class DataBackActivityModel implements IBaseModel {
 
 
     @Override
-    public void loadData() {
+    public void loadData(Context context) {
         RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
         Retrofit retrofit = manager.getRetrofit();
         API api = retrofit.create(API.class);
-        Call<ProvinceHistoryListDataBean> call = api.getProvinceHistoryList("山东");
+        String provinceName = SpUtils.getString(context,ConstantsUtils.LOCATION_PROVINCE, "山东");
+        provinceName= provinceName.substring(0,provinceName.length()-1);
+        Log.d(TAG, "loadData: provinceName==>"+provinceName);
+        Call<ProvinceHistoryListDataBean> call = api.getProvinceHistoryList(provinceName);
         call.enqueue(new Callback<ProvinceHistoryListDataBean>() {
             @Override
             public void onResponse(Call<ProvinceHistoryListDataBean> call, Response<ProvinceHistoryListDataBean> response) {
                 if (response.code() == 200) {
                     ProvinceHistoryListDataBean body = response.body();
                     Log.d(TAG, "onResponse: 疫情历史数据请求成功==>"+body);
-                    HashMap<String, ArrayList> listHashMap = handelData(body);
-                    dataBackPresenter.loadDataSuccess(listHashMap);
+                    try {
+                        HashMap<String, ArrayList> listHashMap = handelData(body);
+                        dataBackPresenter.loadDataSuccess(listHashMap);
+                    } catch (Exception e) {
+                        ToastUtils.showLongToast(context,"数据异常");
+                        dataBackPresenter.loadDataError();
+                    }
+
                 }
             }
 

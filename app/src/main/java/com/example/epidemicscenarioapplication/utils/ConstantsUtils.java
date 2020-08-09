@@ -1,5 +1,7 @@
 package com.example.epidemicscenarioapplication.utils;
 
+import com.example.epidemicscenarioapplication.domain.ProvinceHistoryListDataBean;
+
 /**
  * @author sly
  * @version 1.0
@@ -28,4 +30,5 @@ public class ConstantsUtils {
     public static final String HTTP_BASE_URL_SECOND = "http://49.232.173.220:3001/";
     public static final String LOCATION_DISTRICT = "district";
     public static final String LOCATION_CITY = "city";
+    public static final String LOCATION_PROVINCE = "province";
 }

@@ -10,6 +10,7 @@ import com.example.epidemicscenarioapplication.model.ILocalNewsModel;
 import com.example.epidemicscenarioapplication.presenter.ILocalNewsFragmentPresenter;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.RetrofitManager;
+import com.example.epidemicscenarioapplication.utils.SpUtils;
 
 import java.net.HttpURLConnection;
 
@@ -38,8 +39,8 @@ public class NewsPageModel implements ILocalNewsModel {
         RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
         Retrofit retrofit = manager.getRetrofit();
         API api = retrofit.create(API.class);
-        // TODO: 2020/7/24  后面改成获取实时的地理位置  
-        Call<LocalNewsDataBean> news = api.getLocalNews("临沂");
+        String cityName = SpUtils.getString(context, ConstantsUtils.LOCATION_CITY, "临沂");
+        Call<LocalNewsDataBean> news = api.getLocalNews(cityName);
         news.enqueue(new Callback<LocalNewsDataBean>() {
             @Override
             public void onResponse(Call<LocalNewsDataBean> call, Response<LocalNewsDataBean> response) {

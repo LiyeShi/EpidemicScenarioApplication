@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.presenter.impl;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.epidemicscenarioapplication.base.IBaseModel;
@@ -28,8 +29,8 @@ public class DataBackActibityPresenter implements IDataBackActivityPresenter {
     }
 
     @Override
-    public void loadData() {
-        mDataBackModel.loadData();
+    public void loadData(Context context) {
+        mDataBackModel.loadData(context);
     }
 
     @Override

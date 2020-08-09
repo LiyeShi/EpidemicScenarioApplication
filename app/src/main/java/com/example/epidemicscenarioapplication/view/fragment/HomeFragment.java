@@ -29,6 +29,7 @@ import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.DataBackActivity;
+import com.example.epidemicscenarioapplication.view.activity.HomeActivity;
 import com.example.epidemicscenarioapplication.view.activity.SearchActivity;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
@@ -47,8 +48,6 @@ import java.util.List;
  */
 public class HomeFragment extends BaseFragment implements IHomepageView<List>, OnBannerListener {
     private static final String TAG = "HomeFragment";
-    public LocationClient mLocationClient = null;
-    private MyLocationListener myListener = new MyLocationListener();
     private HomePagePresenter mHomePagePresenter;
     private ArrayList<VerticalBannerDataBeans> Datas;
     private CustomDialog mDialog;
@@ -113,21 +112,11 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
     @Override
     protected void initData() {
-        Datas = new ArrayList<>();
         //假装加载
         mHomePagePresenter.loadBanner();
-        mHomePagePresenter.loadCountyList();
-        mHomePagePresenter.loadVerticalBannerWeather(getContext());
-        initLocationClient();
     }
 
-    private void initLocationClient() {
-        mLocationClient = new LocationClient(mHomeFragmentBindingRoot.getContext());
-        mLocationClient.registerLocationListener(myListener);
-        mLocationClient.setLocOption(BaiduSDKutils.initSDK());
-//        打开定位
-        mLocationClient.start();
-    }
+
 
     @Override
     public void showLoadingView() {
@@ -271,33 +260,16 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
             }
         }
     }
-
-    /**
-     * 百度定位回调
-     */
-    public class MyLocationListener extends BDAbstractLocationListener {
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            //更多结果信息获取说明，请参照类参考中BDLocation类中的说明
-            int errorCode = location.getLocType();
-            String addr = location.getAddrStr();    //获取详细地址信息
-            String country = location.getCountry();    //获取国家
-            String province = location.getProvince();    //获取省份
-            String city = location.getCity();    //获取城市
-            String district = location.getDistrict();    //获取区县
-            String street = location.getStreet();    //获取街道信息
-            String adcode = location.getAdCode();    //获取adcode
-            String town = location.getTown();    //获取乡镇信息
-            Log.d(TAG, "详细地址==>" + addr);
-            // TODO: 2020/7/2  模拟器测试方便 别忘了这里改成成功获取定位后才请求天气信息
-            if (district != null) {
-                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION_DISTRICT, district);
-                SpUtils.putString(mHomeFragmentBindingRoot.getContext(), ConstantsUtils.LOCATION_CITY, city);
-                mLocationClient.stop();
-                mHomePagePresenter.loadVerticalBannerWeather(mHomeFragmentBindingRoot.getContext());
-            }
-            ToastUtils.showToast(getContext(), "onReceiveLocation: 您所在的地址是==》" + country + province + city + district + street + town);
-            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
+    public void initNetworkRequest() {
+        Log.d(TAG, "initNetworkRequest: 执行");
+        Datas = new ArrayList<>();
+//            获取所在市各个县区疫情数据
+        if (mHomePagePresenter == null) {
+            mHomePagePresenter = new HomePagePresenter(HomeFragment.this);
         }
+        mHomePagePresenter.loadCountyList();
+//            获取首页天气
+        mHomePagePresenter.loadVerticalBannerWeather(getContext());
+        Log.d(TAG, "initNetworkRequest: 获取天气");
     }
 }

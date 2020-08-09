@@ -1,6 +1,8 @@
 package com.example.epidemicscenarioapplication.presenter;
 
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +18,7 @@ public interface IDataBackActivityPresenter {
     /**
      * 加载数据
      */
-    void loadData();
+    void loadData(Context context);
 
     /**
      * 数据加载成功

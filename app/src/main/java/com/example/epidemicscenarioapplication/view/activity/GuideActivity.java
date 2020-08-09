@@ -44,14 +44,12 @@ public class GuideActivity extends AppIntro2 {
     @Override
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        startActivity(new Intent(this, HomeActivity.class));
         finish();
     }
 
     @Override
     protected void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        startActivity(new Intent(this, HomeActivity.class));
         finish();
     }
 

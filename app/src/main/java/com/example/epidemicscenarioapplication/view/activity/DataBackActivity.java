@@ -40,7 +40,7 @@ public class DataBackActivity extends BaseActivity implements IBaseView<HashMap<
 
     @Override
     protected void initData() {
-        mDataBackActibityPresenter.loadData();
+        mDataBackActibityPresenter.loadData(this);
     }
 
     @Override
