@@ -40,6 +40,8 @@ public class NewsPageModel implements ILocalNewsModel {
         Retrofit retrofit = manager.getRetrofit();
         API api = retrofit.create(API.class);
         String cityName = SpUtils.getString(context, ConstantsUtils.LOCATION_CITY, "临沂");
+        cityName=cityName.substring(0,(cityName.length())-1);
+        Log.d(TAG, "loadData: cityName==>"+cityName);
         Call<LocalNewsDataBean> news = api.getLocalNews(cityName);
         news.enqueue(new Callback<LocalNewsDataBean>() {
             @Override

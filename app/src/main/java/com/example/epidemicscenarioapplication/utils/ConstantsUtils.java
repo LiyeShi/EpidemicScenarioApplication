@@ -1,6 +1,5 @@
 package com.example.epidemicscenarioapplication.utils;
 
-import com.example.epidemicscenarioapplication.domain.ProvinceHistoryListDataBean;
 
 /**
  * @author sly
@@ -10,7 +9,7 @@ import com.example.epidemicscenarioapplication.domain.ProvinceHistoryListDataBea
  */
 public class ConstantsUtils {
     //百科 确诊人员查询 接口总地址
-    public static final String BASE_URL = "https://wuliang.art/";
+    public static final String BASE_URL = "http://114.55.140.173/";
     //  调用天气接口所需的id和密码
     public static final String WEATHER_API = "https://www.mxnzp.com/api/";
     public static final String WEATHER_APP_ID = "srnrtlnlvxuyqskq";
@@ -22,8 +21,8 @@ public class ConstantsUtils {
     //储存位置的键
     public static final String LOCATION = "location";
 
-    //    各种疫情数据的baseURL
-    public static final String WULIANG_API = "http://wuliang.art/";
+//    //    各种疫情数据的baseURL
+//    public static final String WULIANG_API = "http://wuliang.art/";
 
     //    疫情三纬可视图
     public static final String HTTPS_LZXUE_GITHUB_IO_YIQINGDITU = "https://lzxue.github.io/yiqingditu/";

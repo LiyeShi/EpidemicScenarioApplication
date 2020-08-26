@@ -11,7 +11,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,20 +49,21 @@ import permissions.dispatcher.RuntimePermissions;
  */
 @RuntimePermissions
 public class HomeActivity extends BaseActivity {
+    private static final String TAG = "HomeActivity";
     private static final String PREF_ISFIRST = "isFirst";
     private static final int GPS_REQUEST_CODE = 1;
     private static final int SHOW_GUILDEPAGE_CODE = 2;
     private static boolean isToSetting = false;
     private static boolean isFirstShowReason = true;
+    private static int getLocationCount = 0;
     private HomeFragment mHomeFragment;
     private WikipediaFragment mWikipediaFragment;
     private AboutUsFragment mAboutUsFragment;
     private NewsFragment mNewsFragment;
-    private static final String TAG = "HomeActivity";
     private ArrayList<Fragment> mFragmentArrayList = new ArrayList();
     private ActivityHomeBinding mHomeBinding;
     private HomeActivityViewpagerAdapter mViewpagerAdapter;
-    public LocationClient mLocationClient = null;
+    public LocationClient mLocationClient;
     private MyLocationListener myListener = new MyLocationListener();
 
 
@@ -89,7 +89,8 @@ public class HomeActivity extends BaseActivity {
     /**
      * 初始化GPS
      */
-    private void initGPS() {
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    public void initGPS() {
         if (!checkGpsIsOpen()) {
             new AlertDialog.Builder(this).setTitle("警告:")
                     .setMessage("检测到没有打开GPS，无法正常使用软件!")
@@ -116,18 +117,20 @@ public class HomeActivity extends BaseActivity {
         Log.d(TAG, "onActivityResult: requrequestCode==>" + requestCode);
         switch (requestCode) {
             case SHOW_GUILDEPAGE_CODE:
-//                引导页展示完 开始判断是否打开GPS
-                initGPS();
-                Log.d(TAG, "onActivityResult: 执行");
+//                展示完引导页 开始判断是否已开启GPS
+                HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
+                Log.d(TAG, "引导页onActivityResult: 执行");
 //              发起定位
                 initLocationClient();
                 break;
             case GPS_REQUEST_CODE:
                 Log.d(TAG, "onActivityResult: 执行");
-//                从设置界面返回看是否打开了GPS
-                initGPS();
+//                从设置界面返回后检查是否成功打开了GPS
+                HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
 //              发起定位
                 initLocationClient();
+//
+//                initFragment();
                 break;
             default:
                 break;
@@ -139,17 +142,30 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     private void isShowGuidePage() {
         boolean isFirst = SpUtils.getBoolean(this, PREF_ISFIRST, true);
         if (isFirst) {
+//            第一次打开软件，展示引导页
             startActivityForResult(new Intent(this, GuideActivity.class), SHOW_GUILDEPAGE_CODE);
             SpUtils.putBoolean(this, PREF_ISFIRST, false);
         } else {
-            initGPS();
+            Log.d(TAG, "isShowGuidePage: false");
+//            不是第一次打开，一进入软件就得判断是否打开了GPS,进而获取地理位置 否则软件无法使用
+            HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
             initLocationClient();
         }
     }
 
+    /**
+     * 返回根布局
+     *
+     * @return
+     */
     @Override
     protected View getView() {
         mHomeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
@@ -195,22 +211,23 @@ public class HomeActivity extends BaseActivity {
         mLocationClient.setLocOption(BaiduSDKutils.initSDK());
 //        开始定位
         mLocationClient.start();
+        Log.d(TAG, "initLocationClient: 开始定位");
     }
 
-    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+
     public void initFragment() {
         Log.d(TAG, "initFragment: 执行");
         mHomeFragment = new HomeFragment();
+        mNewsFragment = new NewsFragment();
         mWikipediaFragment = new WikipediaFragment();
         mAboutUsFragment = new AboutUsFragment();
-        mNewsFragment = new NewsFragment();
         mFragmentArrayList.add(mHomeFragment);
         mFragmentArrayList.add(mNewsFragment);
         mFragmentArrayList.add(mWikipediaFragment);
         mFragmentArrayList.add(mAboutUsFragment);
         mHomeBinding.vpContainer.setCurrentItem(0);
         mViewpagerAdapter.setData(mFragmentArrayList);
-        Log.d(TAG, "initView: dataSize==>" + mFragmentArrayList.size());
+        Log.d(TAG, "initView: fragmentdataSize==>" + mFragmentArrayList.size());
     }
 
     @Override
@@ -221,7 +238,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initView() {
         mViewpagerAdapter = new HomeActivityViewpagerAdapter(this);
-        HomeActivityPermissionsDispatcher.initFragmentWithPermissionCheck(this);
         mHomeBinding.vpContainer.setAdapter(mViewpagerAdapter);
 //        去掉最外层ViewPager2阴影动画
         View child = mHomeBinding.vpContainer.getChildAt(0);
@@ -234,6 +250,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mLocationClient.unRegisterLocationListener(myListener);
     }
 
     @Override
@@ -265,15 +282,18 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (isToSetting) {
-            HomeActivityPermissionsDispatcher.initFragmentWithPermissionCheck(this);
-            isToSetting = false;
-        }
-
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+////        设置界面打开定位权限后，在这里进行检查，看是否成功开启
+//        if (isToSetting) {
+//            HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
+//            initFragment();
+//            isToSetting = false;
+//        }
+//
+//
+//    }
 
     /**
      * 当用户拒绝了权限时
@@ -281,10 +301,10 @@ public class HomeActivity extends BaseActivity {
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     void OnPermissionDenied() {
         new AlertDialog.Builder(this)
-                .setMessage("不会胡作非为的，你赶紧授权吧，不授权没法用")
+                .setMessage("这是必要权限，如果不授权将无法使用软件")
                 .setPositiveButton("知道了", (DialogInterface dialogInterface, int i) -> {
                     // 再次执行权限请求
-                    HomeActivityPermissionsDispatcher.initFragmentWithPermissionCheck(HomeActivity.this);
+                    HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
                     ToastUtils.showLongToast(this, "请求结束");
                     Log.d(TAG, "OnPermissionDenied: finish");
                 })
@@ -329,16 +349,21 @@ public class HomeActivity extends BaseActivity {
             String adcode = location.getAdCode();    //获取adcode
             Log.d(TAG, "详细地址==>" + addr);
 //            ""  和 null 不是一回事 不要习惯性的写null
-            if (location.getCity()!=" ") {
-                Log.d(TAG, "onReceiveLocation: 执行了");
+            if (addr != null) {
+                getLocationCount++;
+                Log.d(TAG, "onReceiveLocation: 执行了" + location.getCity());
                 mLocationClient.stop();
+                mLocationClient.unRegisterLocationListener(myListener);
+                Log.d(TAG, "onReceiveLocation: 关闭定位");
                 SpUtils.putString(HomeActivity.this, ConstantsUtils.LOCATION_PROVINCE, province);
                 SpUtils.putString(HomeActivity.this, ConstantsUtils.LOCATION_CITY, city);
                 SpUtils.putString(HomeActivity.this, ConstantsUtils.LOCATION_DISTRICT, district);
-//                拿到设备地址后 才可以发起所有的网络请求
-                mHomeFragment.initNetworkRequest();
+//                因为这个百度定位如果在打开软件后才开启定位 即使定位成功，也无法正常关闭，所以目前只能采用这种办法 最终在这里初始化fragment
+                if (getLocationCount == 1) {
+                    initFragment();
+                }
             }
-            ToastUtils.showToast(HomeActivity.this, "您所在的地址是==》" + country + province + city + district + street + town);
+//            ToastUtils.showToast(HomeActivity.this, "您所在的地址是==》" + country + province + city + district + street + town);
             Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
         }
 

@@ -2,6 +2,7 @@ package com.example.epidemicscenarioapplication.base;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,14 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.databinding.BaseFragmentDefaultBinding;
 import com.example.epidemicscenarioapplication.databinding.BaseFragmentNetworkErrorBinding;
 import com.example.epidemicscenarioapplication.databinding.BaseFragmentNetworkLoadingBinding;
 
+import com.example.epidemicscenarioapplication.view.activity.HomeActivity;
 import com.gyf.immersionbar.ImmersionBar;
 
 /**
@@ -37,12 +40,19 @@ public abstract class BaseFragment extends Fragment {
     protected BaseFragmentNetworkErrorBinding mNetworkErrorBinding;
 
 
-    // 控制View可不可见的类 即在不同网络状态下显示哪一个view
+    /**
+     * 控制View可不可见的类 即在不同网络状态下显示哪一个view
+     */
     public enum ViewState {
         // 在第一行显式地列出枚举实例(枚举值)，系统会自动添加 public static final 修饰
         SUCCESS, ERROR, LOADING;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        initData();
+    }
 
     @Nullable
     @Override
@@ -53,10 +63,17 @@ public abstract class BaseFragment extends Fragment {
         loadStateView(inflater, container);
         initView();
         initPresenter();
+//        initData();
+        HomeActivity activity = (HomeActivity)getActivity();
+//        确保获得地址后才去加载数据
         initData();
         initListener();
 //        返回根布局 因为每一个根布局里面都放了不同状态下的布局 在状态设置中控制这些不同的view显示那一个
         return mBaseFragmentLayoutBinding.getRoot();
+    }
+
+    protected void initData() {
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -65,6 +82,7 @@ public abstract class BaseFragment extends Fragment {
         mImmersionBar.fitsSystemWindows(true)
                 .statusBarColor(R.color.colorPrimaryDark).init();
     }
+
 
 
     public void setViewState(ViewState state) {
@@ -113,14 +131,12 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    protected abstract void initListener();
+    protected  void initListener(){
+
+    }
 
     protected abstract void initPresenter();
 
-
-    protected void initData() {
-
-    }
 
     @Override
     public void onDestroy() {

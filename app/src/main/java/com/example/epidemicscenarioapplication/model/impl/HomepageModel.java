@@ -46,13 +46,16 @@ public class HomepageModel implements IHomepageModel {
 
     }
 
+    /**
+     * 首页竖直轮播图请求天气
+     * @param context
+     */
     @Override
-    public void loadVerticalBannerWeatherInfo(Context context) {
+    public void loadVerticalBannerWeatherInfo(Context context,String location) {
+        mLocation=location;
         Retrofit retrofit = RetrofitManager.getInstance(ConstantsUtils.WEATHER_API).getRetrofit();
         API api = retrofit.create(API.class);
-        mLocation = SpUtils.getString(context, ConstantsUtils.LOCATION, "临沂市");
-        Log.d(TAG, "当前位置==>" + mLocation);
-        Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(mLocation);
+        Call<VerticalBannerDataBeans.WeatherDataBean> weatherJson = api.getWeatherJson(location);
         weatherJson.enqueue(new Callback<VerticalBannerDataBeans.WeatherDataBean>() {
             @Override
             public void onResponse(Call<VerticalBannerDataBeans.WeatherDataBean> call, Response<VerticalBannerDataBeans.WeatherDataBean> response) {
@@ -78,7 +81,7 @@ public class HomepageModel implements IHomepageModel {
     public void loadCountyList() {
         Retrofit retrofit = RetrofitManager.getInstance(ConstantsUtils.BASE_URL).getRetrofit();
         API api = retrofit.create(API.class);
-        Call<VerticalBannerDataBeans.CountyListDataBean> countyList = api.getCountyList("临沂市");
+        Call<VerticalBannerDataBeans.CountyListDataBean> countyList = api.getCountyList(mLocation);
         countyList.enqueue(new Callback<VerticalBannerDataBeans.CountyListDataBean>() {
             @Override
             public void onResponse(Call<VerticalBannerDataBeans.CountyListDataBean> call, Response<VerticalBannerDataBeans.CountyListDataBean> response) {
@@ -91,7 +94,7 @@ public class HomepageModel implements IHomepageModel {
 
             @Override
             public void onFailure(Call<VerticalBannerDataBeans.CountyListDataBean> call, Throwable t) {
-
+                homePagePresenter.loadBannerError();
             }
         });
     }

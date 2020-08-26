@@ -46,6 +46,7 @@ public class LocalNewsPageFragment extends BaseFragment implements INewsView<Loc
 
     }
 
+
     @Override
     protected void initData() {
         mNewsPresenter.loadData(mLocalNewsLayoutBindingRoot.getContext());

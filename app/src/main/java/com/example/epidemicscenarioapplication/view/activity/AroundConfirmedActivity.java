@@ -33,23 +33,24 @@ public class AroundConfirmedActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(getView());
         ListView listView= findViewById(R.id.lv_ncov_village);
-        RetrofitManager retrofitManager = RetrofitManager.getInstance(ConstantsUtils.WULIANG_API);
+        RetrofitManager retrofitManager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
         Retrofit retrofit = retrofitManager.getRetrofit();
 //        SpUtils.getString(this, ConstantsUtils.LOCATION_CITY, "临沂市")
-        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName("临沂市");
+        String location = SpUtils.getString(AroundConfirmedActivity.this, ConstantsUtils.LOCATION_CITY, " ");
+        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName(location);
         village.enqueue(new Callback<NcovVillageDataBean>() {
             @Override
             public void onResponse(Call<NcovVillageDataBean> call, Response<NcovVillageDataBean> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     Log.d(TAG, "onResponse: 确诊信息==》"+response.body());
                     NcovVillageDataBean body = response.body();
+                    Log.d(TAG, "onResponse: 当前小区确诊人员信息==》"+body);
                     List<NcovVillageDataBean.DataBean> data;
                     data = body.getData();
                     NcovVillageListViewAdapter ncovVillageListViewAdapter = new NcovVillageListViewAdapter(data);
                     listView.setAdapter(ncovVillageListViewAdapter);
                     Log.d(TAG, "onResponse: 设置适配器");
-                    String location = SpUtils.getString(AroundConfirmedActivity.this, ConstantsUtils.LOCATION_CITY, "临沂市121");
-                    mConfirmedActivityBinding.includeHead.tvTip.setText("location+"+"共有"+body.getData().size()+"小区、村镇出现疫情)");
+                    mConfirmedActivityBinding.includeHead.tvTip.setText(location+"共有"+body.getData().size()+"小区、村镇出现疫情");
                 }
             }
 

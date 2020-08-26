@@ -94,7 +94,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 .setBannerRound2(20)
                 .start();
         mHomeFragmentBinding.llNcovVillage.setOnClickListener(v -> startActivity(new Intent(mHomeFragmentBindingRoot.getContext(), AroundConfirmedActivity.class)));
-
     }
 
 
@@ -111,11 +110,20 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
 
     @Override
-    protected void initData() {
+    public void initData() {
         //假装加载
         mHomePagePresenter.loadBanner();
+        String location = SpUtils.getString(getContext(), ConstantsUtils.LOCATION_CITY, "");
+        Log.d(TAG, "initNetworkRequest: 执行");
+        Datas = new ArrayList<>();
+//            获取所在市各个县区疫情数据
+        mHomePagePresenter = new HomePagePresenter(HomeFragment.this);
+//            获取首页天气
+        mHomePagePresenter.loadVerticalBannerWeather(getContext(),location);
+        Log.d(TAG, "initNetworkRequest: 获取天气");
+//        注意请求天气和请求各个县区的疫情数据一定得是这个先后关系，因为location是请求天气的时候才传过去的
+        mHomePagePresenter.loadCountyList();
     }
-
 
 
     @Override
@@ -147,8 +155,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mHomeFragmentBinding.bannerTips.setAdapter(new HomeFragmentVerticalBannerAdapter(Datas));
         mHomeFragmentBinding.bannerTips.setVisibility(View.VISIBLE);
         mHomeFragmentBinding.pbLoading.setVisibility(View.GONE);
-
-
     }
 
     @Override
@@ -260,16 +266,5 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
             }
         }
     }
-    public void initNetworkRequest() {
-        Log.d(TAG, "initNetworkRequest: 执行");
-        Datas = new ArrayList<>();
-//            获取所在市各个县区疫情数据
-        if (mHomePagePresenter == null) {
-            mHomePagePresenter = new HomePagePresenter(HomeFragment.this);
-        }
-        mHomePagePresenter.loadCountyList();
-//            获取首页天气
-        mHomePagePresenter.loadVerticalBannerWeather(getContext());
-        Log.d(TAG, "initNetworkRequest: 获取天气");
-    }
 }
+

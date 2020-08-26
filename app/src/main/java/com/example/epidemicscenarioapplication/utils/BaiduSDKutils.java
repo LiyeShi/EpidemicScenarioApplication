@@ -7,9 +7,7 @@ import com.baidu.location.LocationClientOption;
  * @version 1.0
  * @date 2020/7/2
  * @description com.example.epidemicscenarioapplication.utils
- *
  */
-// TODO: 2020/7/2 改成单例模式
 public class BaiduSDKutils {
     public static LocationClientOption initSDK() {
         LocationClientOption option = new LocationClientOption();
@@ -38,7 +36,7 @@ public class BaiduSDKutils {
         option.setLocationNotify(true);
 //可选，设置是否当GPS有效时按照1S/1次频率输出GPS结果，默认false
 
-        option.setIgnoreKillProcess(false);
+        option.setIgnoreKillProcess(true);
 //可选，定位SDK内部是一个service，并放到了独立进程。
 //设置是否在stop的时候杀死这个进程，默认（建议）不杀死，即setIgnoreKillProcess(true)
 
@@ -48,7 +46,6 @@ public class BaiduSDKutils {
         option.setWifiCacheTimeOut(5 * 60 * 1000);
 //可选，V7.2版本新增能力
 //如果设置了该接口，首次启动定位时，会先判断当前Wi-Fi是否超出有效期，若超出有效期，会先重新扫描Wi-Fi，然后定位
-
         option.setEnableSimulateGps(false);
 //        一开始定位不到，设置下面的操作就可以了
         option.setIsNeedAddress(true);

@@ -1,8 +1,12 @@
 
-Psquid:S1135¤"2Complete the task associated to this TODO comment.(Ô…î8“Úüì».
-¥squid:S1186…"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ş¸ààúÿÿÿÿ8¬Ì÷ì».
-Lsquid:S1185Ë"(Remove this method to simply inherit it.(İßéàúÿÿÿÿ8“Úüì».
-"squid:ClassVariableVisibilityCheck2"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(â…ëè8¬Ì÷ì».
-¥squid:S1186Ñ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ÄŸÇıÿÿÿÿ8“Úüì».
-tsquid:S001165"PRename this field "Datas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚêòüÿÿÿÿ8¬Ì÷ì».
-Jsquid:S1481¡"+Remove this unused "adcode" local variable.(îùÍ8“Úüì».
+…squid:UselessImportCheck"URemove this unused import 'com.example.epidemicscenarioapplication.utils.ToastUtils'.(û÷ıÿÿÿÿ8´¦‘“½.
+squid:UselessImportCheck "_Remove this unused import 'com.example.epidemicscenarioapplication.view.activity.HomeActivity'.(²»üäùÿÿÿÿ8ÿ­”½.
+jsquid:UselessImportCheck":Remove this unused import 'com.baidu.location.BDLocation'.(ĞÕì·ıÿÿÿÿ8´¦‘“½.
+¥squid:S1186Ê"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ÄŸÇıÿÿÿÿ8“Úüì».
+nsquid:UselessImportCheck">Remove this unused import 'com.baidu.location.LocationClient'.(ª›ç«úÿÿÿÿ8‹ö“½.
+Lsquid:S1185Ä"(Remove this method to simply inherit it.(İßéàúÿÿÿÿ8“Úüì».
+¥squid:S1186€"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ş¸ààúÿÿÿÿ8¬Ì÷ì».
+|squid:UselessImportCheck"RRemove this unused import 'com.example.epidemicscenarioapplication.utils.SpUtils'.( ›éV8´¦‘“½.
+tsquid:UselessImportCheck"JRemove this unused import 'com.baidu.location.BDAbstractLocationListener'.(Ø¤ƒy8´¦‘“½.
+tsquid:S001164"PRename this field "Datas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚêòüÿÿÿÿ8¬Ì÷ì».
+ˆsquid:UselessImportCheck"XRemove this unused import 'com.example.epidemicscenarioapplication.utils.BaiduSDKutils'.(Ò¡‡ãıÿÿÿÿ8ä¯“½.

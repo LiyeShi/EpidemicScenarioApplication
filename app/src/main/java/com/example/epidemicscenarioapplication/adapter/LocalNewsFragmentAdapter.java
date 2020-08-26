@@ -68,7 +68,10 @@ public class LocalNewsFragmentAdapter extends RecyclerView.Adapter<LocalNewsFrag
 
     @Override
     public int getItemCount() {
-        int size = mDataBean.getData().getResult().getWhole().size();
+        int size=0;
+        if (mDataBean.getData().getResult().getWhole()!=null) {
+           size= mDataBean.getData().getResult().getWhole().size();
+        }
         return size;
     }
 

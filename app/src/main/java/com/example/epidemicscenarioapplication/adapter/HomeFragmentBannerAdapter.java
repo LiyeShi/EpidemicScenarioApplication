@@ -15,7 +15,7 @@ import java.util.List;
  * @version 1.0
  * @date 2020/6/30
  * @description com.example.epidemicscenarioapplication.adapter
- * 还得学学泛型 怎么使用  HomePageBannerAdapter
+ *
  */
 
 
@@ -46,7 +46,6 @@ public class HomeFragmentBannerAdapter extends BannerAdapter<Integer, HomeFragme
 
     class BannerViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-
         public BannerViewHolder(@NonNull ImageView view) {
             super(view);
             this.imageView = view;

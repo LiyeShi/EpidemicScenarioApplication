@@ -56,8 +56,8 @@ public class HomePagePresenter implements IHomepagePresnter {
     }
 
     @Override
-    public void loadVerticalBannerWeather(Context context) {
-        mHomepageModel.loadVerticalBannerWeatherInfo(context);
+    public void loadVerticalBannerWeather(Context context,String location) {
+        mHomepageModel.loadVerticalBannerWeatherInfo(context,location);
     }
 
     @Override

@@ -11,7 +11,7 @@ import android.content.Context;
 public interface IHomepageModel {
     void loadBanner();
 
-    void loadVerticalBannerWeatherInfo(Context context);
+    void loadVerticalBannerWeatherInfo(Context context,String location);
 
     void loadCountyList();
 

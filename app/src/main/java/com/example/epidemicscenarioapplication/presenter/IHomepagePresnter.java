@@ -23,7 +23,7 @@ public interface IHomepagePresnter {
 
     void loadVerticalBannerWeatherError();
 
-    void loadVerticalBannerWeather(Context context);
+    void loadVerticalBannerWeather(Context context,String location);
 
     void loadCountyList();
 
