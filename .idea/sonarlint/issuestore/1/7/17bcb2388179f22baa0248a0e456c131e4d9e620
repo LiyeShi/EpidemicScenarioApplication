@@ -1,25 +1,23 @@
 
-Jsquid:S1481İ"+Remove this unused "adcode" local variable.(îùÍ8ƒ´•ÎÂ.
-Zsquid:S2696á"6Make the enclosing method "static" or remove this set.(ş‰¶üÿÿÿÿ8ƒ´•ÎÂ.
-Usquid:S2696”"6Make the enclosing method "static" or remove this set.(ğ¤íõ8ƒ´•ÎÂ.
- squid:S1186ê"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8ƒ´•ÎÂ.
-Osquid:S1481Û"+Remove this unused "street" local variable.(Ï°ª°ûÿÿÿÿ8é ¶½.
-Rsquid:S10688"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8À´–ÎÂ.
-jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¿…¨8À´–ÎÂ.
-"squid:ClassVariableVisibilityCheckB"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(ß¬ÿ÷8€ª“½.
-}squid:S1450="_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8¡…ığ¯.
-Msquid:S1481Ü")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8é ¶½.
-Zsquid:S2696Æ"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8ƒ´•ÎÂ.
-}squid:S14508"ZRemove the "isToSetting" field and declare it as a local variable in the relevant methods.(ìïÁäşÿÿÿÿ8À´–ÎÂ.
-jsquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(Ñ¡¢š8À´–ÎÂ.
-zsquid:S1488¬"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8ƒ´•ÎÂ.
+Qsquid:S1135×"2Complete the task associated to this TODO comment.(ìúÁã8¥âÕ Ã.
+zsquid:S1450<"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8ˆÁú°½.
+Zsquid:S2696Ù"6Make the enclosing method "static" or remove this set.(ş‰¶üÿÿÿÿ8¥âÕ Ã.
+Jsquid:S1481Î",Remove this unused "country" local variable.(ÊößK8¥âÕ Ã.
+osquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(ºªö™ùÿÿÿÿ8¥âÕ Ã.
+Usquid:S2696—"6Make the enclosing method "static" or remove this set.(ğ¤íõ8¥âÕ Ã.
+squid:S1450?"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8ˆÁú°½.
+Zsquid:S2696½"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8¥âÕ Ã.
+}squid:S1450>"_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8¡…ığ¯.
+Jsquid:S1481Ô"+Remove this unused "adcode" local variable.(îùÍ8šåÔ Ã.
+"squid:ClassVariableVisibilityCheckC"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(ß¬ÿ÷8€ª“½.
+msquid:S1871…"IThis case's code block is the same as the block for the case on line 128.(É„¦Éüÿÿÿÿ8šåÔ Ã.
 qsquid:MaximumInheritanceDepth3"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8…´£‡½.
-squid:S1450>"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8ˆÁú°½.
-Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8ƒ´•ÎÂ.
-Jsquid:S1481×",Remove this unused "country" local variable.(ÊößK8ƒ´•ÎÂ.
-osquid:CommentedOutCodeLineî"<This block of commented-out lines of code should be removed.(ºªö™ùÿÿÿÿ8ƒ´•ÎÂ.
-Fsquid:S1185’"(Remove this method to simply inherit it.(ºŠñ=8ƒ´•ÎÂ.
-„squid:S1450<"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8±æÎè².
-osquid:CommentedOutCodeLine¨"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8À´–ÎÂ.
-zsquid:S1450;"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8ˆÁú°½.
-jsquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(¿„à´8ğÆèÏÂ.
+Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8¥âÕ Ã.
+zsquid:S1488®"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8¥âÕ Ã.
+ squid:S1186í"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8¥âÕ Ã.
+Osquid:S1481Ò"+Remove this unused "street" local variable.(Ï°ª°ûÿÿÿÿ8¥âÕ Ã.
+Rsquid:S10689"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8À´–ÎÂ.
+Msquid:S1481Ó")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8é ¶½.
+„squid:S1450="aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8±æÎè².
+}squid:S14509"ZRemove the "isToSetting" field and declare it as a local variable in the relevant methods.(ìïÁäşÿÿÿÿ8À´–ÎÂ.
+Fsquid:S1185•"(Remove this method to simply inherit it.(ºŠñ=8¥âÕ Ã.

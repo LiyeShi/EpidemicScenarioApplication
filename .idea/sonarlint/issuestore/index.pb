@@ -151,8 +151,6 @@ a
 1app/src/main/res/layout/base_fragment_default.xml,9\3\933d311bdda468b69fff5d8065347e348924a341
 `
 0app/src/main/res/layout/home_dialog_platform.xml,2\a\2a57b3b87fafac7ab037bdca692f7ef6bbdd3f40
-Y
-)app/src/main/res/layout/fragment_data.xml,f\7\f7cb59819a10f85cf0463e6dfa52eedcdaefbd05
 _
 /app/src/main/res/layout/news_fragment_local.xml,1\a\1ad5d729179825db77d3df163925206b74d2890e
 h
@@ -253,3 +251,5 @@ g
 +app/src/main/res/layout/activity_search.xml,4\3\43a49d525450187d5540a17df8c86d54ca56e6d2
 \
 ,app/src/main/res/layout/home_county_item.xml,a\0\a001488026568e11c0fd6d2a442829cdac27e6c5
+€
+Papp/src/main/java/com/example/epidemicscenarioapplication/custom/ItemInMine.java,b\3\b3b7fa8f5623e81656dfc4c9d8a869864b472cad

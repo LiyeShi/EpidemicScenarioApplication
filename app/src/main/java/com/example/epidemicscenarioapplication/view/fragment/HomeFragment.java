@@ -10,9 +10,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
@@ -23,13 +20,10 @@ import com.example.epidemicscenarioapplication.custom.CustomDialog;
 import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
 import com.example.epidemicscenarioapplication.domain.VerticalBannerDataBeans;
 import com.example.epidemicscenarioapplication.presenter.impl.HomePagePresenter;
-import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
-import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.IHomepageView;
 import com.example.epidemicscenarioapplication.view.activity.DataBackActivity;
-import com.example.epidemicscenarioapplication.view.activity.HomeActivity;
 import com.example.epidemicscenarioapplication.view.activity.SearchActivity;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
@@ -258,8 +252,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     startActivity(new Intent(getContext(), DataBackActivity.class));
                     break;
                 case R.id.et_search:
-                    startActivity(new Intent(getContext(), SearchActivity.class));
-                    getActivity().overridePendingTransition(R.anim.search_activity_translate_in, 0);
+                    startActivity(new Intent(getContext(),SearchActivity.class));
+                    getActivity().overridePendingTransition(R.anim.search_activity_translate_in, R.anim.home_activity_translate_out);
                     break;
                 default:
                     break;

@@ -1,7 +1,5 @@
 package com.example.epidemicscenarioapplication.view.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
@@ -56,6 +54,6 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0, R.anim.search_activity_translate_out);
+        overridePendingTransition(R.anim.home_activity_translate_in, R.anim.search_activity_translate_out);
     }
 }

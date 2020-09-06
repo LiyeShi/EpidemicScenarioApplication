@@ -51,6 +51,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
     private static final String PREF_ISFIRST = "isFirst";
+    private  static final int SETTING_CODE=0;
     private static final int GPS_REQUEST_CODE = 1;
     private static final int SHOW_GUILDEPAGE_CODE = 2;
     private static boolean isToSetting = false;
@@ -65,6 +66,7 @@ public class HomeActivity extends BaseActivity {
     private HomeActivityViewpagerAdapter mViewpagerAdapter;
     public LocationClient mLocationClient;
     private MyLocationListener myListener = new MyLocationListener();
+
 
 
     @Override
@@ -108,6 +110,8 @@ public class HomeActivity extends BaseActivity {
                     })
                     .setCancelable(false)
                     .show();
+        }else {
+            initLocationClient();
         }
     }
 
@@ -120,17 +124,16 @@ public class HomeActivity extends BaseActivity {
 //                展示完引导页 开始判断是否已开启GPS
                 HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
                 Log.d(TAG, "引导页onActivityResult: 执行");
-//              发起定位
-                initLocationClient();
                 break;
             case GPS_REQUEST_CODE:
                 Log.d(TAG, "onActivityResult: 执行");
 //                从设置界面返回后检查是否成功打开了GPS
                 HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
-//              发起定位
-                initLocationClient();
-//
-//                initFragment();
+                break;
+            case SETTING_CODE:
+                Log.d(TAG, "onActivityResult: 执行");
+//                从设置界面返回后检查是否成功打开了GPS
+                HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
                 break;
             default:
                 break;
@@ -157,7 +160,6 @@ public class HomeActivity extends BaseActivity {
             Log.d(TAG, "isShowGuidePage: false");
 //            不是第一次打开，一进入软件就得判断是否打开了GPS,进而获取地理位置 否则软件无法使用
             HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
-            initLocationClient();
         }
     }
 
@@ -176,7 +178,8 @@ public class HomeActivity extends BaseActivity {
     private void initListener() {
         Log.d(TAG, "initListener: 设置监听");
         mHomeBinding.bnvHome.setItemIconTintList(null);
-
+//        底部导航栏item个数超过三个时设置 图标文字都显示
+        mHomeBinding.bnvHome.setLabelVisibilityMode(1);
         mHomeBinding.bnvHome.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_home:
@@ -282,18 +285,6 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-////        设置界面打开定位权限后，在这里进行检查，看是否成功开启
-//        if (isToSetting) {
-//            HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
-//            initFragment();
-//            isToSetting = false;
-//        }
-//
-//
-//    }
 
     /**
      * 当用户拒绝了权限时
@@ -321,7 +312,7 @@ public class HomeActivity extends BaseActivity {
                 .setPositiveButton("去设置", (dialogInterface, i) -> {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
-                    startActivityForResult(intent, 0);
+                    startActivityForResult(intent, SETTING_CODE);
                     //                 说明进入设置界面了
                     isToSetting = true;
                 })
@@ -349,7 +340,8 @@ public class HomeActivity extends BaseActivity {
             String adcode = location.getAdCode();    //获取adcode
             Log.d(TAG, "详细地址==>" + addr);
 //            ""  和 null 不是一回事 不要习惯性的写null
-            if (addr != null) {
+            // TODO: 2020/8/26 方便模拟器测试  发布的时候要改过来
+            if (addr == null) {
                 getLocationCount++;
                 Log.d(TAG, "onReceiveLocation: 执行了" + location.getCity());
                 mLocationClient.stop();

@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_home"
-        android:icon="@drawable/medicalmask"
+        android:icon="@drawable/home_activity_icon_selected"
         android:title="首页" />
     <item
         android:id="@+id/item_xinwen"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/home_activity_icon_news"
         android:title="新闻" />
     <item
         android:id="@+id/item_daiding"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/home_activity_icon_baikelei"
         android:title="疫情百科" />
     <item
         android:id="@+id/item_daiding1"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/home_activity_icon_selectedtest"
         android:title="关于我们" />
 
 
