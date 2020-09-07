@@ -15,13 +15,13 @@ import com.example.epidemicscenarioapplication.databinding.HomeDialogPlatformBin
  * @date 2020/7/6
  * @description com.example.epidemicscenarioapplication.custom
  */
-public class CustomDialog extends Dialog {
+public class HomeFragmetPlatformDialog extends Dialog {
 
     public  View mMView;
 
     public HomeDialogPlatformBinding mMBinding;
 
-    public CustomDialog(Context context, int layoutId) {
+    public HomeFragmetPlatformDialog(Context context, int layoutId) {
         //使用自定义Dialog样式
         super(context, R.style.custom_dialog);
 //使用ViewBinding的写法

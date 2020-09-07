@@ -77,8 +77,6 @@ Wapp/src/main/java/com/example/epidemicscenarioapplication/domain/RumorListDataB
 ]app/src/main/java/com/example/epidemicscenarioapplication/domain/VerticalBannerDataBeans.java,1\9\191e86b3178d75177748d9ceed63c94f8906904e
 y
 Iapp/src/main/java/com/example/epidemicscenarioapplication/domain/API.java,0\8\08ad999d7875d7a09ab5f36cb4ba5c86e14b2c47
-Ç
-Rapp/src/main/java/com/example/epidemicscenarioapplication/custom/CustomDialog.java,3\2\324bf75801fc7c06d8e1fe6310a096c138901289
 ê
 `app/src/main/java/com/example/epidemicscenarioapplication/adapter/HomeFragmentBannerAdapter.java,0\7\0768822cad6066b203e0b7b984cd1b8527739d77
 ò
@@ -253,3 +251,7 @@ g
 ,app/src/main/res/layout/home_county_item.xml,a\0\a001488026568e11c0fd6d2a442829cdac27e6c5
 Ä
 Papp/src/main/java/com/example/epidemicscenarioapplication/custom/ItemInMine.java,b\3\b3b7fa8f5623e81656dfc4c9d8a869864b472cad
+è
+_app/src/main/java/com/example/epidemicscenarioapplication/custom/HomeFragmetPlatformDialog.java,9\4\9414e19ba4cb6803ba680310555918f6a6e9ed94
+Ä
+Papp/src/main/java/com/example/epidemicscenarioapplication/custom/TipsDialog.java,b\c\bc1178c7437c6f24be40c8baedd53ef02a6a2761

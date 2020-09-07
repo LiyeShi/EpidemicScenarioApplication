@@ -14,7 +14,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
-import com.example.epidemicscenarioapplication.custom.CustomDialog;
+import com.example.epidemicscenarioapplication.custom.HomeFragmetPlatformDialog;
 
 
 import com.example.epidemicscenarioapplication.databinding.HomeFragmentBinding;
@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     private static final String TAG = "HomeFragment";
     private HomePagePresenter mHomePagePresenter;
     private ArrayList<VerticalBannerDataBeans> Datas;
-    private CustomDialog mDialog;
+    private HomeFragmetPlatformDialog mDialog;
     private WindowManager.LayoutParams mLp;
     private HomeFragmentBinding mHomeFragmentBinding;
     private LinearLayout mHomeFragmentBindingRoot;
@@ -99,7 +99,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     }
 
     private void initDialog() {
-        mDialog = new CustomDialog(mHomeFragmentBindingRoot.getContext(), R.layout.home_dialog_platform);
+        mDialog = new HomeFragmetPlatformDialog(mHomeFragmentBindingRoot.getContext(), R.layout.home_dialog_platform);
     }
 
 
@@ -113,7 +113,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 //            获取所在市各个县区疫情数据
         mHomePagePresenter = new HomePagePresenter(HomeFragment.this);
 //            获取首页天气
-        mHomePagePresenter.loadVerticalBannerWeather(getContext(),location);
+        // TODO: 2020/9/6 别忘了删除
+        mHomePagePresenter.loadVerticalBannerWeather(getContext(),"济南");
         Log.d(TAG, "initNetworkRequest: 获取天气");
 //        注意请求天气和请求各个县区的疫情数据一定得是这个先后关系，因为location是请求天气的时候才传过去的
         mHomePagePresenter.loadCountyList();

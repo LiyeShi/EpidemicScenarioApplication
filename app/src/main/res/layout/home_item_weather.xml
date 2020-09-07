@@ -2,75 +2,117 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/white"
-    android:padding="8dp">
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/ll_first"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/weather_icon"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/shishitianqi" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_weather_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="实时天气"
-            android:textSize="6dp" />
+            android:text="天气"
+            android:textSize="10dp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ll_second"
+        android:layout_alignBottom="@id/ll_first"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/ll_first"
         android:gravity="center"
-        android:layout_alignBottom="@id/ll_first"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/iv_weather_show_icon"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/dingwei" />
+            android:src="@drawable/home_fragment_banner_icon_weather_location" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_positioning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="临沂"
-            android:textSize="6dp" />
+            android:textColor="@color/black"
+            android:textSize="10dp" />
     </LinearLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_toRightOf="@id/ll_second"
-    android:layout_marginLeft="30dp"
-    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/ll_second"
+        android:orientation="horizontal">
 
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/dabaoyu"
-        android:id="@+id/iv_weather"
-        />
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="大暴雨"
-        android:textSize="8dp"/>
-</LinearLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="晴"
+            android:textColor="@color/black"
+            android:textSize="40dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_weather_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:text="26℃"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_weather_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:text="湿度"
+                android:textSize="10dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_weather_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:text="风力，西南风"
+                android:textSize="10dp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_weather_updata_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginRight="5dp"
+                android:text="2020-09-06 11:53:28"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,13 +81,19 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
             case ConstantsUtils.BANNER_TYPE_WEATER:
                 WeatherViewaHolder weatherViewaHolder = (WeatherViewaHolder) holder;
                 weatherViewaHolder.tvWeather.setText(data.getWeatherDataBean().getData().getWeather());
+                weatherViewaHolder.tvWind.setText("风力"+data.getWeatherDataBean().getData().getWindPower()+"，"+data.getWeatherDataBean().getData().getWindDirection()+"风");
+                weatherViewaHolder.tvHumidity.setText("湿度:" + data.getWeatherDataBean().getData().getHumidity());
+                weatherViewaHolder.tvTemp.setText(data.getWeatherDataBean().getData().getTemp());
+                weatherViewaHolder.tvUptimer.setText(data.getWeatherDataBean().getData().getReportTime());
+                weatherViewaHolder.tvPositioning.setText(data.getWeatherDataBean().getData().getAddress());
                 RequestOptions options = new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-                Glide.with(mContext).load(R.drawable.giphy).apply(options).into(weatherViewaHolder.ivIcon);
+                Glide.with(mContext).load(R.drawable.home_fragment_banner_weather_icon).apply(options).into(weatherViewaHolder.ivIcon);
                 break;
             case ConstantsUtils.BANNER_TYPE_YIQING:
                 EpidemicHolder epidemicHolder = (EpidemicHolder) holder;
-                epidemicHolder.tvCount.setText(data.getCountyListDataBean().getSure()+"人");
+                epidemicHolder.tvCount.setTextColor(Color.RED);
+                epidemicHolder.tvCount.setText(data.getCountyListDataBean().getSure() + "人");
                 epidemicHolder.tvName.setText(data.getCountyListDataBean().getName());
                 epidemicHolder.tvTime.setText(data.getTime());
                 epidemicHolder.tvSource.setText(data.getCountyListDataBean().getSource());
@@ -100,12 +107,22 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
     //不同类型的ViewHolder
     public class WeatherViewaHolder extends RecyclerView.ViewHolder {
         TextView tvWeather;
+        TextView tvTemp;
+        TextView tvUptimer;
+        TextView tvWind;
+        TextView tvPositioning;
+        TextView tvHumidity;
         ImageView ivIcon;
 
         public WeatherViewaHolder(@NonNull View itemView) {
             super(itemView);
             tvWeather = itemView.findViewById(R.id.tv_weather);
             ivIcon = itemView.findViewById(R.id.weather_icon);
+            tvTemp = itemView.findViewById(R.id.tv_weather_temp);
+            tvHumidity = itemView.findViewById(R.id.tv_weather_humidity);
+            tvUptimer=itemView.findViewById(R.id.tv_weather_updata_time);
+            tvWind=itemView.findViewById(R.id.tv_weather_wind);
+            tvPositioning = itemView.findViewById(R.id.tv_positioning);
         }
 
 
@@ -116,6 +133,7 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
         TextView tvCount;
         TextView tvTime;
         TextView tvSource;
+
         public EpidemicHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_home_item_epidemic_name);

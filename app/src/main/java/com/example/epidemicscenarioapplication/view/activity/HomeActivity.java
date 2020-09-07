@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.view.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.baidu.location.LocationClient;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.custom.TipsDialog;
 import com.example.epidemicscenarioapplication.databinding.ActivityHomeBinding;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
@@ -51,7 +53,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
     private static final String PREF_ISFIRST = "isFirst";
-    private  static final int SETTING_CODE=0;
+    private static final int SETTING_CODE = 0;
     private static final int GPS_REQUEST_CODE = 1;
     private static final int SHOW_GUILDEPAGE_CODE = 2;
     private static boolean isToSetting = false;
@@ -66,7 +68,6 @@ public class HomeActivity extends BaseActivity {
     private HomeActivityViewpagerAdapter mViewpagerAdapter;
     public LocationClient mLocationClient;
     private MyLocationListener myListener = new MyLocationListener();
-
 
 
     @Override
@@ -94,23 +95,22 @@ public class HomeActivity extends BaseActivity {
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     public void initGPS() {
         if (!checkGpsIsOpen()) {
-            new AlertDialog.Builder(this).setTitle("警告:")
-                    .setMessage("检测到没有打开GPS，无法正常使用软件!")
-                    //  取消选项
-                    .setNegativeButton("退出软件", (dialogInterface, i) -> {
-                        // 关闭dialog
-                        dialogInterface.dismiss();
-                        finish();
-                    })
-                    //  确认选项
-                    .setPositiveButton("去打开", (dialogInterface, i) -> {
-                        //跳转到手机原生设置页面
-                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivityForResult(intent, GPS_REQUEST_CODE);
-                    })
-                    .setCancelable(false)
-                    .show();
-        }else {
+            TipsDialog instance = TipsDialog.getInstance(
+                    this,
+                    R.style.custom_dialog,
+                    "全民战役需要使用GPS",
+                    "检测到没有打开GPS，为了能够正常进行定位，请打开GPS功能");
+            instance.setOkOnclickListener("去打开", () -> {
+                //跳转到手机原生设置页面
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivityForResult(intent, GPS_REQUEST_CODE);
+            });
+            instance.setCancelOnclickListener("退出软件", () -> {
+                finish();
+            });
+            instance.setCancelable(false);
+            instance.show();
+        } else {
             initLocationClient();
         }
     }
@@ -175,6 +175,7 @@ public class HomeActivity extends BaseActivity {
         return view;
     }
 
+    @SuppressLint("WrongConstant")
     private void initListener() {
         Log.d(TAG, "initListener: 设置监听");
         mHomeBinding.bnvHome.setItemIconTintList(null);
@@ -253,9 +254,12 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLocationClient.unRegisterLocationListener(myListener);
+        if (mLocationClient != null) {
+            mLocationClient.unRegisterLocationListener(myListener);
+        }
     }
 
+    @SuppressLint("NeedOnRequestPermissionsResult")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -271,14 +275,33 @@ public class HomeActivity extends BaseActivity {
     void showReasonPermissions(final PermissionRequest request) {
         if (isFirstShowReason) {
 //            每次只展示一次请求权限的原因
-            new AlertDialog.Builder(this)
-                    .setMessage("请授予我们必要的权限，我们需要根据您的位置，向您提供相关疫情信息")
-                    .setPositiveButton("知道了", (dialogInterface, i) -> {
-                        // 再次执行权限请求
-                        request.proceed();
-                        isFirstShowReason = false;
-                    })
-                    .show();
+            TipsDialog dialog = TipsDialog.getInstance(
+                    this,
+                    R.style.custom_dialog,
+                    "全民战役需要获取位置信息",
+                    "为了正常显示所在地、疫情信息推送等服务，请允许全民战役使用位置信息，您可以通过系统“设置”进行权限的管理。"
+            );
+            dialog.setOkOnclickListener("去授予权限", () -> {
+                // 再次执行权限请求
+                request.proceed();
+                isFirstShowReason = false;
+            });
+            dialog.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
+                @Override
+                public void onCancelClick() {
+                    finish();
+                }
+            });
+            dialog.setCancelable(false);
+            dialog.show();
+//
+//
+//            new AlertDialog.Builder(this)
+//                    .setMessage("请授予我们必要的权限，我们需要根据您的位置，向您提供相关疫情信息")
+//                    .setPositiveButton("知道了", (dialogInterface, i) -> {
+//
+//                    })
+//                    .show();
         } else {
 //            下一次走到该方法直接请求
             request.proceed();
@@ -291,15 +314,29 @@ public class HomeActivity extends BaseActivity {
      */
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     void OnPermissionDenied() {
-        new AlertDialog.Builder(this)
-                .setMessage("这是必要权限，如果不授权将无法使用软件")
-                .setPositiveButton("知道了", (DialogInterface dialogInterface, int i) -> {
-                    // 再次执行权限请求
-                    HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
-                    ToastUtils.showLongToast(this, "请求结束");
-                    Log.d(TAG, "OnPermissionDenied: finish");
-                })
-                .show();
+        TipsDialog instance = TipsDialog.getInstance(
+                this,
+                R.style.custom_dialog,
+                "警告！",
+                "这是必要权限，如果不授权将无法使用软件"
+        );
+        instance.setOkOnclickListener("去授权", () -> {
+            // 再次执行权限请求
+            HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
+        });
+        instance.setCancelOnclickListener("退出软件", () -> {
+            finish();
+        });
+        instance.setCancelable(false);
+        instance.show();
+//        new AlertDialog.Builder(this)
+//                .setMessage("这是必要权限，如果不授权将无法使用软件")
+//                .setPositiveButton("知道了", (DialogInterface dialogInterface, int i) -> {
+//                    // 再次执行权限请求
+//                    HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
+//                    Log.d(TAG, "OnPermissionDenied: finish");
+//                })
+//                .show();
     }
 
     /**
@@ -307,17 +344,39 @@ public class HomeActivity extends BaseActivity {
      */
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     void neverAskAgain() {
-        new AlertDialog.Builder(this)
-                .setMessage("您拒绝了位置权限，且不再询问，请前往设置中心授权")
-                .setPositiveButton("去设置", (dialogInterface, i) -> {
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
-                    startActivityForResult(intent, SETTING_CODE);
-                    //                 说明进入设置界面了
-                    isToSetting = true;
-                })
-                .setNegativeButton("退出程序", (dialog, which) -> finish())
-                .show();
+        TipsDialog instance = TipsDialog.getInstance(this,
+                R.style.custom_dialog,
+                "无法获得权限",
+                "您拒绝了位置权限，且不再询问，请前往设置中心授权");
+        instance.setOkOnclickListener("去设置", new TipsDialog.OnOkClickListener() {
+            @Override
+            public void onOKClick() {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
+                startActivityForResult(intent, SETTING_CODE);
+                //                 说明进入设置界面了
+                isToSetting = true;
+            }
+        });
+        instance.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
+            @Override
+            public void onCancelClick() {
+                finish();
+            }
+        });
+        instance.setCancelable(false);
+        instance.show();
+//        new AlertDialog.Builder(this)
+//                .setMessage("您拒绝了位置权限，且不再询问，请前往设置中心授权")
+//                .setPositiveButton("去设置", (dialogInterface, i) -> {
+//                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                    intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
+//                    startActivityForResult(intent, SETTING_CODE);
+//                    //                 说明进入设置界面了
+//                    isToSetting = true;
+//                })
+//                .setNegativeButton("退出程序", (dialog, which) -> finish())
+//                .show();
 
 
     }

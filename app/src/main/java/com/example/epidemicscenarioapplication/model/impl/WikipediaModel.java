@@ -49,7 +49,7 @@ public class WikipediaModel implements IWikipediaModel {
         Retrofit retrofit = instance.getRetrofit();
         API api = retrofit.create(API.class);
         if (type == WikipediaType.PREVENTION) {
-            Call<WikipediaDataBean> getGuideListList = api.getGuideListList(20);
+            Call<WikipediaDataBean> getGuideListList = api.getGuideListList(222);
             getGuideListList.enqueue(new Callback<WikipediaDataBean>() {
                 @Override
                 public void onResponse(Call<WikipediaDataBean> call, Response<WikipediaDataBean> response) {
@@ -67,7 +67,7 @@ public class WikipediaModel implements IWikipediaModel {
 
             });
         } else {
-            Call<WikipediaDataBean> diagnoseList = api.getDiagnoseList(20);
+            Call<WikipediaDataBean> diagnoseList = api.getDiagnoseList(34);
             diagnoseList.enqueue(new Callback<WikipediaDataBean>() {
                 @Override
                 public void onResponse(Call<WikipediaDataBean> call, Response<WikipediaDataBean> response) {
