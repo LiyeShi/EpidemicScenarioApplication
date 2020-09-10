@@ -104,6 +104,8 @@ public class HomeActivity extends BaseActivity {
                 //跳转到手机原生设置页面
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivityForResult(intent, GPS_REQUEST_CODE);
+                // TODO: 2020/9/7  还需要测试，这个地方为什么要主动取消显示，原来没有也是可以的
+                instance.dismiss();
             });
             instance.setCancelOnclickListener("退出软件", () -> {
                 finish();
@@ -289,19 +291,12 @@ public class HomeActivity extends BaseActivity {
             dialog.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
                 @Override
                 public void onCancelClick() {
+                    dialog.dismiss();
                     finish();
                 }
             });
             dialog.setCancelable(false);
             dialog.show();
-//
-//
-//            new AlertDialog.Builder(this)
-//                    .setMessage("请授予我们必要的权限，我们需要根据您的位置，向您提供相关疫情信息")
-//                    .setPositiveButton("知道了", (dialogInterface, i) -> {
-//
-//                    })
-//                    .show();
         } else {
 //            下一次走到该方法直接请求
             request.proceed();
@@ -325,18 +320,11 @@ public class HomeActivity extends BaseActivity {
             HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
         });
         instance.setCancelOnclickListener("退出软件", () -> {
+            instance.dismiss();
             finish();
         });
         instance.setCancelable(false);
         instance.show();
-//        new AlertDialog.Builder(this)
-//                .setMessage("这是必要权限，如果不授权将无法使用软件")
-//                .setPositiveButton("知道了", (DialogInterface dialogInterface, int i) -> {
-//                    // 再次执行权限请求
-//                    HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
-//                    Log.d(TAG, "OnPermissionDenied: finish");
-//                })
-//                .show();
     }
 
     /**
@@ -361,22 +349,12 @@ public class HomeActivity extends BaseActivity {
         instance.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
             @Override
             public void onCancelClick() {
+                instance.dismiss();
                 finish();
             }
         });
         instance.setCancelable(false);
         instance.show();
-//        new AlertDialog.Builder(this)
-//                .setMessage("您拒绝了位置权限，且不再询问，请前往设置中心授权")
-//                .setPositiveButton("去设置", (dialogInterface, i) -> {
-//                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//                    intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
-//                    startActivityForResult(intent, SETTING_CODE);
-//                    //                 说明进入设置界面了
-//                    isToSetting = true;
-//                })
-//                .setNegativeButton("退出程序", (dialog, which) -> finish())
-//                .show();
 
 
     }

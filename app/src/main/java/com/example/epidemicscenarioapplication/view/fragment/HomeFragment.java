@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,12 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
@@ -67,6 +74,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mHomeFragmentBinding.llFullPlatformData.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.llCar.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.etSearch.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.llNcovMask.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.ivHomeHeart.setOnClickListener(myOnclickListener);
     }
 
     @Override
@@ -118,6 +127,10 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         Log.d(TAG, "initNetworkRequest: 获取天气");
 //        注意请求天气和请求各个县区的疫情数据一定得是这个先后关系，因为location是请求天气的时候才传过去的
         mHomePagePresenter.loadCountyList();
+        RequestOptions options = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+//        这个地方是不是还能放到更合适的地方去
+        Glide.with(getContext()).load(R.drawable.home_fragment_love).apply(options).into(mHomeFragmentBinding.ivHomeHeart);
     }
 
 
@@ -180,7 +193,10 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 break;
             case 3:
                 Log.d(TAG, "OnBannerClick: 点击了第四个");
-
+                Uri uri = Uri.parse("http://www.chinacdc.cn/jkzt/crb/zl/szkb_11803/jszl_11815/202001/W020200128207842237479.pdf");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+//                WebPageActivity.start(getContext(),"http://www.chinacdc.cn/jkzt/crb/zl/szkb_11803/jszl_11815/202001/W020200128207842237479.pdf");
                 break;
             default:
                 Log.d(TAG, "OnBannerClick: 点击了第五个");
@@ -206,32 +222,31 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ll_aliijiankang:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
+                    WebPageActivity.start(getContext(), "https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
                     Log.d(TAG, "onClick: 点击了阿里健康");
                     break;
                 case R.id.ll_zhihu:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://www.zhihu.com/special/19681091");
-
+                    WebPageActivity.start(getContext(), "https://www.zhihu.com/special/19681091");
                     break;
                 case R.id.ll_diyixaijing:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
+                    WebPageActivity.start(getContext(), "https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
 
                     break;
                 case R.id.ll_dingxiangyuan:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://ncov.dxy.cn/ncovh5/view/pneumonia");
+                    WebPageActivity.start(getContext(), "https://ncov.dxy.cn/ncovh5/view/pneumonia");
 
                     break;
                 case R.id.ll_tengxun:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
+                    WebPageActivity.start(getContext(), "https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
                     break;
                 case R.id.ll_baidu:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://news.sina.cn/zt_d/yiqing0121");
+                    WebPageActivity.start(getContext(), "https://news.sina.cn/zt_d/yiqing0121");
                     break;
                 case R.id.ll_kuake:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://broccoli.uc.cn/apps/pneumonia/routes/index");
+                    WebPageActivity.start(getContext(), "https://broccoli.uc.cn/apps/pneumonia/routes/index");
                     break;
                 case R.id.ll_xinlang:
-                    WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://news.sina.cn/zt_d/yiqing0121");
+                    WebPageActivity.start(getContext(), "https://news.sina.cn/zt_d/yiqing0121");
                     break;
                 case R.id.ll_car:
 //                    去哪网提供同乘车辆查询
@@ -255,6 +270,14 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 case R.id.et_search:
                     startActivity(new Intent(getContext(),SearchActivity.class));
                     getActivity().overridePendingTransition(R.anim.search_activity_translate_in, R.anim.home_activity_translate_out);
+                    break;
+                case R.id.ll_ncov_mask:
+//                    口罩预约
+                    WebPageActivity.start(getContext(),"https://ncov.html5.qq.com/mouthmask/index.html?channelid=6");
+                    break;
+                case R.id.iv_home_heart:
+                    Log.d(TAG, "onClick: 点击了爱心");
+                    new GratitudeFragment().show(getFragmentManager(), "view");
                     break;
                 default:
                     break;

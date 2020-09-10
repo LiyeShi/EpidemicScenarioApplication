@@ -1,5 +1,6 @@
 package com.example.epidemicscenarioapplication.adapter;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
 
 /**
@@ -28,6 +30,20 @@ public class NcovVillageListViewAdapter extends BaseAdapter {
            this.datas = new ArrayList<>();
         }
         this.datas = datas;
+    }
+
+    /**
+     * 重写下面两个方法，使listView不可点击
+     * @return
+     */
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 
     @Override
@@ -68,7 +84,8 @@ public class NcovVillageListViewAdapter extends BaseAdapter {
         }
         holder.tvLocation.setText(datas.get(position).getPosi_address());
         holder.tvTime.setText(datas.get(position).getUpdate_time());
-        holder.tvCount.setText(datas.get(position).getCnt_sum_certain()+"人");
+        holder.tvCount.setTextColor(Color.RED);
+        holder.tvCount.setText((Math.abs(datas.get(position).getCnt_sum_certain())+"人"));
         return convertView;
     }
 

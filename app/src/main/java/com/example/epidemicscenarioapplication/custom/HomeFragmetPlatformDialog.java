@@ -17,7 +17,7 @@ import com.example.epidemicscenarioapplication.databinding.HomeDialogPlatformBin
  */
 public class HomeFragmetPlatformDialog extends Dialog {
 
-    public  View mMView;
+    public View mMView;
 
     public HomeDialogPlatformBinding mMBinding;
 

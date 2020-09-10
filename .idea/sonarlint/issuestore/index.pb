@@ -12,8 +12,6 @@ Papp/src/main/java/com/example/epidemicscenarioapplication/base/BaseFragment.jav
 €
 Papp/src/main/java/com/example/epidemicscenarioapplication/base/BaseActivity.java,5\2\5283069a2e8428c57a6f6f416b3b0d5f35a4d285
 ‰
-Yapp/src/main/java/com/example/epidemicscenarioapplication/view/activity/MainActivity.java,3\f\3f37ca4d70e804e682df1958f62ec403bcedb4c8
-‰
 Yapp/src/main/java/com/example/epidemicscenarioapplication/view/fragment/HomeFragment.java,0\f\0fe6d28749d2b35cd4594f1c6787fb2ec397f5c2
 „
 Tapp/src/main/java/com/example/epidemicscenarioapplication/utils/RetrofitManager.java,f\c\fc5707b7c901e91635ce34be0395ed899a8d3c26
@@ -255,3 +253,9 @@ Papp/src/main/java/com/example/epidemicscenarioapplication/custom/ItemInMine.jav
 _app/src/main/java/com/example/epidemicscenarioapplication/custom/HomeFragmetPlatformDialog.java,9\4\9414e19ba4cb6803ba680310555918f6a6e9ed94
 €
 Papp/src/main/java/com/example/epidemicscenarioapplication/custom/TipsDialog.java,b\c\bc1178c7437c6f24be40c8baedd53ef02a6a2761
+\
+,app/src/main/res/drawable/bg_dialog_base.xml,0\b\0b3b86cb61b9ef50ac3a8fc52d8abca299019f2f
+\
+,app/src/main/res/layout/base_tips_dialog.xml,9\8\98b8aed68fa5c3f10b7fb2b3e0c3e3eecbbe6be7
+Y
+)app/src/main/res/layout/mine_fragment.xml,0\0\00c55f1321063b2751834657aa88c67890e51602

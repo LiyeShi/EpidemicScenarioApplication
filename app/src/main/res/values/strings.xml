@@ -14,4 +14,6 @@
     <string name="home_et_search">模糊搜索疫情小区</string>
     <string name="activity_search_hint">请输入搜索内容</string>
     <string name="home_item_epidemic_count">累计确诊:</string>
+    <string name="mine_fragmetn_statement">免责声明：本软件所列信息均来自互联网，仅供参考，本软件力求但不保证信息的完全准确，如有错漏请以官方媒体披露为准，用户个人对服务的使用承担风险，本软件不作任何类型担保！</string>
+    <string name="home_mask_des">口罩预约</string>
 </resources>

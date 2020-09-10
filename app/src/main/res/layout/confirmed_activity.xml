@@ -10,6 +10,7 @@
         android:id="@+id/include_head"/>
 
     <ListView
+        android:clickable="false"
         android:id="@+id/lv_ncov_village"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

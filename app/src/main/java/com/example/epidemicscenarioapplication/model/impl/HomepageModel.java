@@ -41,6 +41,7 @@ public class HomepageModel implements IHomepageModel {
         bannerList.add(R.drawable.bannerone);
         bannerList.add(R.drawable.banner);
         bannerList.add(R.drawable.bannerfour);
+        bannerList.add(R.drawable.home_fragment_banner_jikong);
         //假装下载成功了
         homePagePresenter.loadBannerSuccess(bannerList);
 
