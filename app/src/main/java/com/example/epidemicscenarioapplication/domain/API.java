@@ -36,7 +36,7 @@ public interface API {
      * @return
      */
     @GET("/ncov/village/getVillage2")
-    Call<NcovVillageDataBean> getVillageByCommunityName(@Query("cityName") String cityName);
+    Call<NcovVillageDataBean> getVillage2(@Query("cityName") String cityName);
 
     /**
      * @param count 疫情百科知识 （检查诊断）
@@ -86,4 +86,7 @@ public interface API {
      */
     @GET("/ncov/statistics/getCountyList/")
     Call<VerticalBannerDataBeans.CountyListDataBean> getCountyList(@Query("cityName") String cityName);
+
+    @GET("/ncov/village/getVillageByCommunityName/")
+    Call<EpidemicAreaDataBean> getVillageByCommunityName(@Query("communityName") String communityName);
 }

@@ -259,3 +259,15 @@ Papp/src/main/java/com/example/epidemicscenarioapplication/custom/TipsDialog.jav
 ,app/src/main/res/layout/base_tips_dialog.xml,9\8\98b8aed68fa5c3f10b7fb2b3e0c3e3eecbbe6be7
 Y
 )app/src/main/res/layout/mine_fragment.xml,0\0\00c55f1321063b2751834657aa88c67890e51602
+Ž
+^app/src/main/java/com/example/epidemicscenarioapplication/view/fragment/GratitudeFragment.java,0\f\0f0922e9debf49cc359bc219e862fe70af63edf7
+_
+/app/src/main/res/drawable/dialog_background.xml,9\7\97125eff8f95ca945f7cb4c4d29c2c044485b37b
+a
+1app/src/main/res/layout/home_doctors_fragment.xml,b\e\be9dc8f56c943a667de6563ddc7952c159631513
+i
+9app/src/main/res/drawable-v24/bg_fragment_dialog_base.xml,3\a\3a946087e9766c8b8d1afb33335a1edb97ca2148
+Š
+Zapp/src/main/java/com/example/epidemicscenarioapplication/domain/EpidemicAreaDataBean.java,1\5\1502caffa701172b84bf6d74489942dca652a6c9
+Œ
+\app/src/main/java/com/example/epidemicscenarioapplication/adapter/SearchListViewAdapter.java,4\b\4b49e0bcf69972084606c0f2b108fe54b5250a46

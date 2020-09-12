@@ -4,9 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
 
+import com.example.epidemicscenarioapplication.custom.TipsDialog;
 import com.example.epidemicscenarioapplication.databinding.MineFragmentBinding;
+import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 
 
 /**
@@ -19,10 +22,13 @@ import com.example.epidemicscenarioapplication.databinding.MineFragmentBinding;
 public class AboutUsFragment extends BaseFragment {
 
     private MineFragmentBinding mMineFragmentBinding;
+    private MyListener mMyListener;
 
     @Override
     protected void initListener() {
-
+        mMineFragmentBinding.itemone.setOnClickListener(mMyListener);
+        mMineFragmentBinding.projectAddress.setOnClickListener(mMyListener);
+        mMineFragmentBinding.itemthree.setOnClickListener(mMyListener);
     }
 
     @Override
@@ -34,9 +40,9 @@ public class AboutUsFragment extends BaseFragment {
     protected void initView() {
         setViewState(ViewState.SUCCESS);
         mMineFragmentBinding.itemone.setTextViewText("致谢");
-        mMineFragmentBinding.itemtwo.setTextViewText("致谢");
+        mMineFragmentBinding.projectAddress.setTextViewText("项目地址");
         mMineFragmentBinding.itemone.setTextViewText("致谢");
-        MyListener myListener = new MyListener();
+        mMyListener = new MyListener();
 
     }
 
@@ -59,6 +65,15 @@ public class AboutUsFragment extends BaseFragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.itemone:
+                    TipsDialog tipsDialog = new TipsDialog(getContext(), R.layout.base_tips_dialog);
+                    tipsDialog.setHead("致谢");
+                    tipsDialog.setBody("感谢LiangWuCode提供的数据支持，本软件大多数数据均来自改接口，仓库地址https://github.com/LiangWuCode/2019-nCov-api");
+                    tipsDialog.show();
+                    break;
+                case R.id.project_address:
+                    WebPageActivity.start(getContext(),"https://github.com/Stone-s/EpidemicScenarioApplication");
+                    break;
                 default:
                     break;
             }

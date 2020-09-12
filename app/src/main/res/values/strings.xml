@@ -12,8 +12,12 @@
     <string name="home_data_des">疫情数据回顾</string>
     <string name="home_platform_des">全平台数据</string>
     <string name="home_et_search">模糊搜索疫情小区</string>
-    <string name="activity_search_hint">请输入搜索内容</string>
+    <string name="activity_search_hint">请输入要模糊搜索的小区名称</string>
     <string name="home_item_epidemic_count">累计确诊:</string>
     <string name="mine_fragmetn_statement">免责声明：本软件所列信息均来自互联网，仅供参考，本软件力求但不保证信息的完全准确，如有错漏请以官方媒体披露为准，用户个人对服务的使用承担风险，本软件不作任何类型担保！</string>
     <string name="home_mask_des">口罩预约</string>
+    <string name="search_activity_btn_des">搜索</string>
+    <string name="search_error_tips">没有查询到当前小区有确诊信息</string>
+    <string name="activity_search_tips" >提示：例如"幸福家园小区"，只需输入"幸福"即可</string>
+    <string name="home_free_clinic_des">在线义诊</string>
 </resources>

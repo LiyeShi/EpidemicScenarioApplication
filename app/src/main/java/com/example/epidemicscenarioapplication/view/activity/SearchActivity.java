@@ -1,25 +1,81 @@
 package com.example.epidemicscenarioapplication.view.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.adapter.SearchListViewAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 import com.example.epidemicscenarioapplication.databinding.ActivitySearchBinding;
+import com.example.epidemicscenarioapplication.domain.API;
+import com.example.epidemicscenarioapplication.domain.EpidemicAreaDataBean;
+import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
+import com.example.epidemicscenarioapplication.utils.RetrofitManager;
+import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
-public class SearchActivity extends BaseActivity {
+import java.net.HttpURLConnection;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+public class SearchActivity extends BaseActivity {
+    private static final String TAG = "SearchActivity";
     private ActivitySearchBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-    }
-
-    @Override
     protected void initData() {
+        mBinding.btnSeatrch.setOnClickListener(v -> {
+            String content = mBinding.etSearchContent.getText().toString().trim();
+            if (!TextUtils.isEmpty(content)) {
+                mBinding.llSearchEmpty.setVisibility(View.GONE);
+                mBinding.llSearchLoading.setVisibility(View.VISIBLE);
+                mBinding.lsResult.setVisibility(View.GONE);
+                RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
+                Retrofit retrofit = manager.getRetrofit();
+                API api = retrofit.create(API.class);
+                Call<EpidemicAreaDataBean> call = api.getVillageByCommunityName(content);
+                call.enqueue(new Callback<EpidemicAreaDataBean>() {
+                    @Override
+                    public void onResponse(Call<EpidemicAreaDataBean> call, Response<EpidemicAreaDataBean> response) {
+                        int code = response.code();
+                        if (code == HttpURLConnection.HTTP_OK) {
+                            EpidemicAreaDataBean body = response.body();
+                            Log.d(TAG, "onResponse: 搜索结果==>" + body);
+                            if (body.getData().size()==0) {
+//                                返回的数据是空的，直接当做加载失败处理
+                                mBinding.lsResult.setVisibility(View.GONE);
+                                mBinding.llSearchLoading.setVisibility(View.GONE);
+                                mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
+                            }else {
+                                SearchListViewAdapter adapter = new SearchListViewAdapter(body);
+                                mBinding.lsResult.setAdapter(adapter);
+                                mBinding.llSearchLoading.setVisibility(View.GONE);
+                                mBinding.llSearchEmpty.setVisibility(View.GONE);
+                                mBinding.lsResult.setVisibility(View.VISIBLE);
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<EpidemicAreaDataBean> call, Throwable t) {
+                        mBinding.lsResult.setVisibility(View.GONE);
+                        mBinding.llSearchLoading.setVisibility(View.GONE);
+                        mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
+                    }
+                });
+
+            } else {
+                ToastUtils.showLongToast(this, "请输入小区名称！");
+                return;
+            }
+        });
 
     }
 
@@ -50,6 +106,7 @@ public class SearchActivity extends BaseActivity {
     protected void initPresenter() {
 
     }
+
 
     @Override
     public void finish() {

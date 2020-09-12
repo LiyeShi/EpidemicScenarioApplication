@@ -37,7 +37,7 @@ public class AroundConfirmedActivity extends BaseActivity {
         Retrofit retrofit = retrofitManager.getRetrofit();
 //        SpUtils.getString(this, ConstantsUtils.LOCATION_CITY, "临沂市")
         String location = SpUtils.getString(AroundConfirmedActivity.this, ConstantsUtils.LOCATION_CITY, " ");
-        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillageByCommunityName(location);
+        Call<NcovVillageDataBean> village = retrofit.create(API.class).getVillage2(location);
         village.enqueue(new Callback<NcovVillageDataBean>() {
             @Override
             public void onResponse(Call<NcovVillageDataBean> call, Response<NcovVillageDataBean> response) {

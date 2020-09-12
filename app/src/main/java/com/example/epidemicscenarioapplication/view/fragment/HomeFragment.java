@@ -183,9 +183,10 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://lispczz.github.io/pneumonia/");
                 break;
             case 1:
-//                疫情实时动态 省市地图
+//               援鄂名单
                 Log.d(TAG, "OnBannerClick: 点击了第二个");
-                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://ncov.shanyue.tech/");
+                new GratitudeFragment().show(getFragmentManager(), "view");
+//                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://ncov.shanyue.tech/");
                 break;
             case 2:
                 Log.d(TAG, "OnBannerClick: 点击了第三个");
@@ -278,6 +279,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 case R.id.iv_home_heart:
                     Log.d(TAG, "onClick: 点击了爱心");
                     new GratitudeFragment().show(getFragmentManager(), "view");
+                    break;
+                case R.id.ll_free_clinic:
+
                     break;
                 default:
                     break;

@@ -9,10 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.epidemicscenarioapplication.R;
+import com.example.epidemicscenarioapplication.domain.EpidemicAreaDataBean;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.List;
 
 /**
@@ -21,14 +21,11 @@ import java.util.List;
  * @date 2020/7/3
  * @description com.example.epidemicscenarioapplication.adapter
  */
-public class NcovVillageListViewAdapter<T> extends BaseAdapter {
-    List<NcovVillageDataBean.DataBean> datas;
+public class SearchListViewAdapter extends BaseAdapter {
+    EpidemicAreaDataBean datas;
 
     private static final String TAG = "NcovVillageListViewAdap";
-    public NcovVillageListViewAdapter(List<NcovVillageDataBean.DataBean> datas) {
-        if (this.datas==null) {
-           this.datas = new ArrayList<>();
-        }
+    public SearchListViewAdapter(EpidemicAreaDataBean datas) {
         this.datas = datas;
     }
 
@@ -48,8 +45,7 @@ public class NcovVillageListViewAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.d(TAG, "getCount: 数据大小==>"+datas.size());
-        return datas.size();
+        return datas.getData().size();
     }
 
     @Override
@@ -82,10 +78,11 @@ public class NcovVillageListViewAdapter<T> extends BaseAdapter {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvLocation.setText(datas.get(position).getPosi_address());
-        holder.tvTime.setText(datas.get(position).getUpdate_time());
+
+        holder.tvLocation.setText(datas.getData().get(position).getPosi_address());
+        holder.tvTime.setText(datas.getData().get(position).getUpdate_time());
         holder.tvCount.setTextColor(Color.RED);
-        holder.tvCount.setText((Math.abs(datas.get(position).getCnt_sum_certain())+"人"));
+        holder.tvCount.setText((Math.abs(datas.getData().get(position).getCnt_sum_certain())+"人"));
         return convertView;
     }
 
