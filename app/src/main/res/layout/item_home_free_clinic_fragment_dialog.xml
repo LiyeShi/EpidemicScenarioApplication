@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/icon_home_fragment_wjw" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="阿里义诊"
+        android:layout_toRightOf="@id/iv_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@id/iv_icon"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_alignLeft="@id/tv_title"
+        android:id="@+id/tv_des"
+        android:textSize="10sp"
+        android:layout_below="@id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="阿里义诊asdfasdfasdfasdfasdfasdfasdfasdfasdf" />
+</RelativeLayout>

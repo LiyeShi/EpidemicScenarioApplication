@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 
-import com.example.epidemicscenarioapplication.databinding.BaseActivityWebBinding;
+import com.example.epidemicscenarioapplication.databinding.ActivityWebBinding;
 import com.example.epidemicscenarioapplication.view.IEpidemicMapView;
+import com.gyf.immersionbar.ImmersionBar;
 import com.just.agentweb.AgentWeb;
 
 
@@ -38,7 +41,7 @@ public class WebPageActivity extends BaseActivity implements IEpidemicMapView {
         mUrl = intent.getStringExtra(EXTRA_URL);
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mMapBindingRoot, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-                .useDefaultIndicator(R.color.colorPrimary, 2)
+                .useDefaultIndicator(ContextCompat.getColor(this,R.color.colorPrimaryDark), 2)
                 .createAgentWeb()
                 .ready()
                 .go(this.mUrl);
@@ -90,9 +93,20 @@ public class WebPageActivity extends BaseActivity implements IEpidemicMapView {
 
     @Override
     protected View getView() {
-        BaseActivityWebBinding epidemicMapBinding = BaseActivityWebBinding.inflate(getLayoutInflater());
+        ActivityWebBinding epidemicMapBinding = ActivityWebBinding.inflate(getLayoutInflater());
         mMapBindingRoot = epidemicMapBinding.getRoot();
         return mMapBindingRoot;
+    }
+
+    @Override
+    protected void InitImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.fitsSystemWindows(true)
+                .statusBarColor(R.color.white)
+                //状态栏字体是深色，不写默认为亮色
+                .statusBarDarkFont(true)
+                //导航栏图标是深色，不写默认为亮色
+                .navigationBarDarkIcon(false).init();
     }
 
     @Override

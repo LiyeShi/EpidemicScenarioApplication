@@ -140,7 +140,7 @@ public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
         public ContainImagViewHolder(@NonNull View itemView) {
             super(itemView);
             ivNewsIcon = itemView.findViewById(R.id.iv_news_icon);
-            tvTitle = itemView.findViewById(R.id.tv_news_title);
+            tvTitle = itemView.findViewById(R.id.tv_title);
             tvDes = itemView.findViewById(R.id.tv_news_abs);
             tvAuthor = itemView.findViewById(R.id.tv_news_author);
             ivAuthorIcon = itemView.findViewById(R.id.iv_author_icon);
@@ -157,7 +157,7 @@ public class WikipediaPageFragmentAdapter extends RecyclerView.Adapter {
 
         public OnlyTextViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tv_news_title);
+            tvTitle = itemView.findViewById(R.id.tv_title);
             tvDes = itemView.findViewById(R.id.tv_news_abs);
             tvAuthor = itemView.findViewById(R.id.tv_news_author);
             ivAuthorIcon = itemView.findViewById(R.id.iv_author_icon);

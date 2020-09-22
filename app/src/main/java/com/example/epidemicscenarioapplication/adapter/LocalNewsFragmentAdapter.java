@@ -86,7 +86,7 @@ public class LocalNewsFragmentAdapter extends RecyclerView.Adapter<LocalNewsFrag
 
         public ViewHolder(@NonNull NewsRecycleItemLocalBinding itemView) {
             super(itemView.getRoot());
-            mTvNewsTitle = itemView.tvNewsTitle;
+            mTvNewsTitle = itemView.tvTitle;
             mTvNewsUpdataTime = itemView.tvNewsUpdataTime;
             mIvOffice = itemView.ivOffice;
             mTvNewsAuthor = itemView.tvNewsAuthor;

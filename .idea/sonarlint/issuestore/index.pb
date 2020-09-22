@@ -173,8 +173,6 @@ d
 4app/src/main/res/layout/news_recycle_item_normal.xml,f\2\f2d35a871558f3727bf9ff6ec84937d263334aa8
 b
 2app/src/main/res/layout/base_activity_top_tips.xml,2\8\286e39225fca60fc3b24cae6b8586df170a0b4ee
-]
--app/src/main/res/layout/base_activity_web.xml,3\6\36f1c7fd5b9994d04e058e3888d2a6ea9c4cabf8
 l
 <app/src/main/res/layout/wikipedia_recycle_item_only_text.xml,d\a\da99774826d2025a4da385efa3eebcd0f29af1bd
 i
@@ -199,8 +197,6 @@ aapp/src/main/java/com/example/epidemicscenarioapplication/view/fragment/Timelin
 Rapp/src/main/java/com/example/epidemicscenarioapplication/view/IWikipediaView.java,8\0\80bbc46e7f6c059c266170c394221f397a1222ae
 ”
 dapp/src/main/java/com/example/epidemicscenarioapplication/view/activity/AroundConfirmedActivity.java,8\4\846ef6e7b5a5632ed7b2636a8aa1979aec36edbd
-^
-.app/src/main/res/layout/confirmed_activity.xml,7\9\79bca7ecfb98c4992b68d254f48e967db9ab741d
 l
 <app/src/main/res/layout/confirmed_list_item_ncov_village.xml,7\8\78cb3c8db8539760e462f8857437970d5b15c4ab
 ‡

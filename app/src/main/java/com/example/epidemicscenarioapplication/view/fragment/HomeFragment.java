@@ -11,16 +11,13 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentBannerAdapter;
 import com.example.epidemicscenarioapplication.adapter.HomeFragmentVerticalBannerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseFragment;
+import com.example.epidemicscenarioapplication.custom.HomeFragmentFreeClinic;
 import com.example.epidemicscenarioapplication.custom.HomeFragmetPlatformDialog;
 
 
@@ -75,7 +72,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mHomeFragmentBinding.llCar.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.etSearch.setOnClickListener(myOnclickListener);
         mHomeFragmentBinding.llNcovMask.setOnClickListener(myOnclickListener);
-        mHomeFragmentBinding.ivHomeHeart.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.llRumor.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.llWjw.setOnClickListener(myOnclickListener);
+        mHomeFragmentBinding.llFreeClinic.setOnClickListener(myOnclickListener);
     }
 
     @Override
@@ -129,8 +128,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mHomePagePresenter.loadCountyList();
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-//        这个地方是不是还能放到更合适的地方去
-        Glide.with(getContext()).load(R.drawable.home_fragment_love).apply(options).into(mHomeFragmentBinding.ivHomeHeart);
     }
 
 
@@ -185,8 +182,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
             case 1:
 //               援鄂名单
                 Log.d(TAG, "OnBannerClick: 点击了第二个");
-                new GratitudeFragment().show(getFragmentManager(), "view");
-//                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://ncov.shanyue.tech/");
+                new GratitudeFragmentDialog().show(getFragmentManager(), "view");
                 break;
             case 2:
                 Log.d(TAG, "OnBannerClick: 点击了第三个");
@@ -197,7 +193,6 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 Uri uri = Uri.parse("http://www.chinacdc.cn/jkzt/crb/zl/szkb_11803/jszl_11815/202001/W020200128207842237479.pdf");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
-//                WebPageActivity.start(getContext(),"http://www.chinacdc.cn/jkzt/crb/zl/szkb_11803/jszl_11815/202001/W020200128207842237479.pdf");
                 break;
             default:
                 Log.d(TAG, "OnBannerClick: 点击了第五个");
@@ -224,18 +219,15 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
             switch (v.getId()) {
                 case R.id.ll_aliijiankang:
                     WebPageActivity.start(getContext(), "https://alihealth.taobao.com/medicalhealth/influenzamap?chInfo=spring2020-stay-in");
-                    Log.d(TAG, "onClick: 点击了阿里健康");
                     break;
                 case R.id.ll_zhihu:
                     WebPageActivity.start(getContext(), "https://www.zhihu.com/special/19681091");
                     break;
                 case R.id.ll_diyixaijing:
                     WebPageActivity.start(getContext(), "https://s3.pstatp.com/ies/douyin_wuhan/wuhan/index.html?hide_nav_bar=1&hide_status_bar=0&disableBounces=1&status_bar_color=000&use_wkwebview=1&enter_from=share&timestamp=1581054924&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin");
-
                     break;
                 case R.id.ll_dingxiangyuan:
                     WebPageActivity.start(getContext(), "https://ncov.dxy.cn/ncovh5/view/pneumonia");
-
                     break;
                 case R.id.ll_tengxun:
                     WebPageActivity.start(getContext(), "https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
@@ -254,21 +246,15 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     WebPageActivity.start(getContext(), "https://wxapp.qunar.com/site/feiyansearch/index.html?bd_source=hbzf#/?_k=vih3l0");
                     break;
                 case R.id.ll_full_platform_data:
-                    mLp = new WindowManager.LayoutParams();
-                    Window window = mDialog.getWindow();
-                    mLp.copyFrom(window.getAttributes());
-                    mLp.width = 1000;
-                    mLp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                    //注意要在Dialog show之后，再将宽高属性设置进去，才有效果
-                    mDialog.show();
-                    window.setAttributes(mLp);
-                    //设置点击屏幕其它地方不让消失弹窗，点击返回键对话框消失
-                    mDialog.setCanceledOnTouchOutside(false);
+//                    全平台数据
+                    setDialog();
                     break;
                 case R.id.ll_data_back:
+//                    数据回顾
                     startActivity(new Intent(getContext(), DataBackActivity.class));
                     break;
                 case R.id.et_search:
+//                    顶部搜索框
                     startActivity(new Intent(getContext(),SearchActivity.class));
                     getActivity().overridePendingTransition(R.anim.search_activity_translate_in, R.anim.home_activity_translate_out);
                     break;
@@ -276,17 +262,35 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 //                    口罩预约
                     WebPageActivity.start(getContext(),"https://ncov.html5.qq.com/mouthmask/index.html?channelid=6");
                     break;
-                case R.id.iv_home_heart:
-                    Log.d(TAG, "onClick: 点击了爱心");
-                    new GratitudeFragment().show(getFragmentManager(), "view");
+                case R.id.ll_rumor:
+//                    谣言
+                   WebPageActivity.start(getContext(),"https://vp.fact.qq.com/home");
                     break;
                 case R.id.ll_free_clinic:
-
+//                    在线义诊
+                    new HomeFragmentFreeClinic().show(getFragmentManager(), "view");
+                    break;
+                case R.id.ll_wjw:
+//                    卫健委官方通告
+                    WebPageActivity.start(getContext(),"http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml");
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    private void setDialog() {
+        mLp = new WindowManager.LayoutParams();
+        Window window = mDialog.getWindow();
+        mLp.copyFrom(window.getAttributes());
+        mLp.width = 1000;
+        mLp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //注意要在Dialog show之后，再将宽高属性设置进去，才有效果
+        mDialog.show();
+        window.setAttributes(mLp);
+        //设置点击屏幕其它地方不让消失弹窗，点击返回键对话框消失
+        mDialog.setCanceledOnTouchOutside(false);
     }
 }
 

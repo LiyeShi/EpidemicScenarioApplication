@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,6 +54,17 @@ public class DataBackActivity extends BaseActivity implements IBaseView<HashMap<
     @Override
     protected void initView() {
 
+    }
+
+    @Override
+    protected void InitImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.fitsSystemWindows(true)
+                .statusBarColor(R.color.white)
+                //状态栏字体是深色，不写默认为亮色
+                .statusBarDarkFont(true)
+                //导航栏图标是深色，不写默认为亮色
+                .navigationBarDarkIcon(false).init();
     }
 
     @Override

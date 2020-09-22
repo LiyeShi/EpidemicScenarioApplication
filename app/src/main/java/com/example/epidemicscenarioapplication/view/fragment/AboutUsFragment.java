@@ -41,7 +41,7 @@ public class AboutUsFragment extends BaseFragment {
         setViewState(ViewState.SUCCESS);
         mMineFragmentBinding.itemone.setTextViewText("致谢");
         mMineFragmentBinding.projectAddress.setTextViewText("项目地址");
-        mMineFragmentBinding.itemone.setTextViewText("致谢");
+        mMineFragmentBinding.itemone.setTextViewText("联系我们");
         mMyListener = new MyListener();
 
     }
@@ -73,6 +73,8 @@ public class AboutUsFragment extends BaseFragment {
                     break;
                 case R.id.project_address:
                     WebPageActivity.start(getContext(),"https://github.com/Stone-s/EpidemicScenarioApplication");
+                    break;
+                case R.id.itemthree:
                     break;
                 default:
                     break;

@@ -6,6 +6,5 @@
     android:orientation="vertical"
     tools:context=".view.activity.WebPageActivity">
 
-    <include layout="@layout/base_activity_top_tips" />
 
 </LinearLayout>

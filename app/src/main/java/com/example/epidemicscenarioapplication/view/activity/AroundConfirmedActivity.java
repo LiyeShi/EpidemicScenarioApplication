@@ -9,7 +9,7 @@ import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.NcovVillageListViewAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
 
-import com.example.epidemicscenarioapplication.databinding.ConfirmedActivityBinding;
+import com.example.epidemicscenarioapplication.databinding.ActivityConfirmedBinding;
 import com.example.epidemicscenarioapplication.domain.API;
 import com.example.epidemicscenarioapplication.domain.NcovVillageDataBean;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
@@ -26,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class AroundConfirmedActivity extends BaseActivity {
     private static final String TAG = "AroundConfirmedActivity";
-    private ConfirmedActivityBinding mConfirmedActivityBinding;
+    private ActivityConfirmedBinding mConfirmedActivityBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class AroundConfirmedActivity extends BaseActivity {
 
     @Override
     protected View getView() {
-        mConfirmedActivityBinding = ConfirmedActivityBinding.inflate(getLayoutInflater());
+        mConfirmedActivityBinding = ActivityConfirmedBinding.inflate(getLayoutInflater());
         View view= mConfirmedActivityBinding.getRoot();
         return view;
     }

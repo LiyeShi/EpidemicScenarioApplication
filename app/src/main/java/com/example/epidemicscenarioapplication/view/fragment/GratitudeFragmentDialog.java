@@ -26,7 +26,7 @@ import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
  * desc   :
  * version: 1.0
  */
-public class GratitudeFragment extends DialogFragment implements View.OnClickListener {
+public class GratitudeFragmentDialog extends DialogFragment implements View.OnClickListener {
 
     private HomeDoctorsFragmentBinding mBinding;
 

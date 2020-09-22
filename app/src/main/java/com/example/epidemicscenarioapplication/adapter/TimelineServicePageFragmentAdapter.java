@@ -68,13 +68,13 @@ public class TimelineServicePageFragmentAdapter extends RecyclerView.Adapter {
         int viewType = holder.getItemViewType();
         if (viewType== TYPE_LATEST_NEWS){
             ContainTipViewHolder containTipViewHolder= (ContainTipViewHolder) holder;
-            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsTitle.setText(list.get(position).getTitle());
+            containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvTitle.setText(list.get(position).getTitle());
             containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsAbs.setText(list.get(position).getSummary());
             containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsAuthorPage.setText(list.get(position).getInfoSource());
             containTipViewHolder.mItemLatestNewsPageFragmentBinding.tvNewsUpdataTime.setText(list.get(position).getPubDateStr());
         }else {
             NormalViewHolder normalViewHolder= (NormalViewHolder) holder;
-            normalViewHolder.mNewsPageFragmentBinding.tvNewsTitle.setText(list.get(position).getTitle());
+            normalViewHolder.mNewsPageFragmentBinding.tvTitle.setText(list.get(position).getTitle());
             normalViewHolder.mNewsPageFragmentBinding. tvNewsAbs.setText(list.get(position).getSummary());
             normalViewHolder.mNewsPageFragmentBinding.tvNewsAuthorPage.setText(list.get(position).getInfoSource());
             normalViewHolder.mNewsPageFragmentBinding.  tvNewsUpdataTime.setText(list.get(position).getPubDateStr());
