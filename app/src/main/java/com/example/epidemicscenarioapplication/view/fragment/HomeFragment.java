@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +45,16 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.internal.CustomAdapt;
+
 /**
  * @author sly
  * @version 1.0
  * @date 2020/6/28
  * @description com.example.epidemicscenarioapplication.view.fragment
  */
-public class HomeFragment extends BaseFragment implements IHomepageView<List>, OnBannerListener {
+public class HomeFragment extends BaseFragment implements IHomepageView<List>, OnBannerListener, CustomAdapt {
     private static final String TAG = "HomeFragment";
     private HomePagePresenter mHomePagePresenter;
     private ArrayList<VerticalBannerDataBeans> Datas;
@@ -108,6 +112,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
     @Override
     protected View getSuccessView(LayoutInflater inflater, ViewGroup container) {
+        AutoSizeConfig.getInstance().setCustomFragment(true);
         mHomeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
         mHomeFragmentBindingRoot = mHomeFragmentBinding.getRoot();
         return mHomeFragmentBindingRoot;
@@ -133,13 +138,13 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         Log.d(TAG, "initNetworkRequest: 获取天气");
 //        注意请求天气和请求各个县区的疫情数据一定得是这个先后关系，因为location是请求天气的时候才传过去的
         mHomePagePresenter.loadCountyList();
-        RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-//        加载最下面的疫情地图
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2000);
+//        加载最下面的疫情地图  子控件 用来告诉 父控件 自己要如何布局时用的
+//        AgentWebView agentweb = mHomeFragmentBinding.agentweb;
+//        AgentWeb
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.setMargins(0, 20, 0, 0);
         mAgentWeb = AgentWeb.with(this)
-        .setAgentWebParent((LinearLayout) mHomeFragmentBinding.llWebParent, params)
+        .setAgentWebParent((LinearLayout) mHomeFragmentBinding.webContainer, params)
         .closeIndicator()
         .createAgentWeb()
         .ready()
@@ -229,6 +234,16 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     @Override
     public void showErrorView() {
 
+    }
+
+    @Override
+    public boolean isBaseOnWidth() {
+        return false;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 730;
     }
 
     public class MyOnclickListener implements View.OnClickListener {

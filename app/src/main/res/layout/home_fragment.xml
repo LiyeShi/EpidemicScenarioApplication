@@ -272,6 +272,13 @@
                     android:layout_marginRight="10dp"
                     android:visibility="gone" />
             </FrameLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/web_container"
+                android:background="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

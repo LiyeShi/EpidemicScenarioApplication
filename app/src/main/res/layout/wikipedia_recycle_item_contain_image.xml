@@ -20,7 +20,7 @@
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tv_title"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tv_news_abs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,29 +1,29 @@
 
-Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8òÖ¾‹Æ.
-Gsquid:S1604 "(Make this anonymous inner class a lambda(¸êÙ8‹íùÄÆ.
-zsquid:S1450;"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8òÖ¾‹Æ.
-Jsquid:S1481ğ",Remove this unused "country" local variable.(ÊößK8ƒáßÄÆ.
-Usquid:S2696"6Make the enclosing method "static" or remove this set.(ğ¤íõ8ñ¿ÂÄÆ.
-Msquid:S1481õ")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8·ØÙÄÆ.
-Gsquid:S1604Ğ"(Make this anonymous inner class a lambda(±ª‘8ÁáÄÆ.
-„squid:S1450<"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8òÖ¾‹Æ.
- squid:S1186í"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8òÖ¾‹Æ.
-squid:S1450>"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8òÖ¾‹Æ.
-msquid:S1871„"IThis case's code block is the same as the block for the case on line 127.(É„¦Éüÿÿÿÿ8òÖ¾‹Æ.
 Zsquid:S2696û"6Make the enclosing method "static" or remove this set.(ş‰¶üÿÿÿÿ8ƒáßÄÆ.
-Psquid:S1602»",Remove useless curly braces around statement(Ê¦¢Ğüÿÿÿÿ8·ØÙÄÆ.
-Qsquid:S1135ù"2Complete the task associated to this TODO comment.(ìúÁã8ƒáßÄÆ.
-Psquid:S1135h"2Complete the task associated to this TODO comment.(—‚ˆ8ĞÚ¤ÅÆ.
-Fsquid:S1185”"(Remove this method to simply inherit it.(ºŠñ=8òÖ¾‹Æ.
-Zsquid:S2696×"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8ÜÑı«Ë.
-Jsquid:S1481ö"+Remove this unused "adcode" local variable.(îùÍ8ƒáßÄÆ.
-qsquid:MaximumInheritanceDepth2"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8Û…ê¾Æ.
-Gsquid:S1604Ú"(Make this anonymous inner class a lambda(‡ä©ø8·ÇçÄÆ.
-Osquid:S1612k",Replace this lambda with a method reference.(ÖüÂ²şÿÿÿÿ8ç†“¿Æ.
-Osquid:S1602k",Remove useless curly braces around statement(ÖüÂ²şÿÿÿÿ8ç†“¿Æ.
+Gsquid:S1604Ğ"(Make this anonymous inner class a lambda(±ª‘8ÁáÄÆ.
+zsquid:S1450;"\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8òÖ¾‹Æ.
+squid:S1450>"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8òÖ¾‹Æ.
 osquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(ºªö™ùÿÿÿÿ8ƒáßÄÆ.
-zsquid:S1488­"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8òÖ¾‹Æ.
-Rsquid:S10688"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8ÜÑı«Ë.
-}squid:S1450="_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8òÖ¾‹Æ.
 Osquid:S1481ô"+Remove this unused "street" local variable.(Ï°ª°ûÿÿÿÿ8·ØÙÄÆ.
+Psquid:S1135h"2Complete the task associated to this TODO comment.(—‚ˆ8ĞÚ¤ÅÆ.
+Osquid:S1602k",Remove useless curly braces around statement(ÖüÂ²şÿÿÿÿ8ç†“¿Æ.
+„squid:S1450<"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8òÖ¾‹Æ.
+Gsquid:S1604 "(Make this anonymous inner class a lambda(¸êÙ8‹íùÄÆ.
+Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8òÖ¾‹Æ.
+Usquid:S2696"6Make the enclosing method "static" or remove this set.(ğ¤íõ8ñ¿ÂÄÆ.
+Fsquid:S1185”"(Remove this method to simply inherit it.(ºŠñ=8òÖ¾‹Æ.
+Psquid:S1602»",Remove useless curly braces around statement(Ê¦¢Ğüÿÿÿÿ8·ØÙÄÆ.
 "squid:ClassVariableVisibilityCheckB"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(ß¬ÿ÷8òÖ¾‹Æ.
+zsquid:S1488­"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8òÖ¾‹Æ.
+Osquid:S1612k",Replace this lambda with a method reference.(ÖüÂ²şÿÿÿÿ8ç†“¿Æ.
+qsquid:MaximumInheritanceDepth2"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8Û…ê¾Æ.
+msquid:S1871„"IThis case's code block is the same as the block for the case on line 127.(É„¦Éüÿÿÿÿ8òÖ¾‹Æ.
+Gsquid:S1604Ú"(Make this anonymous inner class a lambda(‡ä©ø8·ÇçÄÆ.
+Zsquid:S2696×"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8ÜÑı«Ë.
+Msquid:S1481õ")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8·ØÙÄÆ.
+Rsquid:S10688"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8ÜÑı«Ë.
+Qsquid:S1135ù"2Complete the task associated to this TODO comment.(ìúÁã8ƒáßÄÆ.
+}squid:S1450="_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8òÖ¾‹Æ.
+Jsquid:S1481ğ",Remove this unused "country" local variable.(ÊößK8ƒáßÄÆ.
+ squid:S1186í"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8òÖ¾‹Æ.
+Jsquid:S1481ö"+Remove this unused "adcode" local variable.(îùÍ8ƒáßÄÆ.

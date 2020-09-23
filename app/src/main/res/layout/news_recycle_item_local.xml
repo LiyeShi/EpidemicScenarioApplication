@@ -57,7 +57,7 @@
             android:textStyle="bold"
             android:text="刚刚，山东通报！王某，45岁，无症状感染者！输入！"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="20sp" />
 
 
         <LinearLayout

@@ -8,6 +8,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -36,6 +37,7 @@ import com.example.epidemicscenarioapplication.view.fragment.WikipediaFragment;
 
 import java.util.ArrayList;
 
+import me.jessyan.autosize.AutoSize;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -142,6 +144,21 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+    /**
+     * 这个方法是为了解决一个神奇的bug 当页面中含有WebView中，AndroidAutoSize屏幕适配会失效，导致布局错乱，而我现在用的WebView也是第三方库的
+     * ，只能使用这个方法解决失效的问题，还有一种方法是重写WebView的setOverScrollMode(int mode)，并加入 AutoSize.autoConvertDensityOfGlobal(this);
+     * @param name
+     * @param context
+     * @param attrs
+     * @return
+     */
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        AutoSize.autoConvertDensityOfGlobal(this);
+        return super.onCreateView(name, context, attrs);
     }
 
     @Override
@@ -375,7 +392,7 @@ public class HomeActivity extends BaseActivity {
             Log.d(TAG, "详细地址==>" + addr);
 //            ""  和 null 不是一回事 不要习惯性的写null
             // TODO: 2020/8/26 方便模拟器测试  发布的时候要改过来
-            if (addr == null) {
+            if (addr != null) {
                 getLocationCount++;
                 Log.d(TAG, "onReceiveLocation: 执行了" + location.getCity());
                 mLocationClient.stop();
