@@ -255,8 +255,6 @@ Papp/src/main/java/com/example/epidemicscenarioapplication/custom/TipsDialog.jav
 ,app/src/main/res/layout/base_tips_dialog.xml,9\8\98b8aed68fa5c3f10b7fb2b3e0c3e3eecbbe6be7
 Y
 )app/src/main/res/layout/mine_fragment.xml,0\0\00c55f1321063b2751834657aa88c67890e51602
-Ž
-^app/src/main/java/com/example/epidemicscenarioapplication/view/fragment/GratitudeFragment.java,0\f\0f0922e9debf49cc359bc219e862fe70af63edf7
 _
 /app/src/main/res/drawable/dialog_background.xml,9\7\97125eff8f95ca945f7cb4c4d29c2c044485b37b
 a
@@ -267,3 +265,17 @@ i
 Zapp/src/main/java/com/example/epidemicscenarioapplication/domain/EpidemicAreaDataBean.java,1\5\1502caffa701172b84bf6d74489942dca652a6c9
 Œ
 \app/src/main/java/com/example/epidemicscenarioapplication/adapter/SearchListViewAdapter.java,4\b\4b49e0bcf69972084606c0f2b108fe54b5250a46
+„
+Tapp/src/main/java/com/example/epidemicscenarioapplication/custom/FreeClinicView.java,b\c\bcd0dd0f3c6a430d8208af12ddc694f8ded078db
+Œ
+\app/src/main/java/com/example/epidemicscenarioapplication/custom/HomeFragmentFreeClinic.java,d\d\dd071a931e5eab04b5afd9c13f69661bbd35528f
+”
+dapp/src/main/java/com/example/epidemicscenarioapplication/view/fragment/GratitudeFragmentDialog.java,3\a\3af4a5ba798d9fe4e7ef275efed76e6783a8d225
+^
+.app/src/main/res/layout/activity_confirmed.xml,3\9\394206be04fe6e6d1b824e2e5cd0882cabc3c791
+X
+(app/src/main/res/layout/activity_web.xml,9\e\9e630976df601be9581c19b7acec8bd212e8900d
+l
+<app/src/main/res/layout/home_free_clinic_fragment_dialog.xml,1\7\17c96a4998f433ca152b37038021bfaffd612a00
+q
+Aapp/src/main/res/layout/item_home_free_clinic_fragment_dialog.xml,7\4\74c76920c23100b7edeb5b6ca9950f1d4663c67a

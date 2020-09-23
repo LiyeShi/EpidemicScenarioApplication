@@ -1,6 +1,7 @@
 package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -31,6 +35,8 @@ import com.example.epidemicscenarioapplication.view.activity.DataBackActivity;
 import com.example.epidemicscenarioapplication.view.activity.SearchActivity;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
+import com.just.agentweb.AgentWeb;
+import com.just.agentweb.AgentWebView;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
@@ -52,6 +58,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     private WindowManager.LayoutParams mLp;
     private HomeFragmentBinding mHomeFragmentBinding;
     private LinearLayout mHomeFragmentBindingRoot;
+    private AgentWeb mAgentWeb;
 
 
     @Override
@@ -128,6 +135,18 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         mHomePagePresenter.loadCountyList();
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+//        加载最下面的疫情地图
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2000);
+        params.setMargins(0, 20, 0, 0);
+        mAgentWeb = AgentWeb.with(this)
+        .setAgentWebParent((LinearLayout) mHomeFragmentBinding.llWebParent, params)
+        .closeIndicator()
+        .createAgentWeb()
+        .ready()
+        .go("https://www.lovestu.com/api/project/cnmapyinqing/obj.php");
+        FrameLayout frameLayout = mAgentWeb.getWebCreator().getWebParentLayout();
+        frameLayout.setBackgroundColor(Color.BLACK);
+
     }
 
 

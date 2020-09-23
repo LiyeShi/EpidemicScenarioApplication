@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
 import com.example.epidemicscenarioapplication.R;
-import com.example.epidemicscenarioapplication.databinding.HomeDoctorsFragmentBinding;
 import com.example.epidemicscenarioapplication.databinding.HomeFreeClinicFragmentDialogBinding;
 import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 

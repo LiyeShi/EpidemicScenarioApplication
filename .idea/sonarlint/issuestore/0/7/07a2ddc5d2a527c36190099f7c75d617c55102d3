@@ -1,11 +1,11 @@
 
-hsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(ŸŒ›[8±õãÕ·.
 €squid:S1488*"bImmediately return this expression instead of assigning it to the temporary variable "viewHolder".(Ë‰Ü8Û²ãÕ·.
-Osquid:S1068",Remove this unused "mContext" private field.(»úÅ¾øÿÿÿÿ8±õãÕ·.
-wsquid:S1450 "TRemove the "mView" field and declare it as a local variable in the relevant methods.(¼ðŠýþÿÿÿÿ8ûŽ¦Ó·.
-zsquid:S1450"WRemove the "mContext" field and declare it as a local variable in the relevant methods.(»úÅ¾øÿÿÿÿ8à…’Ó·.
 tsquid:S1450!"VRemove the "mHolder" field and declare it as a local variable in the relevant methods.(¢ß´‚8Ž¶Ó·.
+hsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(ŸŒ›[8±õãÕ·.
+wsquid:S1450 "TRemove the "mView" field and declare it as a local variable in the relevant methods.(¼ðŠýþÿÿÿÿ8ûŽ¦Ó·.
+nsquid:CommentedOutCodeLine+"<This block of commented-out lines of code should be removed.(áÂ¬þüÿÿÿÿ8Û²ãÕ·.
 nsquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(ÎÐÎ„ûÿÿÿÿ8±õãÕ·.
 usquid:S00114X"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·ÚÊßùÿÿÿÿ8žõÞÕ·.
-nsquid:CommentedOutCodeLine+"<This block of commented-out lines of code should be removed.(áÂ¬þüÿÿÿÿ8Û²ãÕ·.
+Osquid:S1068",Remove this unused "mContext" private field.(»úÅ¾øÿÿÿÿ8±õãÕ·.
+zsquid:S1450"WRemove the "mContext" field and declare it as a local variable in the relevant methods.(»úÅ¾øÿÿÿÿ8à…’Ó·.
 squid:S1319k"oThe type of the "list" object should be an interface such as "List" rather than the implementation "ArrayList".(¸Ûë8âË³³.

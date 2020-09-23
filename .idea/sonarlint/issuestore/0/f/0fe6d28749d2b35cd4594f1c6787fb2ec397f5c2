@@ -1,11 +1,10 @@
 
-¥squid:S1186Š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(þ¸ààúÿÿÿÿ8§Ý«‹Æ.
-Lsquid:S1185Ò"(Remove this method to simply inherit it.(Ýßéàúÿÿÿÿ8§Ý«‹Æ.
-vsquid:UselessImportCheck"FRemove this unused import 'androidx.fragment.app.FragmentTransaction'.(¦ÝÚ¿þÿÿÿÿ8€À®¼Ç.
-osquid:CommentedOutCodeLineÈ"<This block of commented-out lines of code should be removed.(ñƒÆ”ûÿÿÿÿ8†ÍÁ“Ç.
-Psquid:S1481w"-Remove this unused "location" local variable.(¼Øó®øÿÿÿÿ8ñÒö‹Æ.
-osquid:CommentedOutCodeLine½"<This block of commented-out lines of code should be removed.(Ö‚Ì›ýÿÿÿÿ8ÍÐ†ŠÈ.
-tsquid:S001165"PRename this field "Datas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚêòüÿÿÿÿ8§Ý«‹Æ.
-rsquid:UselessImportCheck"BRemove this unused import 'androidx.fragment.app.FragmentManager'.(¯­ë‹ýÿÿÿÿ8€À®¼Ç.
-¥squid:S1186Ø"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ÄŸÇýÿÿÿÿ8§Ý«‹Æ.
-Psquid:S1135}"2Complete the task associated to this TODO comment.(Öò†ÿ8¾÷‹Æ.
+¥squid:S1186Ó"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ÄŸÇýÿÿÿÿ8§Ý«‹Æ.
+Psquid:S1481v"-Remove this unused "location" local variable.(¼Øó®øÿÿÿÿ8ñÒö‹Æ.
+Psquid:S1135|"2Complete the task associated to this TODO comment.(Öò†ÿ8¾÷‹Æ.
+Isquid:S3398›"*Move this method into "MyOnclickListener".(Ø©š²8ÕíŠ¨Ë.
+¥squid:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(þ¸ààúÿÿÿÿ8§Ý«‹Æ.
+usquid:S14504"RRemove the "mLp" field and declare it as a local variable in the relevant methods.(Ç°íüÿÿÿÿ8Çõ‡¨Ë.
+Ksquid:S1481",Remove this unused "options" local variable.(ŸÎ‡û8‰Þ¡§Ë.
+tsquid:S001162"PRename this field "Datas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚêòüÿÿÿÿ8§Ý«‹Æ.
+Lsquid:S1185Í"(Remove this method to simply inherit it.(Ýßéàúÿÿÿÿ8§Ý«‹Æ.
