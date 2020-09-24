@@ -47,10 +47,12 @@
 
             <com.youth.banner.Banner
                 android:id="@+id/homepager_banner"
-                android:layout_width="390dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -254,9 +256,9 @@
                 android:id="@+id/fl_home_vertical_container"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="5dp">
 
                 <ProgressBar
                     android:id="@+id/pb_loading"
@@ -274,11 +276,15 @@
             </FrameLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/web_container"
-                android:background="@color/red"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="560dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/home_fragment_web_background"
+                android:orientation="vertical" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -2,6 +2,7 @@ package com.example.epidemicscenarioapplication.view.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
@@ -38,6 +39,7 @@ import com.example.epidemicscenarioapplication.view.activity.WebPageActivity;
 import com.example.epidemicscenarioapplication.view.activity.AroundConfirmedActivity;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebView;
+import com.just.agentweb.WebParentLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnBannerListener;
@@ -102,9 +104,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
         //添加生命周期观察者
         mHomeFragmentBinding.bannerTips.addBannerLifecycleObserver(this)
                 .setOrientation(Banner.VERTICAL)
-                .setDelayTime(6000)
+                .setLoopTime(6000)
                 .isAutoLoop(true)
-                .setBannerRound2(20)
+                .setBannerRound2(15)
                 .start();
         mHomeFragmentBinding.llNcovVillage.setOnClickListener(v -> startActivity(new Intent(mHomeFragmentBindingRoot.getContext(), AroundConfirmedActivity.class)));
     }
@@ -127,30 +129,25 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
     public void initData() {
         //假装加载
         mHomePagePresenter.loadBanner();
-        String location = SpUtils.getString(getContext(), ConstantsUtils.LOCATION_CITY, "");
-        Log.d(TAG, "initNetworkRequest: 执行");
+        String location = SpUtils.getString(getContext(), ConstantsUtils.LOCATION_CITY, "济南市");
+        Log.d(TAG, "initNetworkRequest: 执行"+location);
         Datas = new ArrayList<>();
 //            获取所在市各个县区疫情数据
         mHomePagePresenter = new HomePagePresenter(HomeFragment.this);
 //            获取首页天气
-        // TODO: 2020/9/6 别忘了删除
-        mHomePagePresenter.loadVerticalBannerWeather(getContext(),"济南");
+        mHomePagePresenter.loadVerticalBannerWeather(getContext(),location);
         Log.d(TAG, "initNetworkRequest: 获取天气");
 //        注意请求天气和请求各个县区的疫情数据一定得是这个先后关系，因为location是请求天气的时候才传过去的
         mHomePagePresenter.loadCountyList();
 //        加载最下面的疫情地图  子控件 用来告诉 父控件 自己要如何布局时用的
-//        AgentWebView agentweb = mHomeFragmentBinding.agentweb;
-//        AgentWeb
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        params.setMargins(0, 20, 0, 0);
+        params.setMargins(0, 40, 0, 10);
         mAgentWeb = AgentWeb.with(this)
         .setAgentWebParent((LinearLayout) mHomeFragmentBinding.webContainer, params)
         .closeIndicator()
         .createAgentWeb()
         .ready()
         .go("https://www.lovestu.com/api/project/cnmapyinqing/obj.php");
-        FrameLayout frameLayout = mAgentWeb.getWebCreator().getWebParentLayout();
-        frameLayout.setBackgroundColor(Color.BLACK);
 
     }
 
@@ -163,10 +160,10 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
 
     @Override
     public void showSuccessView(List data) {
-//添加生命周期观察者
+        //添加生命周期观察者
         mHomeFragmentBinding.homepagerBanner.addBannerLifecycleObserver(this)
                 .setAdapter(new HomeFragmentBannerAdapter(data))
-                .setDelayTime(5000)
+                .setLoopTime(5000)
                 .setOnBannerListener(this)
                 .setIndicator(new CircleIndicator(mHomeFragmentBindingRoot.getContext()))
                 .setIndicatorSelectedColorRes(R.color.colorPrimaryDark)
@@ -209,8 +206,9 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                 new GratitudeFragmentDialog().show(getFragmentManager(), "view");
                 break;
             case 2:
+//                新冠肺炎介绍
                 Log.d(TAG, "OnBannerClick: 点击了第三个");
-                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://ncov.deepeye.tech/");
+                WebPageActivity.start(mHomeFragmentBindingRoot.getContext(), "https://mp.weixin.qq.com/s/fnu8urcvf3qrq6WDIIJWZg");
                 break;
             case 3:
                 Log.d(TAG, "OnBannerClick: 点击了第四个");

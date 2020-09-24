@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/baseBackground"
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
@@ -31,36 +31,56 @@
         android:orientation="vertical">
 
         <com.example.epidemicscenarioapplication.custom.ItemInMine
-            android:id="@+id/itemone"
+            android:id="@+id/tv_thank_you"
             android:layout_width="match_parent"
-            app:cardCornerRadius="8dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="8dp" />
 
         <com.example.epidemicscenarioapplication.custom.ItemInMine
-            android:id="@+id/project_address"
-            app:cardCornerRadius="8dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:id="@+id/tv_project_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="8dp" />
 
         <com.example.epidemicscenarioapplication.custom.ItemInMine
-            android:id="@+id/itemthree"
-            app:cardCornerRadius="8dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:id="@+id/tv_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textSize="25sp"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="Touch the future" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:padding="5dp"
+            android:src="@drawable/hezuo1" />
+
 
     </LinearLayout>
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/mine_fragmetn_statement"/>
+    <TextView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mine_fragmetn_statement" />
 </LinearLayout>

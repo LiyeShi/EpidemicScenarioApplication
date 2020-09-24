@@ -279,3 +279,5 @@ l
 <app/src/main/res/layout/home_free_clinic_fragment_dialog.xml,1\7\17c96a4998f433ca152b37038021bfaffd612a00
 q
 Aapp/src/main/res/layout/item_home_free_clinic_fragment_dialog.xml,7\4\74c76920c23100b7edeb5b6ca9950f1d4663c67a
+‰
+Yapp/src/main/java/com/example/epidemicscenarioapplication/custom/TipsDialog_ThankYou.java,f\a\fa3d5c7a4673db1b6e593034e13bb9f3e4cf060f

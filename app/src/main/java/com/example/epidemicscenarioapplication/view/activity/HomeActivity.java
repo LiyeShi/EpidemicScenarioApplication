@@ -103,10 +103,10 @@ public class HomeActivity extends BaseActivity {
                 //跳转到手机原生设置页面
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivityForResult(intent, GPS_REQUEST_CODE);
-                // TODO: 2020/9/7  还需要测试，这个地方为什么要主动取消显示，原来没有也是可以的
                 instance.dismiss();
             });
             instance.setCancelOnclickListener("退出软件", () -> {
+                instance.dismiss();
                 finish();
             });
             instance.setCancelable(false);
@@ -149,6 +149,7 @@ public class HomeActivity extends BaseActivity {
     /**
      * 这个方法是为了解决一个神奇的bug 当页面中含有WebView中，AndroidAutoSize屏幕适配会失效，导致布局错乱，而我现在用的WebView也是第三方库的
      * ，只能使用这个方法解决失效的问题，还有一种方法是重写WebView的setOverScrollMode(int mode)，并加入 AutoSize.autoConvertDensityOfGlobal(this);
+     *
      * @param name
      * @param context
      * @param attrs
@@ -301,13 +302,11 @@ public class HomeActivity extends BaseActivity {
                 // 再次执行权限请求
                 request.proceed();
                 isFirstShowReason = false;
+                dialog.dismiss();
             });
-            dialog.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
-                @Override
-                public void onCancelClick() {
-                    dialog.dismiss();
-                    finish();
-                }
+            dialog.setCancelOnclickListener("退出软件", () -> {
+                dialog.dismiss();
+                finish();
             });
             dialog.setCancelable(false);
             dialog.show();
@@ -332,6 +331,7 @@ public class HomeActivity extends BaseActivity {
         instance.setOkOnclickListener("去授权", () -> {
             // 再次执行权限请求
             HomeActivityPermissionsDispatcher.initGPSWithPermissionCheck(HomeActivity.this);
+            instance.dismiss();
         });
         instance.setCancelOnclickListener("退出软件", () -> {
             instance.dismiss();
@@ -350,22 +350,17 @@ public class HomeActivity extends BaseActivity {
                 R.style.custom_dialog,
                 "无法获得权限",
                 "您拒绝了位置权限，且不再询问，请前往设置中心授权");
-        instance.setOkOnclickListener("去设置", new TipsDialog.OnOkClickListener() {
-            @Override
-            public void onOKClick() {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
-                startActivityForResult(intent, SETTING_CODE);
-                //                 说明进入设置界面了
-                isToSetting = true;
-            }
+        instance.setOkOnclickListener("去设置", () -> {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + getPackageName())); // 根据包名打开对应的设置界面
+            startActivityForResult(intent, SETTING_CODE);
+            instance.dismiss();
+            //                 说明进入设置界面了
+            isToSetting = true;
         });
-        instance.setCancelOnclickListener("退出软件", new TipsDialog.OnCancelClickListener() {
-            @Override
-            public void onCancelClick() {
-                instance.dismiss();
-                finish();
-            }
+        instance.setCancelOnclickListener("退出软件", () -> {
+            instance.dismiss();
+            finish();
         });
         instance.setCancelable(false);
         instance.show();
@@ -391,7 +386,6 @@ public class HomeActivity extends BaseActivity {
             String adcode = location.getAdCode();    //获取adcode
             Log.d(TAG, "详细地址==>" + addr);
 //            ""  和 null 不是一回事 不要习惯性的写null
-            // TODO: 2020/8/26 方便模拟器测试  发布的时候要改过来
             if (addr != null) {
                 getLocationCount++;
                 Log.d(TAG, "onReceiveLocation: 执行了" + location.getCity());
@@ -406,7 +400,6 @@ public class HomeActivity extends BaseActivity {
                     initFragment();
                 }
             }
-//            ToastUtils.showToast(HomeActivity.this, "您所在的地址是==》" + country + province + city + district + street + town);
             Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
         }
 

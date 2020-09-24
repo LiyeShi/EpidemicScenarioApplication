@@ -11,7 +11,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,7 +46,7 @@ dependencies {
     //material design设计风格
     implementation 'com.google.android.material:material:1.2.0-alpha03'
     //轮播图
-    implementation 'com.youth.banner:banner:2.0.10'
+    implementation 'com.youth.banner:banner:2.1.0'
 //    网络请求
     implementation 'com.squareup.retrofit2:retrofit:2.0.2'
 //    Json 转换器

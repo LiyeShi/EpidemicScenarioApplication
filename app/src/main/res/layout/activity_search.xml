@@ -13,6 +13,7 @@
 
         <EditText
             android:layout_width="300dp"
+            android:maxLines="1"
             android:id="@+id/et_search_content"
             android:layout_height="60dp"
             android:hint="@string/activity_search_hint" />

@@ -23,7 +23,7 @@
             android:textStyle="bold"
             android:text="美国新冠患者突破手动阀发送到发送到发斯蒂芬sdfasdfads"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_news_abs"

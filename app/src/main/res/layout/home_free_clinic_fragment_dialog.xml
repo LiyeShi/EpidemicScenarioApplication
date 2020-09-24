@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/baseBackground"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="15dp">
 
     <LinearLayout
@@ -14,14 +15,14 @@
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/nali"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
 
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/ali"
             android:layout_marginLeft="10dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -34,14 +35,14 @@
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/haodaifu"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
 
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/weiyi"
             android:layout_marginLeft="10dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -53,14 +54,14 @@
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/jingdong"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
 
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/hubei"
             android:layout_marginLeft="10dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -70,16 +71,16 @@
         android:layout_marginTop="10dp">
 
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
-            android:layout_width="0dp"
             android:id="@+id/weibo"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
 
         <com.example.epidemicscenarioapplication.custom.FreeClinicView
             android:layout_width="0dp"
             android:id="@+id/chongai"
             android:layout_marginLeft="10dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_weight="1" />
     </LinearLayout>
 

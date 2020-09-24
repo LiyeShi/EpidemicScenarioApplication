@@ -80,12 +80,15 @@ public class HomeFragmentVerticalBannerAdapter extends BannerAdapter<VerticalBan
         switch (itemViewType) {
             case ConstantsUtils.BANNER_TYPE_WEATER:
                 WeatherViewaHolder weatherViewaHolder = (WeatherViewaHolder) holder;
-                weatherViewaHolder.tvWeather.setText(data.getWeatherDataBean().getData().getWeather());
-                weatherViewaHolder.tvWind.setText("风力"+data.getWeatherDataBean().getData().getWindPower()+"，"+data.getWeatherDataBean().getData().getWindDirection()+"风");
-                weatherViewaHolder.tvHumidity.setText("湿度:" + data.getWeatherDataBean().getData().getHumidity());
-                weatherViewaHolder.tvTemp.setText(data.getWeatherDataBean().getData().getTemp());
-                weatherViewaHolder.tvUptimer.setText(data.getWeatherDataBean().getData().getReportTime());
-                weatherViewaHolder.tvPositioning.setText(data.getWeatherDataBean().getData().getAddress());
+//                只判断一个数据是不是为空就行了
+                if (data.getWeatherDataBean().getData()!=null) {
+                    weatherViewaHolder.tvWeather.setText(data.getWeatherDataBean().getData().getWeather());
+                    weatherViewaHolder.tvWind.setText("风力"+data.getWeatherDataBean().getData().getWindPower()+"，"+data.getWeatherDataBean().getData().getWindDirection()+"风");
+                    weatherViewaHolder.tvHumidity.setText("湿度:" + data.getWeatherDataBean().getData().getHumidity());
+                    weatherViewaHolder.tvTemp.setText(data.getWeatherDataBean().getData().getTemp());
+                    weatherViewaHolder.tvUptimer.setText(data.getWeatherDataBean().getData().getReportTime());
+                    weatherViewaHolder.tvPositioning.setText(data.getWeatherDataBean().getData().getAddress());
+                }
                 RequestOptions options = new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
                 Glide.with(mContext).load(R.drawable.home_fragment_banner_weather_icon).apply(options).into(weatherViewaHolder.ivIcon);

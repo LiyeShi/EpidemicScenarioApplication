@@ -4,11 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-
 import androidx.annotation.NonNull;
 
-import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.databinding.BaseTipsDialogBinding;
+import com.example.epidemicscenarioapplication.databinding.BaseTipsDialogThankBinding;
 
 /**
  * @author : 鑫宇
@@ -17,36 +16,34 @@ import com.example.epidemicscenarioapplication.databinding.BaseTipsDialogBinding
  * desc   :
  * version: 1.0
  */
-public class TipsDialog extends Dialog {
+public class TipsDialog_ThankYou extends Dialog {
     private String mCancel;
     private  String mNext;
     private  static String mHead;
     private static String mBody;
     private OnCancelClickListener mOnCancelListener;
     private OnOkClickListener mOnOkListener;
-    private BaseTipsDialogBinding mBinding;
-    private static TipsDialog instance;
-    private static TipsDialog sDialog;
+    private BaseTipsDialogThankBinding mBinding;
+    private static TipsDialog_ThankYou instance;
+    private static TipsDialog_ThankYou sDialog;
 
 
-    public static TipsDialog getInstance(Context context,int styleId,String head,String body){
-        mHead=head;
-        mBody=body;
+    public static TipsDialog_ThankYou getInstance(Context context, int styleId){
         if (instance == null) {
-            sDialog = new TipsDialog(context, styleId);
+            sDialog = new TipsDialog_ThankYou(context, styleId);
         }
         return sDialog;
     }
 
 
-    public TipsDialog(@NonNull Context context, int themeResId) {
+    public TipsDialog_ThankYou(@NonNull Context context, int themeResId) {
         super(context,  themeResId);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding =BaseTipsDialogBinding.inflate(getLayoutInflater());
+        mBinding = BaseTipsDialogThankBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         initData();
         initEvent();
@@ -54,11 +51,6 @@ public class TipsDialog extends Dialog {
     }
 
     private void initEvent() {
-        mBinding.tvDialogCancel.setOnClickListener(v -> {
-            if (mOnCancelListener != null) {
-                mOnCancelListener.onCancelClick();
-            }
-        });
         mBinding.tvDialogNext.setOnClickListener(v -> {
             if (mOnOkListener != null) {
                 mOnOkListener.onOKClick();
@@ -72,9 +64,6 @@ public class TipsDialog extends Dialog {
         }
         if (mBody != null) {
             mBinding.tvDialogBody.setText(mBody);
-        }
-        if (mCancel != null) {
-            mBinding.tvDialogCancel.setText(mCancel);
         }
         if (mNext != null) {
             mBinding.tvDialogNext.setText(mNext);

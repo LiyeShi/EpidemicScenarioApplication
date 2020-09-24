@@ -1,3 +1,7 @@
 
 Esquid:S11852"(Remove this method to simply inherit it.(±ÖÑ8øá«‹Æ.
-Ÿsquid:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8øá«‹Æ.
+Ÿsquid:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8øá«‹Æ.
+Jsquid:S1602E",Remove useless curly braces around statement(ÏÌ÷¬8•¸ÿüË.
+wsquid:S1450@"ZRemove the "mTipsDialog" field and declare it as a local variable in the relevant methods.(ÒŸò8•¸ÿüË.
+€squid:UselessImportCheck
+"VRemove this unused import 'com.example.epidemicscenarioapplication.custom.TipsDialog'.(åßÎ8éÓëüË.

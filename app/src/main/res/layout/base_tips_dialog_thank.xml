@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:background="@drawable/bg_dialog_base"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_dialog_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="全民战役将使用位置信息"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+<!--为什么这里文字改为填充父窗体 对话框就变小了-->
+        <TextView
+            android:id="@+id/tv_dialog_body"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="为了正常显示所在地、疫情信息推送等服务，请允许全民战役使用位置信息，您可以通过系统“设置”进行权限的管理。"
+            android:textColor="#525355" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+
+        <TextView
+            android:id="@+id/tv_dialog_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="继续"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>
