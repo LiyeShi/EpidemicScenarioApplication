@@ -4,3 +4,4 @@
 
 项目采用mvp模式搭建
 效果图如下：
+![image](https://github.com/Stone-s/Figurebed/blob/master/img/20200924220349.jpg)
