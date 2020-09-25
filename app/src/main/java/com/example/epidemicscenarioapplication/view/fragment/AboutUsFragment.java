@@ -72,7 +72,7 @@ public class AboutUsFragment extends BaseFragment {
             switch (v.getId()) {
                 case R.id.tv_thank_you:
                     mTipsDialog.setHead("致谢");
-                    mTipsDialog.setBody("感谢LiangWuCode提供的数据支持，本软件大多数数据均来自该接口，仓库地址https://github.com/LiangWuCode/2019-nCov-api,以及其他所有在该软件出现的互联网资源的提供者。");
+                    mTipsDialog.setBody("感谢LiangWuCode提供的数据支持，本软件大多数据均来自该接口，仓库地址https://github.com/LiangWuCode/2019-nCov-api,以及其他所有在该软件出现的互联网资源的提供者。");
                     mTipsDialog.setCanceledOnTouchOutside(false);
                     mTipsDialog.show();
                     break;

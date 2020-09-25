@@ -3,6 +3,7 @@ package com.example.epidemicscenarioapplication.view.activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.epidemicscenarioapplication.R;
@@ -30,53 +31,57 @@ public class SearchActivity extends BaseActivity {
     @Override
     protected void initData() {
         mBinding.btnSeatrch.setOnClickListener(v -> {
-            String content = mBinding.etSearchContent.getText().toString().trim();
-            if (!TextUtils.isEmpty(content)) {
-                mBinding.llSearchEmpty.setVisibility(View.GONE);
-                mBinding.llSearchLoading.setVisibility(View.VISIBLE);
-                mBinding.lsResult.setVisibility(View.GONE);
-                RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
-                Retrofit retrofit = manager.getRetrofit();
-                API api = retrofit.create(API.class);
-                Call<EpidemicAreaDataBean> call = api.getVillageByCommunityName(content);
-                call.enqueue(new Callback<EpidemicAreaDataBean>() {
-                    @Override
-                    public void onResponse(Call<EpidemicAreaDataBean> call, Response<EpidemicAreaDataBean> response) {
-                        int code = response.code();
-                        if (code == HttpURLConnection.HTTP_OK) {
-                            EpidemicAreaDataBean body = response.body();
-                            Log.d(TAG, "onResponse: 搜索结果==>" + body);
-                            if (body.getData().size()==0) {
-//                                返回的数据是空的，直接当做加载失败处理
-                                mBinding.lsResult.setVisibility(View.GONE);
-                                mBinding.llSearchLoading.setVisibility(View.GONE);
-                                mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
-                            }else {
-                                SearchListViewAdapter adapter = new SearchListViewAdapter(body);
-                                mBinding.lsResult.setAdapter(adapter);
-                                mBinding.llSearchLoading.setVisibility(View.GONE);
-                                mBinding.llSearchEmpty.setVisibility(View.GONE);
-                                mBinding.lsResult.setVisibility(View.VISIBLE);
-                            }
+            Search();
+        });
 
+    }
+
+    private void Search() {
+        String content = mBinding.etSearchContent.getText().toString().trim();
+        if (!TextUtils.isEmpty(content)) {
+            mBinding.llSearchEmpty.setVisibility(View.GONE);
+            mBinding.llSearchLoading.setVisibility(View.VISIBLE);
+            mBinding.lsResult.setVisibility(View.GONE);
+            RetrofitManager manager = RetrofitManager.getInstance(ConstantsUtils.BASE_URL);
+            Retrofit retrofit = manager.getRetrofit();
+            API api = retrofit.create(API.class);
+            Call<EpidemicAreaDataBean> call = api.getVillageByCommunityName(content);
+            call.enqueue(new Callback<EpidemicAreaDataBean>() {
+                @Override
+                public void onResponse(Call<EpidemicAreaDataBean> call, Response<EpidemicAreaDataBean> response) {
+                    int code = response.code();
+                    if (code == HttpURLConnection.HTTP_OK) {
+                        EpidemicAreaDataBean body = response.body();
+                        Log.d(TAG, "onResponse: 搜索结果==>" + body);
+                        if (body.getData().size()==0) {
+//                                返回的数据是空的，直接当做加载失败处理
+                            mBinding.lsResult.setVisibility(View.GONE);
+                            mBinding.llSearchLoading.setVisibility(View.GONE);
+                            mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
+                        }else {
+                            SearchListViewAdapter adapter = new SearchListViewAdapter(body);
+                            mBinding.lsResult.setAdapter(adapter);
+                            mBinding.llSearchLoading.setVisibility(View.GONE);
+                            mBinding.llSearchEmpty.setVisibility(View.GONE);
+                            mBinding.lsResult.setVisibility(View.VISIBLE);
                         }
 
                     }
 
-                    @Override
-                    public void onFailure(Call<EpidemicAreaDataBean> call, Throwable t) {
-                        mBinding.lsResult.setVisibility(View.GONE);
-                        mBinding.llSearchLoading.setVisibility(View.GONE);
-                        mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
-                    }
-                });
+                }
 
-            } else {
-                ToastUtils.showLongToast(this, "请输入小区名称！");
-                return;
-            }
-        });
+                @Override
+                public void onFailure(Call<EpidemicAreaDataBean> call, Throwable t) {
+                    mBinding.lsResult.setVisibility(View.GONE);
+                    mBinding.llSearchLoading.setVisibility(View.GONE);
+                    mBinding.llSearchEmpty.setVisibility(View.VISIBLE);
+                }
+            });
 
+        } else {
+            ToastUtils.showLongToast(this, "请输入小区名称！");
+            return;
+        }
     }
 
     @Override
@@ -99,6 +104,15 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        mBinding.etSearchContent.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode== KeyEvent.KEYCODE_ENTER) {
+                    Search();
+                }
+                return false;
+            }
+        });
 
     }
 

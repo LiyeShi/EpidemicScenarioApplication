@@ -1,16 +1,16 @@
 
-Zsquid:UselessImportCheck%"/Remove this unused import 'retrofit2.Response'.(¾éçï8ÛÂË·.
-Zsquid:UselessImportCheck&"/Remove this unused import 'retrofit2.Retrofit'.(ŠĞİ8Û—ÎË·.
+bsquid:UselessImportCheck"7Remove this unused import 'java.net.HttpURLConnection'.(¬¬˜­8ÛÂË·.
+…squid:UselessImportCheck"ZRemove this unused import 'com.example.epidemicscenarioapplication.utils.RetrofitManager'.(Ô˜ˆë8Û—ÎË·.
 [squid:UselessImportCheck!"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8³ß¨Î·.
 ¤squid:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(îÔ˜÷ùÿÿÿÿ8ŒˆíÎ·.
-bsquid:UselessImportCheck"7Remove this unused import 'java.net.HttpURLConnection'.(¬¬˜­8ÛÂË·.
+ƒsquid:UselessImportCheck"SRemove this unused import 'com.example.epidemicscenarioapplication.base.IBaseView'.(‡ÿÖ¯øÿÿÿÿ8üÁŠË·.
+Ysquid:UselessImportCheck$"/Remove this unused import 'retrofit2.Callback'.(›¨,8ÛÂË·.
+Jsquid:S1602l",Remove useless curly braces around statement(ÂÊåü8…Ø™Ë·.
+Zsquid:UselessImportCheck&"/Remove this unused import 'retrofit2.Retrofit'.(ŠĞİ8Û—ÎË·.
  squid:UselessImportCheck"pRemove this unused import 'com.example.epidemicscenarioapplication.databinding.BaseFragmentNetworkErrorBinding'.(™Õ›³úÿÿÿÿ8ŒˆíÎ·.
 ‰squid:UselessImportCheck"YRemove this unused import 'com.example.epidemicscenarioapplication.utils.ConstantsUtils'.(ªíÌ­úÿÿÿÿ8Û—ÎË·.
-ƒsquid:UselessImportCheck"SRemove this unused import 'com.example.epidemicscenarioapplication.base.IBaseView'.(‡ÿÖ¯øÿÿÿÿ8üÁŠË·.
-Vsquid:UselessImportCheck#"+Remove this unused import 'retrofit2.Call'.(Çö÷›8ÛÂË·.
-squid:UselessImportCheck"ORemove this unused import 'com.example.epidemicscenarioapplication.domain.API'.(ëù•³şÿÿÿÿ8Û—ÎË·.
-†squid:S14502"hRemove the "mWikipediaDiagnoseAdapter" field and declare it as a local variable in the relevant methods.(Ïä±·8…Ø™Ë·.
-…squid:UselessImportCheck"ZRemove this unused import 'com.example.epidemicscenarioapplication.utils.RetrofitManager'.(Ô˜ˆë8Û—ÎË·.
-Ysquid:UselessImportCheck$"/Remove this unused import 'retrofit2.Callback'.(›¨,8ÛÂË·.
+Zsquid:UselessImportCheck%"/Remove this unused import 'retrofit2.Response'.(¾éçï8ÛÂË·.
 qsquid:UselessImportCheck"FRemove this unused import 'com.example.epidemicscenarioapplication.R'.(ó†€¥8ÔâàÎ·.
-Jsquid:S1602l",Remove useless curly braces around statement(ÂÊåü8…Ø™Ë·.
+squid:UselessImportCheck"ORemove this unused import 'com.example.epidemicscenarioapplication.domain.API'.(ëù•³şÿÿÿÿ8Û—ÎË·.
+Vsquid:UselessImportCheck#"+Remove this unused import 'retrofit2.Call'.(Çö÷›8ÛÂË·.
+†squid:S14502"hRemove the "mWikipediaDiagnoseAdapter" field and declare it as a local variable in the relevant methods.(Ïä±·8…Ø™Ë·.

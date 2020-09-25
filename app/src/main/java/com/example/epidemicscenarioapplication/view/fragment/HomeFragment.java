@@ -265,7 +265,7 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     WebPageActivity.start(getContext(), "https://news.qq.com/zt2020/page/feiyan.htm#/area?pool=sd");
                     break;
                 case R.id.ll_baidu:
-                    WebPageActivity.start(getContext(), "https://news.sina.cn/zt_d/yiqing0121");
+                    WebPageActivity.start(getContext(), "https://voice.baidu.com/act/newpneumonia/newpneumonia");
                     break;
                 case R.id.ll_kuake:
                     WebPageActivity.start(getContext(), "https://broccoli.uc.cn/apps/pneumonia/routes/index");

@@ -45,7 +45,7 @@ public class GuideActivity extends AppIntro2 {
 
         addSlide(AppIntroFragment.newInstance("疫情新闻和当地新闻",
                 "向您展示全球疫情新闻和所在地新闻，最快获取疫情资讯。",
-                R.drawable.news2,
+                R.drawable.news,
                 Color.parseColor("#00dd37"),
                 Color.parseColor("#ffffff"),
                 Color.parseColor("#ffffff")));

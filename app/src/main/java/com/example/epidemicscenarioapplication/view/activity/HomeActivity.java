@@ -25,12 +25,12 @@ import com.baidu.location.LocationClient;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
-import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.custom.TipsDialog;
 import com.example.epidemicscenarioapplication.databinding.ActivityHomeBinding;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
 import com.example.epidemicscenarioapplication.utils.SpUtils;
+import com.example.epidemicscenarioapplication.utils.ToastUtils;
 import com.example.epidemicscenarioapplication.view.fragment.AboutUsFragment;
 import com.example.epidemicscenarioapplication.view.fragment.HomeFragment;
 import com.example.epidemicscenarioapplication.view.fragment.NewsFragment;
@@ -58,7 +58,8 @@ public class HomeActivity extends BaseActivity {
     private static final int SHOW_GUILDEPAGE_CODE = 2;
     private static boolean isToSetting = false;
     private static boolean isFirstShowReason = true;
-    private static int getLocationCount = 0;
+    private static int getLocationSuccessCount = 0;
+    private static int mGetLocationErrorCount=0;
     private HomeFragment mHomeFragment;
     private WikipediaFragment mWikipediaFragment;
     private AboutUsFragment mAboutUsFragment;
@@ -68,6 +69,7 @@ public class HomeActivity extends BaseActivity {
     private HomeActivityViewpagerAdapter mViewpagerAdapter;
     public LocationClient mLocationClient;
     private MyLocationListener myListener = new MyLocationListener();
+
 
 
     @Override
@@ -375,7 +377,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        getLocationCount=0;
+        getLocationSuccessCount = 0;
 
     }
 
@@ -398,7 +400,7 @@ public class HomeActivity extends BaseActivity {
             Log.d(TAG, "详细地址==>" + addr);
 //            ""  和 null 不是一回事 不要习惯性的写null
             if (addr != null) {
-                getLocationCount++;
+                getLocationSuccessCount++;
                 Log.d(TAG, "onReceiveLocation: 执行了" + location.getCity());
                 mLocationClient.stop();
                 mLocationClient.unRegisterLocationListener(myListener);
@@ -407,14 +409,18 @@ public class HomeActivity extends BaseActivity {
                 SpUtils.putString(HomeActivity.this, ConstantsUtils.LOCATION_CITY, city);
                 SpUtils.putString(HomeActivity.this, ConstantsUtils.LOCATION_DISTRICT, district);
 //                因为这个百度定位如果在打开软件后才开启定位 即使定位成功，也无法正常关闭，所以目前只能采用这种办法 最终在这里初始化fragment
-                if (getLocationCount == 1) {
+                if (getLocationSuccessCount == 1) {
                     initFragment();
                 }
-            }else if (getLocationCount >= 10){
-//                发起10次定位都不成功，就认定为定位失败了，显示定位失败的提示
-                isGetLocationSuccess(false);
+            } else {
+                mGetLocationErrorCount++;
+                if (mGetLocationErrorCount >= 20) {
+//                发起20次定位都不成功，就认定为定位失败了，显示定位失败的提示
+                    isGetLocationSuccess(false);
+                }
+
             }
-            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
+            Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode+"失败次数"+mGetLocationErrorCount);
         }
 
 
@@ -427,6 +433,7 @@ public class HomeActivity extends BaseActivity {
         } else {
             mHomeBinding.vpContainer.setVisibility(View.GONE);
             mHomeBinding.locationError.setVisibility(View.VISIBLE);
+            ToastUtils.showLongToast(this, "定位失败，请检查相关权限是否正常！");
         }
 
     }

@@ -16,7 +16,7 @@
         android:textSize="15sp" />
 
 <!--为什么这里文字改为填充父窗体 对话框就变小了-->
-        <TextView
+        <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
             android:id="@+id/tv_dialog_body"
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"

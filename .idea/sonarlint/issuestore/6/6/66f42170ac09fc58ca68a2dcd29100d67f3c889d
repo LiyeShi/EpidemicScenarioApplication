@@ -1,10 +1,10 @@
 
-Isquid:S1602G",Remove useless curly braces around statement(äP8Á‡ï¯½.
 ssquid:UselessImportCheck
 "CRemove this unused import 'androidx.fragment.app.FragmentActivity'.(Êñô–úÿÿÿÿ8ÿ«í³½.
-Ÿsquid:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8¬•Ïµ½.
-ˆsquid:S1450 "eRemove the "mLocalNewsPageFragment" field and declare it as a local variable in the relevant methods.(šÔ„Üøÿÿÿÿ8ƒîî¯½.
-…squid:S1450!"gRemove the "mTimelineServiceFragment" field and declare it as a local variable in the relevant methods.(ğ§„8Á‡ï¯½.
-vsquid:UselessImportCheck"FRemove this unused import 'androidx.recyclerview.widget.RecyclerView'.(Îèòçøÿÿÿÿ8§°ø…¸.
 ¤squid:S1186$"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( …Îúÿÿÿÿ8Á‡ï¯½.
+Isquid:S1602G",Remove useless curly braces around statement(äP8Á‡ï¯½.
+Ÿsquid:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8¬•Ïµ½.
+…squid:S1450!"gRemove the "mTimelineServiceFragment" field and declare it as a local variable in the relevant methods.(ğ§„8Á‡ï¯½.
+ˆsquid:S1450 "eRemove the "mLocalNewsPageFragment" field and declare it as a local variable in the relevant methods.(šÔ„Üøÿÿÿÿ8ƒîî¯½.
+vsquid:UselessImportCheck"FRemove this unused import 'androidx.recyclerview.widget.RecyclerView'.(Îèòçøÿÿÿÿ8§°ø…¸.
 squid:UselessImportCheck"_Remove this unused import 'com.example.epidemicscenarioapplication.view.activity.HomeActivity'.(²»üäùÿÿÿÿ8¬•Ïµ½.

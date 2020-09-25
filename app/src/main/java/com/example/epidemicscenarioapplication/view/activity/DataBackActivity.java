@@ -15,6 +15,7 @@ import com.example.epidemicscenarioapplication.custom.LineChartMarkView;
 import com.example.epidemicscenarioapplication.databinding.ActivityDataBackBinding;
 import com.example.epidemicscenarioapplication.presenter.impl.DataBackActibityPresenter;
 import com.example.epidemicscenarioapplication.utils.ConstantsUtils;
+import com.example.epidemicscenarioapplication.utils.SpUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -189,9 +190,9 @@ public class DataBackActivity extends BaseActivity implements IBaseView<HashMap<
     }
 
     private void initLineChart() {
-        // TODO: 2020/7/28 这个地方要换成真实的地理位置
         Description description = new Description();
-        description.setText(ConstantsUtils.LOCATION_PROVINCE +"疫情历史数据");
+        String province = SpUtils.getString(this, ConstantsUtils.LOCATION_PROVINCE, "山东省");
+        description.setText(province+"疫情历史数据");
         description.setTextSize(10);
 
         mMDataBackBinding.lcData.setDescription(description);
