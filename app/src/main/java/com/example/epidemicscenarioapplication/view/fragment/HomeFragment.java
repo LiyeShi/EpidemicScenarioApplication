@@ -300,7 +300,8 @@ public class HomeFragment extends BaseFragment implements IHomepageView<List>, O
                     break;
                 case R.id.ll_free_clinic:
 //                    在线义诊
-                    new HomeFragmentFreeClinic().show(getFragmentManager(), "view");
+                    HomeFragmentFreeClinic clinic = new HomeFragmentFreeClinic();
+                    clinic.show(getFragmentManager(), "view");
                     break;
                 case R.id.ll_wjw:
 //                    卫健委官方通告

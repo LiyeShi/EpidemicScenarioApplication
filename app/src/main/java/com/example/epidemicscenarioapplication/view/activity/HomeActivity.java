@@ -25,6 +25,7 @@ import com.baidu.location.LocationClient;
 import com.example.epidemicscenarioapplication.R;
 import com.example.epidemicscenarioapplication.adapter.HomeActivityViewpagerAdapter;
 import com.example.epidemicscenarioapplication.base.BaseActivity;
+import com.example.epidemicscenarioapplication.base.BaseFragment;
 import com.example.epidemicscenarioapplication.custom.TipsDialog;
 import com.example.epidemicscenarioapplication.databinding.ActivityHomeBinding;
 import com.example.epidemicscenarioapplication.utils.BaiduSDKutils;
@@ -72,6 +73,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: execute");
         isShowGuidePage();
         initListener();
     }
@@ -112,6 +114,7 @@ public class HomeActivity extends BaseActivity {
             instance.setCancelable(false);
             instance.show();
         } else {
+            Log.d(TAG, "initGPS: 初始化位置请求");
             initLocationClient();
         }
     }
@@ -172,7 +175,6 @@ public class HomeActivity extends BaseActivity {
         if (isFirst) {
 //            第一次打开软件，展示引导页
             startActivityForResult(new Intent(this, GuideActivity.class), SHOW_GUILDEPAGE_CODE);
-            SpUtils.putBoolean(this, PREF_ISFIRST, false);
         } else {
             Log.d(TAG, "isShowGuidePage: false");
 //            不是第一次打开，一进入软件就得判断是否打开了GPS,进而获取地理位置 否则软件无法使用
@@ -227,6 +229,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void initLocationClient() {
+//        默认就是可以成功获取位置的状态，只有失败了才显示定位失败的logo
+        isGetLocationSuccess(true);
         mLocationClient = new LocationClient(this);
         mLocationClient.registerLocationListener(myListener);
         mLocationClient.setLocOption(BaiduSDKutils.initSDK());
@@ -368,6 +372,13 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getLocationCount=0;
+
+    }
+
     /**
      * 百度定位回调
      */
@@ -399,10 +410,24 @@ public class HomeActivity extends BaseActivity {
                 if (getLocationCount == 1) {
                     initFragment();
                 }
+            }else if (getLocationCount >= 10){
+//                发起10次定位都不成功，就认定为定位失败了，显示定位失败的提示
+                isGetLocationSuccess(false);
             }
             Log.d(TAG, "onReceiveLocation: 定位失败==>" + errorCode);
         }
 
+
+    }
+
+    private void isGetLocationSuccess(boolean b) {
+        if (b) {
+            mHomeBinding.vpContainer.setVisibility(View.VISIBLE);
+            mHomeBinding.locationError.setVisibility(View.GONE);
+        } else {
+            mHomeBinding.vpContainer.setVisibility(View.GONE);
+            mHomeBinding.locationError.setVisibility(View.VISIBLE);
+        }
 
     }
 }

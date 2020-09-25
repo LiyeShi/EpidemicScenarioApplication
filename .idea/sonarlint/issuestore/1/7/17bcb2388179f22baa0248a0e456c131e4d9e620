@@ -1,21 +1,21 @@
 
-Msquid:S1481")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8¢š‡üË.
-msquid:S1871†"IThis case's code block is the same as the block for the case on line 129.(É„¦Éüÿÿÿÿ8òÖ¾‹Æ.
-}squid:S1450:"ZRemove the "isToSetting" field and declare it as a local variable in the relevant methods.(ìïÁäşÿÿÿÿ8¢š‡üË.
-qsquid:MaximumInheritanceDepth4"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8Û…ê¾Æ.
-}squid:S1450?"_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8òÖ¾‹Æ.
-zsquid:S1488¿"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8¿»¡ÛË.
 "squid:ClassVariableVisibilityCheckD"[Make mLocationClient a static final constant or non-public and provide accessors if needed.(ß¬ÿ÷8òÖ¾‹Æ.
 zsquid:S1450="\Remove the "mHomeFragment" field and declare it as a local variable in the relevant methods.(ÑÓñÃ8òÖ¾‹Æ.
- squid:S1186ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8¿»¡ÛË.
-squid:S1450@"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8òÖ¾‹Æ.
-Zsquid:S2696ç"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8¢š‡üË.
-Zsquid:S2696†"6Make the enclosing method "static" or remove this set.(ş‰¶üÿÿÿÿ8¢š‡üË.
-Jsquid:S1481‚"+Remove this unused "adcode" local variable.(îùÍ8¢š‡üË.
-Usquid:S2696°"6Make the enclosing method "static" or remove this set.(ğ¤íõ8¿»¡ÛË.
-„squid:S1450>"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8òÖ¾‹Æ.
-Osquid:S1481€"+Remove this unused "street" local variable.(Ï°ª°ûÿÿÿÿ8¢š‡üË.
-Jsquid:S1481ü",Remove this unused "country" local variable.(ÊößK8¢š‡üË.
-Rsquid:S1068:"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8ÜÑı«Ë.
+qsquid:MaximumInheritanceDepth4"<This class has 7 parents which is greater than 5 authorized.(ê½Òøÿÿÿÿ8Û…ê¾Æ.
 Ÿsquid:S1186‘"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±ÖÑ8òÖ¾‹Æ.
+}squid:S1450:"ZRemove the "isToSetting" field and declare it as a local variable in the relevant methods.(ìïÁäşÿÿÿÿ8¢š‡üË.
+Usquid:S2696°"6Make the enclosing method "static" or remove this set.(ğ¤íõ8¿»¡ÛË.
+Zsquid:S2696†"6Make the enclosing method "static" or remove this set.(ş‰¶üÿÿÿÿ8¢š‡üË.
+Jsquid:S1481ü",Remove this unused "country" local variable.(ÊößK8¢š‡üË.
+Osquid:S1481€"+Remove this unused "street" local variable.(Ï°ª°ûÿÿÿÿ8¢š‡üË.
+Zsquid:S2696ç"6Make the enclosing method "static" or remove this set.(ãóËìûÿÿÿÿ8¢š‡üË.
+Rsquid:S1068:"/Remove this unused "isToSetting" private field.(ìïÁäşÿÿÿÿ8ÜÑı«Ë.
+ squid:S1186ÿ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Øã€˜8¿»¡ÛË.
 Fsquid:S1185¦"(Remove this method to simply inherit it.(ºŠñ=8¿»¡ÛË.
+squid:S1450@"\Remove the "mNewsFragment" field and declare it as a local variable in the relevant methods.(Š½Äûÿÿÿÿ8òÖ¾‹Æ.
+zsquid:S1488¿"\Immediately return this expression instead of assigning it to the temporary variable "view".(Ş–œR8¿»¡ÛË.
+msquid:S1871†"IThis case's code block is the same as the block for the case on line 129.(É„¦Éüÿÿÿÿ8òÖ¾‹Æ.
+Msquid:S1481")Remove this unused "town" local variable.(«ÆÍ“ùÿÿÿÿ8¢š‡üË.
+Jsquid:S1481‚"+Remove this unused "adcode" local variable.(îùÍ8¢š‡üË.
+„squid:S1450>"aRemove the "mWikipediaFragment" field and declare it as a local variable in the relevant methods.(‹èæôùÿÿÿÿ8òÖ¾‹Æ.
+}squid:S1450?"_Remove the "mAboutUsFragment" field and declare it as a local variable in the relevant methods.(éî¯ÿ8òÖ¾‹Æ.

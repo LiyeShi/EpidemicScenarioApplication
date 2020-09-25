@@ -8,20 +8,35 @@
     android:orientation="vertical"
     tools:context=".view.activity.HomeActivity">
 
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_container"
+    <FrameLayout
+        android:id="@+id/activity_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fadingEdge="none"
-        android:overScrollMode="never" />
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/location_error"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:src="@drawable/icon_activitu_search_error"
+            android:layout_height="100dp"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"
+            android:overScrollMode="never" />
+
+    </FrameLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_home"
-        app:itemIconTint="@color/color_state_menu_navi"
-        app:itemTextColor="@color/color_state_menu_navi"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        app:itemIconTint="@color/color_state_menu_navi"
+        app:itemTextColor="@color/color_state_menu_navi"
         app:menu="@menu/my_navigation_items" />
 </LinearLayout>
