@@ -18,7 +18,7 @@
     <string name="home_mask_des">口罩预约</string>
     <string name="search_activity_btn_des">搜索</string>
     <string name="search_error_tips">没有查询到当前小区有确诊信息</string>
-    <string name="activity_search_tips" >提示：例如"幸福家园小区"，只需输入"幸福"即可</string>
+    <string name="activity_search_tips" >提示：例如“幸福家园小区”，只需输入“幸福”即可</string>
     <string name="home_free_clinic_des">在线义诊</string>
     <string name="home_data_rumor">谣言</string>
     <string name="home_wjw">官方通报</string>
