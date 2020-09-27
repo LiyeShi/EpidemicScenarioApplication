@@ -13,7 +13,7 @@
         android:layout_marginTop="30dp"
         android:text="全民战役将使用位置信息"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
 <!--为什么这里文字改为填充父窗体 对话框就变小了-->
         <com.qmuiteam.qmui.widget.textview.QMUILinkTextView
